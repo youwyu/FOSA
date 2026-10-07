@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="FOSA learns a Generative Flow Network over symbolic task skeletons and grounds it in policy learning to discover tasks near each robot's empirical capability frontier.">
+  <title>Generative Flow on Symbolic Abstractions for Embodiment Capability Discovery</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans:400,500,700|Noto+Sans:400,500,600,700&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script defer src="./static/js/overview.js"></script>
+  <script defer src="./static/js/media.js"></script>
+  <script defer src="./static/js/teaser.js"></script>
+  <script defer src="./static/js/robot-tabs.js"></script>
+  <script defer src="./static/data/summary.js"></script>
+  <script defer src="./static/js/frontier.js"></script>
+  <script defer src="./static/js/tables.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#overview">Skip to content</a>
+
+  <header class="publication-header">
+    <div class="page-container">
+      <h1 class="publication-title">
+        Generative Flow on Symbolic Abstractions
+        <span class="publication-subtitle">for Embodiment Capability Discovery</span>
+      </h1>
+
+      <figure class="publication-teaser">
+        <div class="teaser-picker" role="tablist" aria-label="Discovered task examples" hidden></div>
+        <div class="teaser-examples">
+          <article class="teaser-example" id="example-go2-steps" data-label="Weakened motors on steps" data-robot="Quadruped" data-tag="Frontier · 𝓕 1.00">
+            <div class="construction">
+              <p class="construction-label">Quadruped · constructed skeleton</p>
+              <ol class="edits" aria-label="Construction trajectory">
+                <li class="edit-start"><span class="empty-node" aria-hidden="true">∅</span>empty skeleton</li>
+                <li style="--p:1; --i:1"><span class="edit-body"><code class="edit-op">add_atom</code><span class="edit-role">capability</span>velocity</span><span class="edit-prob">only valid edit</span></li>
+                <li style="--p:.072; --i:2"><span class="edit-body"><code class="edit-op">add_atom</code><span class="edit-role">goal</span>actuator degradation robustness</span><span class="edit-prob">p .07 of 24</span></li>
+                <li style="--p:.043; --i:3"><span class="edit-body"><code class="edit-op">add_atom</code><span class="edit-role">constraint</span>velocity tracking flat</span><span class="edit-prob">p .04 of 16</span></li>
+                <li style="--p:.173; --i:4"><span class="edit-body"><code class="edit-op">add_atom</code><span class="edit-role">environment</span>rough terrain navigation</span><span class="edit-prob">p .17 of 8</span></li>
+                <li style="--p:.194; --i:5"><span class="edit-body"><code class="edit-op">refine_arg</code><span class="edit-role">environment</span>terrain type = steps</span><span class="edit-prob">p .19 of 10</span></li>
+                <li style="--p:.23; --i:6"><span class="edit-body"><code class="edit-op">stop</code></span><span class="edit-prob">p .23 of 10</span></li>
+              </ol>
+              <div class="compiled">
+                <q>Locomotion on steps at 0.4 m/s with 70% torque scale to simulate motor power degradation.</q>
+                <p class="compiled-scores"><var>J</var><sup>0</sup> 0.00 → <var>J</var> 0.47 · <strong>𝓕 = 1.00, on the frontier</strong></p>
+              </div>
+            </div>
+            <video muted loop playsinline preload="none" poster="./static/images/posters/discovered/go2-torque-steps.jpg" width="1280" height="720" aria-label="PPO policy on the discovered task: a quadruped with weakened motors walking over steps">
+              <source src="./static/videos/discovered/go2-torque-steps.mp4" type="video/mp4">
+            </video>
+          </article>
+
+          <article class="teaser-example" id="example-jackal-friction" data-label="Slip under random friction" data-robot="Vehicle" data-tag="Frontier · 𝓕 1.00">
+            <div class="construction">
+              <p class="construction-label">Vehicle · constructed skeleton</p>
+              <ol class="edits" aria-label="Construction trajectory">
+                <li class="edit-start"><span class="empty-node" aria-hidden="true">∅</span>empty skeleton</li>
+                <li style="--p:1; --i:1"><span class="edit-body"><code class="edit-op">add_atom</code><span class="edit-role">capability</span>velocity</span><span class="edit-prob">only valid edit</span></li>
+                <li style="--p:.163; --i:2"><span class="edit-body"><code class="edit-op">add_atom</code><span class="edit-role">environment</span>velocity tracking flat</span><span class="edit-prob">p .16 of 24</span></li>
+                <li style="--p:.023; --i:3"><span class="edit-body"><code class="edit-op">add_atom</code><span class="edit-role">goal</span>friction adaptation</span><span class="edit-prob">p .02 of 16</span></li>
+                <li style="--p:.305; --i:4"><span class="edit-body"><code class="edit-op">add_atom</code><span class="edit-role">constraint</span>friction adaptation</span><span class="edit-prob">p .31 of 8</span></li>
+                <li style="--p:.68; --i:5"><span class="edit-body"><code class="edit-op">stop</code></span><span class="edit-prob">p .68 of 3</span></li>
+              </ol>
+              <div class="compiled">
+                <q>The robot must maintain a target linear velocity of 0.8 m/s while the friction of the contact surface is randomized to test slip robustness.</q>
+                <p class="compiled-scores"><var>J</var><sup>0</sup> 0.00 → <var>J</var> 0.49 · <strong>𝓕 = 1.00, on the frontier</strong></p>
+              </div>
+            </div>
+            <video muted loop playsinline preload="none" poster="./static/images/posters/discovered/jackal-friction.jpg" width="1280" height="720" aria-label="PPO policy on the discovered task: a wheeled vehicle tracking velocity on a surface with randomized friction">
+              <source src="./static/videos/discovered/jackal-friction.mp4" type="video/mp4">
+            </video>
+          </article>
+
+          <article class="teaser-example" id="example-jackal-waves" data-label="Fast driving on waves" data-robot="Vehicle" data-tag="Frontier · 𝓕 0.31">
+            <div class="construction">
+              <p class="construction-label">Vehicle · constructed skeleton</p>
+              <ol class="edits" aria-label="Construction trajectory">
+                <li class="edit-start"><span class="empty-node" aria-hidden="true">∅</span>empty skeleton</li>
+                <li style="--p:1; --i:1"><span class="edit-body"><code class="edit-op">add_atom</code><span class="edit-role">capability</span>velocity</span><span class="edit-prob">only valid edit</span></li>
+                <li style="--p:.197; --i:2"><span class="edit-body"><code class="edit-op">add_atom</code><span class="edit-role">environment</span>rough terrain navigation</span><span class="edit-prob">p .20 of 24</span></li>
+                <li style="--p:.072; --i:3"><span class="edit-body"><code class="edit-op">add_atom</code><span class="edit-role">constraint</span>velocity tracking flat</span><span class="edit-prob">p .07 of 16</span></li>
+                <li style="--p:.077; --i:4"><span class="edit-body"><code class="edit-op">add_atom</code><span class="edit-role">goal</span>friction adaptation</span><span class="edit-prob">p .08 of 8</span></li>
+                <li style="--p:.089; --i:5"><span class="edit-body"><code class="edit-op">refine_arg</code><span class="edit-role">environment</span>terrain type = pyramid</span><span class="edit-prob">p .09 of 8</span></li>
+                <li style="--p:.091; --i:6"><span class="edit-body"><code class="edit-op">refine_arg</code><span class="edit-role">goal</span>target velocity ↑</span><span class="edit-prob">p .09 of 8</span></li>
+                <li style="--p:.146; --i:7"><span class="edit-body"><code class="edit-op">refine_arg</code><span class="edit-role">environment</span>terrain type = waves</span><span class="edit-prob">p .15 of 7</span></li>
+                <li style="--p:.308; --i:8"><span class="edit-body"><code class="edit-op">stop</code></span><span class="edit-prob">p .31 of 7</span></li>
+              </ol>
+              <div class="compiled">
+                <q>The robot must maintain a target linear velocity of 1.5 m/s on a non-flat waves terrain with randomized surface friction.</q>
+                <p class="compiled-scores"><var>J</var><sup>0</sup> 0.00 → <var>J</var> 0.91 · <strong>𝓕 = 0.31, nearly mastered</strong></p>
+              </div>
+            </div>
+            <video muted loop playsinline preload="none" poster="./static/images/posters/discovered/jackal-waves.jpg" width="1280" height="720" aria-label="PPO policy on the discovered task: a wheeled vehicle driving fast over wave terrain">
+              <source src="./static/videos/discovered/jackal-waves.mp4" type="video/mp4">
+            </video>
+          </article>
+
+          <article class="teaser-example" id="example-go2-rough" data-label="Walking on rough terrain" data-robot="Quadruped" data-tag="Mastered · 𝓕 0">
+            <div class="construction">
+              <p class="construction-label">Quadruped · constructed skeleton</p>
+              <ol class="edits" aria-label="Construction trajectory">
+                <li class="edit-start"><span class="empty-node" aria-hidden="true">∅</span>empty skeleton</li>
+                <li style="--p:1; --i:1"><span class="edit-body"><code class="edit-op">add_atom</code><span class="edit-role">capability</span>velocity</span><span class="edit-prob">only valid edit</span></li>
+                <li style="--p:.043; --i:2"><span class="edit-body"><code class="edit-op">add_atom</code><span class="edit-role">constraint</span>friction adaptation</span><span class="edit-prob">p .04 of 24</span></li>
+                <li style="--p:.06; --i:3"><span class="edit-body"><code class="edit-op">add_atom</code><span class="edit-role">goal</span>rough terrain navigation</span><span class="edit-prob">p .06 of 16</span></li>
+                <li style="--p:.131; --i:4"><span class="edit-body"><code class="edit-op">add_atom</code><span class="edit-role">environment</span>dynamic stability recovery</span><span class="edit-prob">p .13 of 8</span></li>
+                <li style="--p:.34; --i:5"><span class="edit-body"><code class="edit-op">stop</code></span><span class="edit-prob">p .34 of 3</span></li>
+              </ol>
+              <div class="compiled">
+                <q>Locomotion stability and velocity tracking (0.3 m/s) over non-flat heightfield terrains.</q>
+                <p class="compiled-scores"><var>J</var><sup>0</sup> 0.00 → <var>J</var> 1.00 · <strong>𝓕 = 0, mastered</strong></p>
+              </div>
+            </div>
+            <video muted loop playsinline preload="none" poster="./static/images/posters/discovered/go2-rough-terrain.jpg" width="1280" height="720" aria-label="PPO policy on the discovered task: a quadruped walking over rough heightfield terrain">
+              <source src="./static/videos/discovered/go2-rough-terrain.mp4" type="video/mp4">
+            </video>
+          </article>
+        </div>
+        <figcaption>
+          Starting from the empty skeleton ∅, FOSA's abstract policy samples grammar-valid symbolic edits until <code>stop</code>; bar width shows the probability <var>P</var><sub>F</sub>(<b>x</b>′ | <b>x</b>) of each sampled edit. The finished skeleton is compiled into a simulation task and trained with PPO. Success before (<var>J</var><sup>0</sup>) and after (<var>J</var>) training sets the frontier score 𝓕, which favors tasks that training makes learnable but does not master.
+        </figcaption>
+      </figure>
+
+      <p class="publication-authors" aria-label="Authors">
+        <a href="https://www.youwei-yu.com/" target="_blank" rel="noopener">Youwei Yu</a>
+        <a href="https://vail-robotics.net/pages/lantaoliu" target="_blank" rel="noopener">Lantao Liu</a>
+      </p>
+      <p class="publication-affiliation">Indiana University</p>
+      <p class="publication-venue">Conference on Robot Learning (CoRL) 2026</p>
+      <div class="publication-links" aria-label="Research resources">
+        <span class="resource-link is-pending"><i class="fas fa-file-alt" aria-hidden="true"></i><span>Paper</span><span class="resource-status">(soon)</span></span>
+        <span class="resource-link is-pending"><i class="fab fa-youtube" aria-hidden="true"></i><span>Video</span><span class="resource-status">(soon)</span></span>
+        <a class="resource-link is-primary" href="https://github.com/youwyu/FOSA"><i class="fab fa-github" aria-hidden="true"></i><span>Code</span></a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="paper-section overview-section" id="overview" aria-labelledby="overview-title">
+      <div class="page-container">
+        <h2 id="overview-title">Robots are built for broad use. Which tasks can each one actually learn?</h2>
+        <div class="overview-tabs" aria-label="About FOSA" hidden>
+          <button type="button" id="summary-tab" aria-controls="summary-panel">Overview</button>
+          <button type="button" id="method-tab" aria-controls="method-panel">How it works</button>
+        </div>
+
+        <div class="explanation-panel" id="summary-panel">
+          <div class="overview-copy">
+            <p><strong>Semantic plausibility is not physical feasibility.</strong> Training tasks are usually handcrafted or sampled from large language models, chosen because they sound reasonable. Yet a task that looks simple can be physically hard for a given robot, while a non-obvious behavior can be easy to learn and useful for composing longer skills.</p>
+            <p><strong>Our idea: let the robot's own learning decide.</strong> FOSA learns a Generative Flow Network that constructs symbolic task skeletons edit by edit. Each skeleton is compiled into a simulation environment and trained with PPO, and the outcome rewards the generator for tasks on the robot's <em>empirical capability frontier</em>: learnable under the training budget, but not yet mastered.</p>
+            <p><strong>Discovery concentrates where the frontier lies.</strong> Across a wheeled vehicle, a dexterous hand, a quadruped and a humanoid, FOSA reaches the <strong class="result-highlight">highest frontier proximity on the vehicle (0.30 vs. 0.23)</strong>, ties the best method on the humanoid, and gives frontier-bearing task families 1.30–1.78× the share of an even split on three of the four robots. Whether this also improves transfer to held-out tasks is still open: at 256 tasks, the distilled student does not yet favor it.</p>
+          </div>
+        </div>
+
+        <div class="explanation-panel" id="method-panel">
+          <div class="method-loop" role="list" aria-label="FOSA discovery loop">
+            <div class="loop-node is-learned" role="listitem">
+              <span class="loop-kicker">Abstract policy</span>
+              <strong>GFlowNet over skeletons</strong>
+              Samples grammar-valid edits from ∅: <code>add_atom</code>, <code>compose</code>, <code>refine_arg</code>, <code>stop</code>.
+            </div>
+            <div class="loop-node" role="listitem">
+              <span class="loop-kicker">Compiler</span>
+              <strong>Env(<b>e</b>, <b>x</b>)</strong>
+              Validity and completeness checks; an LLM fills assets and reward templates.
+            </div>
+            <div class="loop-node" role="listitem">
+              <span class="loop-kicker">Task policy</span>
+              <strong>PPO, fixed budget</strong>
+              Trains from scratch and measures success before (<var>J</var><sup>0</sup>) and after (<var>J</var>).
+            </div>
+            <div class="loop-node" role="listitem">
+              <span class="loop-kicker">Reward</span>
+              <strong>Frontier utility</strong>
+              Frontier score plus novelty, minus duplication and length; <var>R</var> = ε + exp(β𝒱).
+            </div>
+            <p class="loop-edge loop-return">trajectory balance updates the abstract policy</p>
+          </div>
+
+          <p class="method-equation" aria-label="F of x equals 4 J times 1 minus J, times max of 0 and J minus J zero, divided by J">
+            𝓕(<b>x</b>) = 4<var>J</var>(1 − <var>J</var>) · <span class="frac"><span>max(0, <var>J</var> − <var>J</var><sup>0</sup>)</span><span><var>J</var></span></span>
+          </p>
+          <p class="equation-note">The first factor is the normalized variance of final success, largest when the policy succeeds half the time. The second is the share of that success acquired by training. 𝓕 is positive exactly on the frontier, <var>J</var><sup>0</sup> &lt; <var>J</var> &lt; 1, and has no target level or width to tune.</p>
+
+          <ol class="method-steps">
+            <li>
+              <h3>Construct a skeleton</h3>
+              <p>A skeleton lists typed entities, an initial symbolic state, goal literals, operator schemas, continuous arguments and feasibility constraints. Invalid edits are masked, and <code>stop</code> is enabled only once the skeleton is complete.</p>
+            </li>
+            <li>
+              <h3>Ground it in learning</h3>
+              <p>The language model only compiles: it verbalizes the skeleton, organizes simulator assets and fills reward templates. The learned proposal distribution is the GFlowNet, so selection rests on PPO outcomes rather than on how plausible a task sounds.</p>
+            </li>
+            <li>
+              <h3>Search near the frontier</h3>
+              <p>Frontier skeletons cluster under the grammar's edits. Local search starts from an archived skeleton drawn in proportion to <var>R</var>, backtracks <var>k</var> ∈ {1, 2, 3} edits with <var>P</var><sub>B</sub> and completes the skeleton with <var>P</var><sub>F</sub>.</p>
+            </li>
+          </ol>
+          <p class="method-note"><strong>After discovery,</strong> the archive of task policies is distilled with DAgger into a single language-conditioned student (MiniVLA), which is evaluated on held-out tasks never seen during discovery.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="paper-section results-section" id="results" aria-labelledby="results-title">
+      <div class="page-container">
+        <div class="section-heading">
+          <h2 id="results-title">Where does each method spend its discovery budget?</h2>
+          <p>Every method trains 256 candidate tasks per robot under the same PPO budget. Each row shows where its distinct tasks land after training. Purple marks tasks on the empirical capability frontier; the band above shows the frontier score of a task learned from zero, which peaks at half success.</p>
+        </div>
+
+        <div class="robot-tabs" role="tablist" aria-label="Robot" data-frontier-tabs hidden>
+          <button type="button" role="tab" data-robot="jackal" aria-selected="true"><img src="./static/images/robots/jackal.jpg" width="240" height="150" alt="" aria-hidden="true">Vehicle</button>
+          <button type="button" role="tab" data-robot="inspire_hand" aria-selected="false" tabindex="-1"><img src="./static/images/robots/inspire_hand.jpg" width="240" height="150" alt="" aria-hidden="true">Hand</button>
+          <button type="button" role="tab" data-robot="go2" aria-selected="false" tabindex="-1"><img src="./static/images/robots/go2.jpg" width="240" height="150" alt="" aria-hidden="true">Quadruped</button>
+          <button type="button" role="tab" data-robot="booster" aria-selected="false" tabindex="-1"><img src="./static/images/robots/booster.jpg" width="240" height="150" alt="" aria-hidden="true">Humanoid</button>
+        </div>
+
+        <div class="frontier-explorer" role="tabpanel" hidden>
+          <p class="figure-note" data-frontier-status role="status">Loading discovered tasks…</p>
+          <div class="frontier-chart" data-frontier-chart></div>
+          <div class="frontier-legend">
+            <span><i class="legend-frontier" aria-hidden="true"></i>On the frontier (<var>J</var><sup>0</sup> &lt; <var>J</var> &lt; 1)</span>
+            <span><i class="legend-other" aria-hidden="true"></i>Never learned, mastered, or no progress</span>
+            <span><i class="legend-band" aria-hidden="true"></i>Frontier score 4<var>J</var>(1 − <var>J</var>)</span>
+          </div>
+          <div class="frontier-detail" data-frontier-detail aria-live="polite"></div>
+
+          <h3 class="metric-heading" data-metrics-title>All discovery metrics</h3>
+          <div class="table-scroll" data-metrics-table></div>
+          <p class="table-note" id="metrics-note">Frontier-Prox: mean 𝓕 over distinct programs. Expl-Eff: share of trained tasks that are distinct programs. Dist-Embed1/2: word- and sentence-level embedding dispersion. Div-SB4/5: 1 − Self-BLEU. Text metrics use one shared re-description of every task. Frontier allocation: share of tasks per goal family weighted by that family's frontier rate on the other methods' tasks, relative to an even split (LLM-CL writes free-form goals). Bold: best or statistically tied with it.</p>
+        </div>
+        <noscript><p class="figure-note">Enable JavaScript to explore the discovered tasks.</p></noscript>
+      </div>
+    </section>
+
+    <section class="paper-section inversions-section" id="inversions" aria-labelledby="inversions-title">
+      <div class="page-container">
+        <h2 id="inversions-title">Intuition is a poor guide to difficulty</h2>
+        <ul class="inversion-grid">
+          <li>
+            <h3>Vehicle</h3>
+            <p>A short target-reaching task becomes <strong>surprisingly hard</strong> once the robot must also stop at the goal.</p>
+          </li>
+          <li>
+            <h3>Hand</h3>
+            <p>Dynamic manipulation such as sphere reorientation and spinning is <strong>easier</strong> than basic reach, touch, grasp and hold.</p>
+          </li>
+          <li>
+            <h3>Quadruped</h3>
+            <p>As for the vehicle, a short reaching task that ends with <strong>a controlled stop</strong> is harder than it looks.</p>
+          </li>
+          <li>
+            <h3>Humanoid</h3>
+            <p>Static balance on rough ground or under payloads is <strong>learned more reliably</strong> than obstacle crossing and some carrying variants.</p>
+          </li>
+        </ul>
+        <p class="closing-note"><strong>These easy–hard inversions are why FOSA grounds task selection in policy learning</strong> rather than in how plausible a task sounds.</p>
+      </div>
+    </section>
+
+    <section class="paper-section experiments-section" id="heldout" aria-labelledby="heldout-title">
+      <div class="page-container">
+        <div class="section-heading">
+          <h2 id="heldout-title">Held-out Evaluation Tasks</h2>
+          <p>Authored separately and never used during discovery, shown here with each task's reference PPO policy. Each method's discovered tasks are distilled into one language-conditioned student, which is then evaluated on these tasks.</p>
+        </div>
+
+        <div class="robot-tabs" role="tablist" aria-label="Robot" data-robot-tabs hidden>
+          <button type="button" role="tab" aria-controls="heldout-jackal"><img src="./static/images/robots/jackal.jpg" width="240" height="150" alt="" aria-hidden="true">Vehicle</button>
+          <button type="button" role="tab" aria-controls="heldout-inspire_hand"><img src="./static/images/robots/inspire_hand.jpg" width="240" height="150" alt="" aria-hidden="true">Hand</button>
+          <button type="button" role="tab" aria-controls="heldout-go2"><img src="./static/images/robots/go2.jpg" width="240" height="150" alt="" aria-hidden="true">Quadruped</button>
+          <button type="button" role="tab" aria-controls="heldout-booster"><img src="./static/images/robots/booster.jpg" width="240" height="150" alt="" aria-hidden="true">Humanoid</button>
+        </div>
+
+        <div class="robot-panel experiment-grid" id="heldout-jackal" aria-label="Vehicle held-out tasks">
+          <figure class="experiment">
+            <video poster="./static/images/posters/heldout/jackal-uphill_climb.jpg" controls muted playsinline preload="none" width="1280" height="720" aria-label="Vehicle held-out task: uphill climb">
+              <source src="./static/videos/heldout/jackal-uphill_climb.mp4" type="video/mp4">
+            </video>
+            <figcaption>Uphill climb<span>Climb a 10° incline while tracking 0.6 m/s without stalling.</span></figcaption>
+          </figure>
+          <figure class="experiment">
+            <video poster="./static/images/posters/heldout/jackal-washboard.jpg" controls muted playsinline preload="none" width="1280" height="720" aria-label="Vehicle held-out task: washboard">
+              <source src="./static/videos/heldout/jackal-washboard.mp4" type="video/mp4">
+            </video>
+            <figcaption>Washboard<span>Cross a washboard ripple surface at 1.0 m/s while keeping the heading steady.</span></figcaption>
+          </figure>
+          <figure class="experiment">
+            <video poster="./static/images/posters/heldout/jackal-speed_bumps.jpg" controls muted playsinline preload="none" width="1280" height="720" aria-label="Vehicle held-out task: speed bumps">
+              <source src="./static/videos/heldout/jackal-speed_bumps.mp4" type="video/mp4">
+            </video>
+            <figcaption>Speed bumps<span>Track 1.2 m/s across 5 cm bumps spaced 1.5 m apart.</span></figcaption>
+          </figure>
+          <figure class="experiment">
+            <video poster="./static/images/posters/heldout/jackal-gravel_reverse.jpg" controls muted playsinline preload="none" width="1280" height="720" aria-label="Vehicle held-out task: gravel reverse">
+              <source src="./static/videos/heldout/jackal-gravel_reverse.mp4" type="video/mp4">
+            </video>
+            <figcaption>Gravel reverse<span>Reverse at 0.5 m/s across rough gravel while keeping the heading steady.</span></figcaption>
+          </figure>
+        </div>
+
+        <div class="robot-panel experiment-grid" id="heldout-inspire_hand" aria-label="Hand held-out tasks">
+          <figure class="experiment">
+            <video poster="./static/images/posters/heldout/inspire_hand-sphere_lift.jpg" controls muted playsinline preload="none" width="1280" height="720" aria-label="Hand held-out task: sphere lift">
+              <source src="./static/videos/heldout/inspire_hand-sphere_lift.mp4" type="video/mp4">
+            </video>
+            <figcaption>Sphere lift<span>Raise a ball held in the fingers by about 2 cm and hold it above the palm.</span></figcaption>
+          </figure>
+          <figure class="experiment">
+            <video poster="./static/images/posters/heldout/inspire_hand-cuboid_turn.jpg" controls muted playsinline preload="none" width="1280" height="720" aria-label="Hand held-out task: cuboid turn">
+              <source src="./static/videos/heldout/inspire_hand-cuboid_turn.mp4" type="video/mp4">
+            </video>
+            <figcaption>Cuboid turn<span>Turn a small block 30° counterclockwise about the vertical axis and hold it.</span></figcaption>
+          </figure>
+          <figure class="experiment">
+            <video poster="./static/images/posters/heldout/inspire_hand-palm_ball_balance.jpg" controls muted playsinline preload="none" width="1280" height="720" aria-label="Hand held-out task: palm ball balance">
+              <source src="./static/videos/heldout/inspire_hand-palm_ball_balance.mp4" type="video/mp4">
+            </video>
+            <figcaption>Palm ball balance<span>Keep a ball resting on the open palm for the whole episode.</span></figcaption>
+          </figure>
+          <figure class="experiment">
+            <video poster="./static/images/posters/heldout/inspire_hand-cylinder_tip.jpg" controls muted playsinline preload="none" width="1280" height="720" aria-label="Hand held-out task: cylinder tip">
+              <source src="./static/videos/heldout/inspire_hand-cylinder_tip.mp4" type="video/mp4">
+            </video>
+            <figcaption>Cylinder tip<span>Tip a short upright cylinder 20° toward the wrist and hold it above the palm.</span></figcaption>
+          </figure>
+        </div>
+
+        <div class="robot-panel experiment-grid" id="heldout-go2" aria-label="Quadruped held-out tasks">
+          <figure class="experiment">
+            <video poster="./static/images/posters/heldout/go2-stair_descent.jpg" controls muted playsinline preload="none" width="1280" height="720" aria-label="Quadruped held-out task: stair descent">
+              <source src="./static/videos/heldout/go2-stair_descent.mp4" type="video/mp4">
+            </video>
+            <figcaption>Stair descent<span>Descend four 10 cm steps at 0.4 m/s without falling.</span></figcaption>
+          </figure>
+          <figure class="experiment">
+            <video poster="./static/images/posters/heldout/go2-ice_stop.jpg" controls muted playsinline preload="none" width="1280" height="720" aria-label="Quadruped held-out task: ice stop">
+              <source src="./static/videos/heldout/go2-ice_stop.mp4" type="video/mp4">
+            </video>
+            <figcaption>Ice stop<span>Walk at 0.4 m/s on a floor with friction 0.2, then stop without falling.</span></figcaption>
+          </figure>
+          <figure class="experiment">
+            <video poster="./static/images/posters/heldout/go2-shove_walk.jpg" controls muted playsinline preload="none" width="1280" height="720" aria-label="Quadruped held-out task: shove walk">
+              <source src="./static/videos/heldout/go2-shove_walk.mp4" type="video/mp4">
+            </video>
+            <figcaption>Shove walk<span>Keep walking at 0.4 m/s under 60 N sideways shoves every few seconds.</span></figcaption>
+          </figure>
+          <figure class="experiment">
+            <video poster="./static/images/posters/heldout/go2-lateral_walk.jpg" controls muted playsinline preload="none" width="1280" height="720" aria-label="Quadruped held-out task: lateral walk">
+              <source src="./static/videos/heldout/go2-lateral_walk.mp4" type="video/mp4">
+            </video>
+            <figcaption>Lateral walk<span>Track a 0.4 m/s sideways command without drifting forward.</span></figcaption>
+          </figure>
+        </div>
+
+        <div class="robot-panel experiment-grid" id="heldout-booster" aria-label="Humanoid held-out tasks">
+          <figure class="experiment">
+            <video poster="./static/images/posters/heldout/booster-crouch_hold.jpg" controls muted playsinline preload="none" width="1280" height="720" aria-label="Humanoid held-out task: crouch hold">
+              <source src="./static/videos/heldout/booster-crouch_hold.mp4" type="video/mp4">
+            </video>
+            <figcaption>Crouch hold<span>Lower the base about 10 cm into a crouch and hold it upright.</span></figcaption>
+          </figure>
+          <figure class="experiment">
+            <video poster="./static/images/posters/heldout/booster-wave_while_standing.jpg" controls muted playsinline preload="none" width="1280" height="720" aria-label="Humanoid held-out task: wave while standing">
+              <source src="./static/videos/heldout/booster-wave_while_standing.mp4" type="video/mp4">
+            </video>
+            <figcaption>Wave while standing<span>Wave one arm side to side for the whole episode without losing balance.</span></figcaption>
+          </figure>
+          <figure class="experiment">
+            <video poster="./static/images/posters/heldout/booster-gentle_ramp_up.jpg" controls muted playsinline preload="none" width="1280" height="720" aria-label="Humanoid held-out task: gentle ramp up">
+              <source src="./static/videos/heldout/booster-gentle_ramp_up.mp4" type="video/mp4">
+            </video>
+            <figcaption>Gentle ramp up<span>Walk at 0.4 m/s up a 5° ramp while staying upright.</span></figcaption>
+          </figure>
+          <figure class="experiment">
+            <video poster="./static/images/posters/heldout/booster-push_stand.jpg" controls muted playsinline preload="none" width="1280" height="720" aria-label="Humanoid held-out task: push stand">
+              <source src="./static/videos/heldout/booster-push_stand.mp4" type="video/mp4">
+            </video>
+            <figcaption>Push stand<span>Remain standing under repeated 40 N lateral pushes without taking a step.</span></figcaption>
+          </figure>
+        </div>
+
+        <h3 class="metric-heading">Held-out success retention of the distilled student</h3>
+        <div class="table-scroll" data-heldout-table></div>
+        <p class="table-note" id="heldout-note">Success retention min(1, SR<sub>student</sub> / SR<sub>reference</sub>) of the distilled language-conditioned student, averaged over each robot's six held-out tasks and three student seeds, with 95% intervals from 2,000 bootstrap resamples of the tasks. Bold: the best method and every method whose paired gap to it has an interval including 0. Last column: tasks with retention above 0.5.</p>
+        <p class="closing-note">At 256 tasks per robot, <strong>frontier-focused discovery and held-out transfer are not yet aligned</strong>: no curriculum statistic we measured, including frontier share and the number of task families covered, predicts student success with a consistent sign across robots. We regard this as the main open problem.</p>
+      </div>
+    </section>
+
+    <section class="paper-section realworld-section" id="real-world" aria-labelledby="real-world-title">
+      <div class="page-container">
+        <h2 id="real-world-title">Real-World Transfer</h2>
+        <div class="realworld-copy">
+          <p>We deploy distilled students on a ClearPath Jackal and a Unitree Go2, each running on an NVIDIA Jetson Orin with an Intel RealSense D435i at 30 Hz for policy inference and an OS1-64 LiDAR for 100 Hz LiDAR–inertial odometry. The benchmark follows the held-out tasks of the simulation evaluation.</p>
+          <p>These students were distilled from an earlier FOSA configuration, before local search and the shared reward. The main failure case is porch delivery, where low-friction contact, stair traversal and posture transitions amplify errors.</p>
+        </div>
+        <div class="table-scroll realworld-table">
+          <table class="results-table" aria-describedby="realworld-note">
+            <thead>
+              <tr><th scope="col" rowspan="2">Method</th><th scope="colgroup" colspan="4">Vehicle</th><th scope="colgroup" colspan="4">Quadruped</th></tr>
+              <tr><th scope="col">A</th><th scope="col">B</th><th scope="col">C</th><th scope="col">D</th><th scope="col">A</th><th scope="col">B</th><th scope="col">C</th><th scope="col">D</th></tr>
+            </thead>
+            <tbody>
+              <tr class="group-row"><th scope="rowgroup" colspan="9">Baselines</th></tr>
+              <tr><th scope="row">LLM-CL</th><td>0</td><td>50</td><td>0</td><td>17</td><td>0</td><td>0</td><td>0</td><td>33</td></tr>
+              <tr><th scope="row">LLM-MCTS</th><td>17</td><td>33</td><td>0</td><td>17</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+              <tr><th scope="row">MCTS</th><td>0</td><td>33</td><td class="is-best">17</td><td>17</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+              <tr><th scope="row">MCTS-LEARN</th><td>17</td><td>50</td><td class="is-best">17</td><td class="is-best">33</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+              <tr class="group-row"><th scope="rowgroup" colspan="9">Ablations</th></tr>
+              <tr><th scope="row">FOSA-RND</th><td>17</td><td>50</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+              <tr><th scope="row">FOSA-LLM</th><td>0</td><td>17</td><td>0</td><td>17</td><td>0</td><td class="is-best">17</td><td>0</td><td>83</td></tr>
+              <tr class="is-ours"><th scope="row">FOSA (ours)</th><td class="is-best">50</td><td class="is-best">67</td><td class="is-best">17</td><td class="is-best">33</td><td class="is-best">17</td><td class="is-best">17</td><td>0</td><td class="is-best">100</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="table-note" id="realworld-note">Real-world success rate (%) on four held-out tasks per robot. Bold: best per task.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Page template borrowed from <a href="https://nerfies.github.io/">Nerfies</a>.</p>
+  </footer>
+</body>
+</html>
