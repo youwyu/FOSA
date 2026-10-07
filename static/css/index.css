@@ -107,43 +107,39 @@ h2 {
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 
-/* Construction figure: the trained GFlowNet's most probable edits, with alternatives. */
+/* Construction figure: the semantics of every task FOSA sampled, flowing into PPO's outcome. */
 .robot-tabs[hidden], .robot-panel[hidden], .landscape[hidden], .landscape-card[hidden], .landscape-status[hidden] { display: none; }
 .flow { margin: 0 auto 26px; }
+.flow-grid { display: grid; gap: 14px; }
 .flow-dag { display: block; width: 100%; height: auto; font-family: 'Noto Sans', sans-serif; }
-.flow figcaption { margin-top: 6px; font-size: 13px; text-align: center; }
-.f-node rect:first-child, .f-node circle { fill: #fff; stroke: var(--line); stroke-width: 1.5; }
-.f-node.is-main rect:first-child, .f-node.is-main circle { fill: #fff8f2; stroke: var(--accent); stroke-width: 2; }
-.f-empty text { fill: var(--accent); font-size: 22px; }
-.f-label { fill: var(--ink); font-size: 14px; }
-.f-row, .f-small, .f-reward text { fill: var(--ink); font-size: 13px; }
-.f-op { fill: var(--accent); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
-.f-card-title { fill: var(--accent); font-size: 12px; font-weight: 600; letter-spacing: .06em; }
-.f-math { font-family: 'Times New Roman', Times, serif; font-size: 15px; font-weight: 700; letter-spacing: 0; }
-.f-role-text { fill: #fff; font-size: 10.5px; font-weight: 700; letter-spacing: .02em; }
+.flow figcaption { margin-top: 10px; font-size: 13px; text-align: center; }
+.f-head { fill: var(--ink); font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+.f-link { fill: var(--accent-soft); opacity: .42; transition: opacity .15s; }
+.f-link:hover { opacity: .8; }
+.f-link.is-main { fill: var(--accent); opacity: .78; }
+.f-name { fill: var(--ink); font-size: 12.5px; paint-order: stroke; stroke: #fff; stroke-width: 4px; stroke-linejoin: round; }
+.f-node.is-main .f-name { font-weight: 700; }
+.f-count { fill: var(--accent); font-weight: 600; }
 .r-capability { fill: #3f7f8c; }
-.r-goal { fill: var(--accent); }
+.r-goal, .o-frontier { fill: var(--accent); }
 .r-environment { fill: #a8577a; }
 .r-constraint { fill: #8a6300; }
-.f-edge { fill: none; stroke-linecap: round; }
-.f-edge.is-main { stroke: var(--accent); }
-.f-edge.is-alt { stroke: var(--accent-soft); }
-.f-edge.is-stub { stroke: var(--accent-soft); stroke-dasharray: 3 5; }
-.f-edge.is-loop { stroke: var(--accent-soft); stroke-dasharray: 6 6; }
-.f-prob { fill: var(--accent); font-size: 12.5px; font-weight: 600; font-variant-numeric: tabular-nums; paint-order: stroke; stroke: #fff; stroke-width: 4px; stroke-linejoin: round; }
-.f-prob.is-alt, .f-more { fill: #a0612e; font-weight: 500; }
-.f-more { font-size: 12.5px; }
-.flow-list { display: none; max-width: 420px; margin: 0 auto; font-size: 13px; line-height: 1.5; text-align: left; }
-.flow.is-running .f-node, .flow.is-running .f-prob, .flow.is-running .f-more { animation: rise .45s backwards; animation-delay: var(--d, 0s); }
-.flow.is-running .f-edge { stroke-dasharray: 1; animation: draw .5s ease-out backwards; animation-delay: var(--d, 0s); }
-.flow.is-running .f-edge.is-stub, .flow.is-running .f-edge.is-loop { stroke-dasharray: none; animation: rise .5s backwards; animation-delay: var(--d, 0s); }
-.flow.is-running .flow-list li { animation: rise .35s backwards; animation-delay: calc(var(--i, 0) * 110ms); }
+.o-mastered { fill: #3f7f8c; }
+.o-unlearned { fill: #6b4a33; }
+.flow-example { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 4px 30px; align-items: center; width: min(920px, 100%); margin: 0 auto; padding: 16px 20px; border: 1.5px solid var(--accent-soft); border-radius: 10px; background: #fff8f2; font-size: 13px; line-height: 1.5; text-align: left; }
+.flow-example-label { grid-column: 1 / -1; color: var(--accent); font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+.flow-example .edits { grid-row: span 2; }
+.flow-example q { align-self: end; font-size: 14px; }
+.flow-example-score { align-self: start; margin-top: 6px; font-variant-numeric: tabular-nums; }
+.flow-example-score strong { color: var(--accent); font-weight: 700; }
+.flow.is-running .f-link, .flow.is-running .f-node { animation: rise .6s backwards; animation-delay: var(--d, 0s); }
+.flow.is-running .flow-edits li { animation: rise .35s backwards; animation-delay: calc(.8s + var(--i, 0) * 110ms); }
 @keyframes rise { from { opacity: 0; transform: translateY(6px); } }
-@keyframes draw { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
 @media (prefers-reduced-motion: reduce) { .flow.is-running * { animation: none !important; } }
 @media (max-width: 860px) {
   .flow-dag { display: none; }
-  .flow-list { display: block; }
+  .flow-example { grid-template-columns: 1fr; }
+  .flow-example .edits { grid-row: auto; }
 }
 .edits { margin: 0; padding: 0; list-style: none; }
 .edits li { position: relative; display: flex; align-items: baseline; gap: 10px; padding: 5px 0 5px 26px; }
@@ -182,7 +178,7 @@ h2 {
 .landscape-view canvas { display: block; width: 100%; height: 100%; }
 .landscape-view.is-pointing { cursor: pointer; }
 .landscape-status { position: absolute; inset: 0; display: grid; place-items: center; margin: 0; color: #fff; font-size: 14px; }
-.landscape-card { position: absolute; z-index: 2; width: min(320px, 70%); padding: 6px; border-radius: 8px; background: #fff; color: var(--ink); box-shadow: 0 10px 30px rgba(0, 0, 0, .5); pointer-events: none; }
+.landscape-card { position: absolute; z-index: 2; width: min(420px, 70%); padding: 6px; border-radius: 8px; background: #fff; color: var(--ink); box-shadow: 0 10px 30px rgba(0, 0, 0, .5); pointer-events: none; }
 .landscape-card video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; border-radius: 5px; background: var(--night); }
 .landscape-card figcaption { padding: 6px 4px 2px; font-size: 12.5px; line-height: 1.45; }
 .landscape-card figcaption strong { color: var(--accent); font-weight: 600; font-variant-numeric: tabular-nums; }

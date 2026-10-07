@@ -1,13 +1,15 @@
-"""Render short preview clips of trained FOSA task policies for the project website.
+"""Render preview clips of trained FOSA task policies for the project website.
 
-Read-only with respect to the discovery runs: specs and checkpoints are only loaded, and
-clips are written under --out. No LLM is called; the render uses each task's own training
-scene (terrain and objects), not an authored decorative scene.
+Read-only with respect to the discovery runs: specs and checkpoints are only loaded, and clips are
+written under --out. Each task row may carry a `render_spec`: a copy of the task spec whose render
+scene was authored by scripts/render_scenes.py (as for the held-out videos); the training spec
+itself is never modified. Each clip renders in its own process.
 
-    python render_batch.py --tasks tasks.jsonl --out renders --shard 0 --num-shards 4
+    python render_batch.py --tasks tasks.jsonl --out clips --shard 0 --num-shards 2 --handvla <HandVLA>
 """
 import argparse
 import json
+import os
 import shutil
 import subprocess
 import sys
@@ -15,7 +17,7 @@ import tempfile
 import time
 from pathlib import Path
 
-HANDVLA = Path('/N/slate/youwyu/HandVLA')
+HANDVLA = Path(os.environ.get('FOSA_HANDVLA', '/N/slate/youwyu/HandVLA'))
 sys.path.insert(0, str(HANDVLA))
 sys.path.insert(0, str(HANDVLA / 'learning'))
 
@@ -36,6 +38,7 @@ def render_one(row: dict, out: Path, width: int, height: int, duration: float) -
     from _src.mjp.rendering import render_policy_video
 
     spec = ppo.ensure_scene_spec_ready_for_training(Path(row['spec']))
+    render_spec = Path(row.get('render_spec') or spec).resolve()
     checkpoint = latest_checkpoint(Path(row['log_dir']))
     env = make_env(row['task'], impl='warp', scene_spec=spec, contact_capacity=ppo.RENDER_CONTACT_CAPACITY)
     policy = ppo.load_checkpoint_policy(checkpoint)
@@ -43,7 +46,7 @@ def render_one(row: dict, out: Path, width: int, height: int, duration: float) -
         outputs = render_policy_video(
             env=env, robot=row['robot'],
             make_policy=lambda _params, deterministic=True: policy, params=None,
-            output_dir=Path(tmp), scene_spec=spec, seed=10_001,
+            output_dir=Path(tmp), scene_spec=render_spec, seed=10_001,
             duration_s=duration, width=width, height=height,
         )
         if 'video' not in outputs:
@@ -62,6 +65,7 @@ def main() -> int:
     parser.add_argument('--width', type=int, default=640)
     parser.add_argument('--height', type=int, default=360)
     parser.add_argument('--duration', type=float, default=6.0)
+    parser.add_argument('--timeout', type=int, default=1800)
     parser.add_argument('--one', help=argparse.SUPPRESS)  # internal: render this JSON row in-process
     args = parser.parse_args()
     args.out.mkdir(parents=True, exist_ok=True)
@@ -83,7 +87,7 @@ def main() -> int:
         command = [sys.executable, __file__, '--out', str(args.out), '--width', str(args.width),
                    '--height', str(args.height), '--duration', str(args.duration), '--one', json.dumps(row)]
         try:
-            done = subprocess.run(command, capture_output=True, text=True, timeout=1800)
+            done = subprocess.run(command, capture_output=True, text=True, timeout=args.timeout)
             if done.returncode != 0:
                 raise RuntimeError(done.stderr.strip().splitlines()[-1] if done.stderr.strip() else f'exit {done.returncode}')
             record.update(json.loads(done.stdout.strip().splitlines()[-1]))

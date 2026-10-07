@@ -57,48 +57,198 @@
         <p class="lead">FOSA's GFlowNet builds task semantics edit by edit, rewarded for tasks that training makes learnable but not yet mastered.</p>
         <!-- flow:start -->
 <figure class="flow">
-<svg class="flow-dag" viewBox="0 0 1080 384" role="img" aria-label="The trained GFlowNet constructing a vehicle task: from the empty skeleton it adds velocity, then velocity tracking, then friction adaptation or slalom navigation in either order, reaching the same skeleton, and stops with probability 0.60.">
-<path class="f-edge is-alt" style="--d:0.9s; stroke-width:4.2" pathLength="1" d="M184,190 C230,190 210,64 256,64"/><text class="f-prob is-alt" style="--d:0.9s" x="248" y="50" text-anchor="end">.26</text>
-<path class="f-edge is-alt" style="--d:0.9s; stroke-width:4.0" pathLength="1" d="M184,190 C230,190 210,136 256,136"/><text class="f-prob is-alt" style="--d:0.9s" x="248" y="122" text-anchor="end">.24</text>
-<path class="f-edge is-stub" style="--d:0.9s; stroke-width:1.8" pathLength="1" d="M184,190 C230,190 210,279 256,279"/>
-<g class="f-node is-alt" style="--d:0.9s"><rect x="256" y="40" width="184" height="48" rx="10"/><rect class="f-role r-constraint" x="268" y="48" width="76" height="16" rx="4"/><text class="f-role-text" x="274" y="60">constraint</text><text class="f-label" x="268" y="80">slalom navigation</text></g>
-<g class="f-node is-alt" style="--d:0.9s"><rect x="256" y="112" width="184" height="48" rx="10"/><rect class="f-role r-goal" x="268" y="120" width="38" height="16" rx="4"/><text class="f-role-text" x="274" y="132">goal</text><text class="f-label" x="268" y="152">slalom navigation</text></g>
-<text class="f-more is-alt" style="--d:.9s" x="262" y="284">+18 more edits</text>
-<path class="f-edge is-alt" style="--d:1.4s; stroke-width:5.1" pathLength="1" d="M440,208 C486,208 454,260 500,260"/><text class="f-prob is-alt" style="--d:1.4s" x="494" y="250" text-anchor="end">.35</text>
-<path class="f-edge is-stub" style="--d:1.4s; stroke-width:1.8" pathLength="1" d="M440,208 C486,208 454,313 500,313"/>
-<g class="f-node is-alt" style="--d:1.4s"><rect x="500" y="236" width="184" height="48" rx="10"/><rect class="f-role r-goal" x="512" y="244" width="38" height="16" rx="4"/><text class="f-role-text" x="518" y="256">goal</text><text class="f-label" x="512" y="276">slalom navigation</text></g>
-<text class="f-more is-alt" style="--d:1.4s" x="506" y="318">+12 more edits</text>
-<path class="f-edge is-alt" style="--d:1.9s; stroke-width:9.1" pathLength="1" d="M684,260 C730,260 744,236 790,236"/><text class="f-prob is-alt" style="--d:1.9s" x="784" y="300" text-anchor="end">+ friction adaptation .75</text>
-<path class="f-edge is-alt" style="--d:2.4s; stroke-width:3.6" pathLength="1" d="M980,136 L980,88"/>
-<g class="f-node is-alt" style="--d:2.4s"><rect x="890" y="44" width="180" height="44" rx="10"/><text class="f-small" x="902" y="62"><tspan class="f-op">refine_arg</tspan> .20</text><text class="f-small" x="902" y="79">completion time → 22.5 s</text></g>
-<g class="f-node is-main f-empty" style="--d:0s"><circle cx="30" cy="190" r="20"/><text x="30" y="196" text-anchor="middle">∅</text></g>
-<path class="f-edge is-main" style="--d:0.2s; stroke-width:11.6" pathLength="1" d="M50,190 L72,190"/>
-<g class="f-node is-main" style="--d:0.4s"><rect x="72" y="166" width="112" height="48" rx="10"/><rect class="f-role r-capability" x="84" y="174" width="76" height="16" rx="4"/><text class="f-role-text" x="90" y="186">capability</text><text class="f-label" x="84" y="206">velocity</text></g>
-<path class="f-edge is-main" style="--d:0.7s; stroke-width:3.6" pathLength="1" d="M184,190 C230,190 210,208 256,208"/><text class="f-prob is-main" style="--d:0.7s" x="248" y="236" text-anchor="end">.20</text>
-<g class="f-node is-main" style="--d:1.0s"><rect x="256" y="184" width="184" height="48" rx="10"/><rect class="f-role r-constraint" x="268" y="192" width="76" height="16" rx="4"/><text class="f-role-text" x="274" y="204">constraint</text><text class="f-label" x="268" y="224">velocity tracking flat</text></g>
-<path class="f-edge is-main" style="--d:1.3s; stroke-width:5.6" pathLength="1" d="M440,208 C486,208 454,174 500,174"/><text class="f-prob is-main" style="--d:1.3s" x="494" y="162" text-anchor="end">.40</text>
-<g class="f-node is-main" style="--d:1.6s"><rect x="500" y="150" width="184" height="48" rx="10"/><rect class="f-role r-environment" x="512" y="158" width="82" height="16" rx="4"/><text class="f-role-text" x="518" y="170">environment</text><text class="f-label" x="512" y="190">friction adaptation</text></g>
-<path class="f-edge is-main" style="--d:1.9s; stroke-width:10.8" pathLength="1" d="M684,174 C730,174 744,196 790,196"/><text class="f-prob is-main" style="--d:1.9s" x="784" y="142" text-anchor="end">+ slalom navigation .92</text>
-<g class="f-node f-card is-main" style="--d:2.1s"><rect x="790" y="136" width="280" height="150" rx="12"/>
-<text class="f-card-title" x="804" y="158">SKELETON <tspan class="f-math">x</tspan></text>
-<rect class="f-role r-capability" x="804" y="170" width="76" height="16" rx="4"/><text class="f-role-text" x="810" y="182">capability</text><text class="f-row" x="888" y="182.5">velocity</text>
-<rect class="f-role r-constraint" x="804" y="197" width="76" height="16" rx="4"/><text class="f-role-text" x="810" y="209">constraint</text><text class="f-row" x="888" y="209.5">velocity tracking flat</text>
-<rect class="f-role r-environment" x="804" y="224" width="82" height="16" rx="4"/><text class="f-role-text" x="810" y="236">environment</text><text class="f-row" x="894" y="236.5">friction adaptation</text>
-<rect class="f-role r-goal" x="804" y="251" width="38" height="16" rx="4"/><text class="f-role-text" x="810" y="263">goal</text><text class="f-row" x="850" y="263.5">slalom navigation</text>
+<div class="flow-grid">
+<svg class="flow-dag" viewBox="0 0 1080 360" role="img" aria-label="Semantics of the 256 vehicle tasks FOSA sampled: the velocity capability, 7 goal families, 7 environments and 7 constraints, then the outcome of PPO training.">
+<text class="f-head" x="30" y="22">capability</text><text class="f-head" x="238" y="22">goal</text><text class="f-head" x="458" y="22">environment</text><text class="f-head" x="678" y="22">constraint</text><text class="f-head" x="900" y="22">after PPO</text>
+<path class="f-link is-main" style="--d:0.00s" d="M44,65.0 C141.0,65.0 141.0,44.0 238,44.0 L238,240.5 C141.0,240.5 141.0,261.5 44,261.5 Z"><title>velocity → rough terrain navigation: 195 tasks</title></path>
+<path class="f-link" style="--d:0.00s" d="M44,261.5 C141.0,261.5 141.0,247.5 238,247.5 L238,260.6 C141.0,260.6 141.0,274.6 44,274.6 Z"><title>velocity → slalom navigation: 13 tasks</title></path>
+<path class="f-link" style="--d:0.00s" d="M44,274.6 C141.0,274.6 141.0,267.6 238,267.6 L238,280.7 C141.0,280.7 141.0,287.7 44,287.7 Z"><title>velocity → friction adaptation: 13 tasks</title></path>
+<path class="f-link" style="--d:0.00s" d="M44,287.7 C141.0,287.7 141.0,287.7 238,287.7 L238,300.8 C141.0,300.8 141.0,300.8 44,300.8 Z"><title>velocity → velocity tracking flat: 13 tasks</title></path>
+<path class="f-link" style="--d:0.00s" d="M44,300.8 C141.0,300.8 141.0,307.8 238,307.8 L238,317.9 C141.0,317.9 141.0,310.9 44,310.9 Z"><title>velocity → dynamic obstacle avoidance: 10 tasks</title></path>
+<path class="f-link" style="--d:0.00s" d="M44,310.9 C141.0,310.9 141.0,324.9 238,324.9 L238,331.0 C141.0,331.0 141.0,317.0 44,317.0 Z"><title>velocity → precision docking: 6 tasks</title></path>
+<path class="f-link" style="--d:0.00s" d="M44,317.0 C141.0,317.0 141.0,338.0 238,338.0 L238,344.0 C141.0,344.0 141.0,323.0 44,323.0 Z"><title>velocity → actuator degradation: 6 tasks</title></path>
+<path class="f-link" style="--d:0.18s" d="M252,44.0 C355.0,44.0 355.0,44.0 458,44.0 L458,98.4 C355.0,98.4 355.0,98.4 252,98.4 Z"><title>rough terrain navigation → friction adaptation: 54 tasks</title></path>
+<path class="f-link is-main" style="--d:0.18s" d="M252,98.4 C355.0,98.4 355.0,121.5 458,121.5 L458,188.1 C355.0,188.1 355.0,164.9 252,164.9 Z"><title>rough terrain navigation → rough terrain navigation: 66 tasks</title></path>
+<path class="f-link" style="--d:0.18s" d="M252,164.9 C355.0,164.9 355.0,199.1 458,199.1 L458,215.2 C355.0,215.2 355.0,181.1 252,181.1 Z"><title>rough terrain navigation → precision docking: 16 tasks</title></path>
+<path class="f-link" style="--d:0.18s" d="M252,181.1 C355.0,181.1 355.0,240.4 458,240.4 L458,271.6 C355.0,271.6 355.0,212.3 252,212.3 Z"><title>rough terrain navigation → dynamic obstacle avoidance: 31 tasks</title></path>
+<path class="f-link" style="--d:0.18s" d="M252,212.3 C355.0,212.3 355.0,281.6 458,281.6 L458,297.8 C355.0,297.8 355.0,228.4 252,228.4 Z"><title>rough terrain navigation → slalom navigation: 16 tasks</title></path>
+<path class="f-link" style="--d:0.18s" d="M252,228.4 C355.0,228.4 355.0,311.8 458,311.8 L458,322.9 C355.0,322.9 355.0,239.5 252,239.5 Z"><title>rough terrain navigation → velocity tracking flat: 11 tasks</title></path>
+<path class="f-link" style="--d:0.18s" d="M252,239.5 C355.0,239.5 355.0,341.0 458,341.0 L458,342.0 C355.0,342.0 355.0,240.5 252,240.5 Z"><title>rough terrain navigation → actuator degradation: 1 tasks</title></path>
+<path class="f-link" style="--d:0.18s" d="M252,247.5 C355.0,247.5 355.0,98.4 458,98.4 L458,100.4 C355.0,100.4 355.0,249.5 252,249.5 Z"><title>slalom navigation → friction adaptation: 2 tasks</title></path>
+<path class="f-link" style="--d:0.18s" d="M252,249.5 C355.0,249.5 355.0,215.2 458,215.2 L458,218.2 C355.0,218.2 355.0,252.6 252,252.6 Z"><title>slalom navigation → precision docking: 3 tasks</title></path>
+<path class="f-link" style="--d:0.18s" d="M252,252.6 C355.0,252.6 355.0,271.6 458,271.6 L458,273.6 C355.0,273.6 355.0,254.6 252,254.6 Z"><title>slalom navigation → dynamic obstacle avoidance: 2 tasks</title></path>
+<path class="f-link" style="--d:0.18s" d="M252,254.6 C355.0,254.6 355.0,297.8 458,297.8 L458,302.8 C355.0,302.8 355.0,259.6 252,259.6 Z"><title>slalom navigation → slalom navigation: 5 tasks</title></path>
+<path class="f-link" style="--d:0.18s" d="M252,259.6 C355.0,259.6 355.0,322.9 458,322.9 L458,323.9 C355.0,323.9 355.0,260.6 252,260.6 Z"><title>slalom navigation → velocity tracking flat: 1 tasks</title></path>
+<path class="f-link" style="--d:0.18s" d="M252,267.6 C355.0,267.6 355.0,100.4 458,100.4 L458,103.5 C355.0,103.5 355.0,270.6 252,270.6 Z"><title>friction adaptation → friction adaptation: 3 tasks</title></path>
+<path class="f-link" style="--d:0.18s" d="M252,270.6 C355.0,270.6 355.0,188.1 458,188.1 L458,189.1 C355.0,189.1 355.0,271.7 252,271.7 Z"><title>friction adaptation → rough terrain navigation: 1 tasks</title></path>
+<path class="f-link" style="--d:0.18s" d="M252,271.7 C355.0,271.7 355.0,218.2 458,218.2 L458,224.3 C355.0,224.3 355.0,277.7 252,277.7 Z"><title>friction adaptation → precision docking: 6 tasks</title></path>
+<path class="f-link" style="--d:0.18s" d="M252,277.7 C355.0,277.7 355.0,273.6 458,273.6 L458,274.6 C355.0,274.6 355.0,278.7 252,278.7 Z"><title>friction adaptation → dynamic obstacle avoidance: 1 tasks</title></path>
+<path class="f-link" style="--d:0.18s" d="M252,278.7 C355.0,278.7 355.0,302.8 458,302.8 L458,303.8 C355.0,303.8 355.0,279.7 252,279.7 Z"><title>friction adaptation → slalom navigation: 1 tasks</title></path>
+<path class="f-link" style="--d:0.18s" d="M252,279.7 C355.0,279.7 355.0,323.9 458,323.9 L458,324.9 C355.0,324.9 355.0,280.7 252,280.7 Z"><title>friction adaptation → velocity tracking flat: 1 tasks</title></path>
+<path class="f-link" style="--d:0.18s" d="M252,287.7 C355.0,287.7 355.0,103.5 458,103.5 L458,111.5 C355.0,111.5 355.0,295.8 252,295.8 Z"><title>velocity tracking flat → friction adaptation: 8 tasks</title></path>
+<path class="f-link" style="--d:0.18s" d="M252,295.8 C355.0,295.8 355.0,189.1 458,189.1 L458,190.1 C355.0,190.1 355.0,296.8 252,296.8 Z"><title>velocity tracking flat → rough terrain navigation: 1 tasks</title></path>
+<path class="f-link" style="--d:0.18s" d="M252,296.8 C355.0,296.8 355.0,224.3 458,224.3 L458,225.3 C355.0,225.3 355.0,297.8 252,297.8 Z"><title>velocity tracking flat → precision docking: 1 tasks</title></path>
+<path class="f-link" style="--d:0.18s" d="M252,297.8 C355.0,297.8 355.0,324.9 458,324.9 L458,327.9 C355.0,327.9 355.0,300.8 252,300.8 Z"><title>velocity tracking flat → velocity tracking flat: 3 tasks</title></path>
+<path class="f-link" style="--d:0.18s" d="M252,307.8 C355.0,307.8 355.0,111.5 458,111.5 L458,112.5 C355.0,112.5 355.0,308.8 252,308.8 Z"><title>dynamic obstacle avoidance → friction adaptation: 1 tasks</title></path>
+<path class="f-link" style="--d:0.18s" d="M252,308.8 C355.0,308.8 355.0,190.1 458,190.1 L458,191.1 C355.0,191.1 355.0,309.8 252,309.8 Z"><title>dynamic obstacle avoidance → rough terrain navigation: 1 tasks</title></path>
+<path class="f-link" style="--d:0.18s" d="M252,309.8 C355.0,309.8 355.0,225.3 458,225.3 L458,227.3 C355.0,227.3 355.0,311.9 252,311.9 Z"><title>dynamic obstacle avoidance → precision docking: 2 tasks</title></path>
+<path class="f-link" style="--d:0.18s" d="M252,311.9 C355.0,311.9 355.0,303.8 458,303.8 L458,304.8 C355.0,304.8 355.0,312.9 252,312.9 Z"><title>dynamic obstacle avoidance → slalom navigation: 1 tasks</title></path>
+<path class="f-link" style="--d:0.18s" d="M252,312.9 C355.0,312.9 355.0,327.9 458,327.9 L458,331.0 C355.0,331.0 355.0,315.9 252,315.9 Z"><title>dynamic obstacle avoidance → velocity tracking flat: 3 tasks</title></path>
+<path class="f-link" style="--d:0.18s" d="M252,315.9 C355.0,315.9 355.0,342.0 458,342.0 L458,344.0 C355.0,344.0 355.0,317.9 252,317.9 Z"><title>dynamic obstacle avoidance → actuator degradation: 2 tasks</title></path>
+<path class="f-link" style="--d:0.18s" d="M252,324.9 C355.0,324.9 355.0,112.5 458,112.5 L458,114.5 C355.0,114.5 355.0,326.9 252,326.9 Z"><title>precision docking → friction adaptation: 2 tasks</title></path>
+<path class="f-link" style="--d:0.18s" d="M252,326.9 C355.0,326.9 355.0,227.3 458,227.3 L458,230.3 C355.0,230.3 355.0,329.9 252,329.9 Z"><title>precision docking → precision docking: 3 tasks</title></path>
+<path class="f-link" style="--d:0.18s" d="M252,329.9 C355.0,329.9 355.0,331.0 458,331.0 L458,332.0 C355.0,332.0 355.0,331.0 252,331.0 Z"><title>precision docking → velocity tracking flat: 1 tasks</title></path>
+<path class="f-link" style="--d:0.18s" d="M252,338.0 C355.0,338.0 355.0,191.1 458,191.1 L458,192.1 C355.0,192.1 355.0,339.0 252,339.0 Z"><title>actuator degradation → rough terrain navigation: 1 tasks</title></path>
+<path class="f-link" style="--d:0.18s" d="M252,339.0 C355.0,339.0 355.0,230.3 458,230.3 L458,233.4 C355.0,233.4 355.0,342.0 252,342.0 Z"><title>actuator degradation → precision docking: 3 tasks</title></path>
+<path class="f-link" style="--d:0.18s" d="M252,342.0 C355.0,342.0 355.0,332.0 458,332.0 L458,334.0 C355.0,334.0 355.0,344.0 252,344.0 Z"><title>actuator degradation → velocity tracking flat: 2 tasks</title></path>
+<path class="f-link" style="--d:0.36s" d="M472,44.0 C575.0,44.0 575.0,44.0 678,44.0 L678,71.2 C575.0,71.2 575.0,71.2 472,71.2 Z"><title>friction adaptation → dynamic obstacle avoidance: 27 tasks</title></path>
+<path class="f-link" style="--d:0.36s" d="M472,71.2 C575.0,71.2 575.0,189.1 678,189.1 L678,201.2 C575.0,201.2 575.0,83.3 472,83.3 Z"><title>friction adaptation → actuator degradation: 12 tasks</title></path>
+<path class="f-link" style="--d:0.36s" d="M472,83.3 C575.0,83.3 575.0,229.3 678,229.3 L678,238.4 C575.0,238.4 575.0,92.4 472,92.4 Z"><title>friction adaptation → velocity tracking flat: 9 tasks</title></path>
+<path class="f-link" style="--d:0.36s" d="M472,92.4 C575.0,92.4 575.0,257.5 678,257.5 L678,259.5 C575.0,259.5 575.0,94.4 472,94.4 Z"><title>friction adaptation → rough terrain navigation: 2 tasks</title></path>
+<path class="f-link" style="--d:0.36s" d="M472,94.4 C575.0,94.4 575.0,283.6 678,283.6 L678,291.7 C575.0,291.7 575.0,102.5 472,102.5 Z"><title>friction adaptation → slalom navigation: 8 tasks</title></path>
+<path class="f-link" style="--d:0.36s" d="M472,102.5 C575.0,102.5 575.0,307.8 678,307.8 L678,316.8 C575.0,316.8 575.0,111.5 472,111.5 Z"><title>friction adaptation → friction adaptation: 9 tasks</title></path>
+<path class="f-link" style="--d:0.36s" d="M472,111.5 C575.0,111.5 575.0,329.9 678,329.9 L678,332.9 C575.0,332.9 575.0,114.5 472,114.5 Z"><title>friction adaptation → precision docking: 3 tasks</title></path>
+<path class="f-link is-main" style="--d:0.36s" d="M472,121.5 C575.0,121.5 575.0,71.2 678,71.2 L678,125.6 C575.0,125.6 575.0,176.0 472,176.0 Z"><title>rough terrain navigation → dynamic obstacle avoidance: 54 tasks</title></path>
+<path class="f-link" style="--d:0.36s" d="M472,176.0 C575.0,176.0 575.0,201.2 678,201.2 L678,210.2 C575.0,210.2 575.0,185.0 472,185.0 Z"><title>rough terrain navigation → actuator degradation: 9 tasks</title></path>
+<path class="f-link" style="--d:0.36s" d="M472,185.0 C575.0,185.0 575.0,238.4 678,238.4 L678,240.4 C575.0,240.4 575.0,187.1 472,187.1 Z"><title>rough terrain navigation → velocity tracking flat: 2 tasks</title></path>
+<path class="f-link" style="--d:0.36s" d="M472,187.1 C575.0,187.1 575.0,259.5 678,259.5 L678,260.5 C575.0,260.5 575.0,188.1 472,188.1 Z"><title>rough terrain navigation → rough terrain navigation: 1 tasks</title></path>
+<path class="f-link" style="--d:0.36s" d="M472,188.1 C575.0,188.1 575.0,291.7 678,291.7 L678,292.7 C575.0,292.7 575.0,189.1 472,189.1 Z"><title>rough terrain navigation → slalom navigation: 1 tasks</title></path>
+<path class="f-link" style="--d:0.36s" d="M472,189.1 C575.0,189.1 575.0,316.8 678,316.8 L678,317.9 C575.0,317.9 575.0,190.1 472,190.1 Z"><title>rough terrain navigation → friction adaptation: 1 tasks</title></path>
+<path class="f-link" style="--d:0.36s" d="M472,190.1 C575.0,190.1 575.0,332.9 678,332.9 L678,334.9 C575.0,334.9 575.0,192.1 472,192.1 Z"><title>rough terrain navigation → precision docking: 2 tasks</title></path>
+<path class="f-link" style="--d:0.36s" d="M472,199.1 C575.0,199.1 575.0,125.6 678,125.6 L678,137.7 C575.0,137.7 575.0,211.2 472,211.2 Z"><title>precision docking → dynamic obstacle avoidance: 12 tasks</title></path>
+<path class="f-link" style="--d:0.36s" d="M472,211.2 C575.0,211.2 575.0,210.2 678,210.2 L678,215.3 C575.0,215.3 575.0,216.2 472,216.2 Z"><title>precision docking → actuator degradation: 5 tasks</title></path>
+<path class="f-link" style="--d:0.36s" d="M472,216.2 C575.0,216.2 575.0,240.4 678,240.4 L678,244.4 C575.0,244.4 575.0,220.3 472,220.3 Z"><title>precision docking → velocity tracking flat: 4 tasks</title></path>
+<path class="f-link" style="--d:0.36s" d="M472,220.3 C575.0,220.3 575.0,260.5 678,260.5 L678,263.5 C575.0,263.5 575.0,223.3 472,223.3 Z"><title>precision docking → rough terrain navigation: 3 tasks</title></path>
+<path class="f-link" style="--d:0.36s" d="M472,223.3 C575.0,223.3 575.0,292.7 678,292.7 L678,294.7 C575.0,294.7 575.0,225.3 472,225.3 Z"><title>precision docking → slalom navigation: 2 tasks</title></path>
+<path class="f-link" style="--d:0.36s" d="M472,225.3 C575.0,225.3 575.0,317.9 678,317.9 L678,320.9 C575.0,320.9 575.0,228.3 472,228.3 Z"><title>precision docking → friction adaptation: 3 tasks</title></path>
+<path class="f-link" style="--d:0.36s" d="M472,228.3 C575.0,228.3 575.0,334.9 678,334.9 L678,340.0 C575.0,340.0 575.0,233.4 472,233.4 Z"><title>precision docking → precision docking: 5 tasks</title></path>
+<path class="f-link" style="--d:0.36s" d="M472,240.4 C575.0,240.4 575.0,137.7 678,137.7 L678,162.9 C575.0,162.9 575.0,265.6 472,265.6 Z"><title>dynamic obstacle avoidance → dynamic obstacle avoidance: 25 tasks</title></path>
+<path class="f-link" style="--d:0.36s" d="M472,265.6 C575.0,265.6 575.0,215.3 678,215.3 L678,217.3 C575.0,217.3 575.0,267.6 472,267.6 Z"><title>dynamic obstacle avoidance → actuator degradation: 2 tasks</title></path>
+<path class="f-link" style="--d:0.36s" d="M472,267.6 C575.0,267.6 575.0,244.4 678,244.4 L678,245.5 C575.0,245.5 575.0,268.6 472,268.6 Z"><title>dynamic obstacle avoidance → velocity tracking flat: 1 tasks</title></path>
+<path class="f-link" style="--d:0.36s" d="M472,268.6 C575.0,268.6 575.0,263.5 678,263.5 L678,267.6 C575.0,267.6 575.0,272.6 472,272.6 Z"><title>dynamic obstacle avoidance → rough terrain navigation: 4 tasks</title></path>
+<path class="f-link" style="--d:0.36s" d="M472,272.6 C575.0,272.6 575.0,294.7 678,294.7 L678,295.7 C575.0,295.7 575.0,273.6 472,273.6 Z"><title>dynamic obstacle avoidance → slalom navigation: 1 tasks</title></path>
+<path class="f-link" style="--d:0.36s" d="M472,273.6 C575.0,273.6 575.0,340.0 678,340.0 L678,341.0 C575.0,341.0 575.0,274.6 472,274.6 Z"><title>dynamic obstacle avoidance → precision docking: 1 tasks</title></path>
+<path class="f-link" style="--d:0.36s" d="M472,281.6 C575.0,281.6 575.0,162.9 678,162.9 L678,176.0 C575.0,176.0 575.0,294.7 472,294.7 Z"><title>slalom navigation → dynamic obstacle avoidance: 13 tasks</title></path>
+<path class="f-link" style="--d:0.36s" d="M472,294.7 C575.0,294.7 575.0,217.3 678,217.3 L678,218.3 C575.0,218.3 575.0,295.7 472,295.7 Z"><title>slalom navigation → actuator degradation: 1 tasks</title></path>
+<path class="f-link" style="--d:0.36s" d="M472,295.7 C575.0,295.7 575.0,267.6 678,267.6 L678,274.6 C575.0,274.6 575.0,302.8 472,302.8 Z"><title>slalom navigation → rough terrain navigation: 7 tasks</title></path>
+<path class="f-link" style="--d:0.36s" d="M472,302.8 C575.0,302.8 575.0,295.7 678,295.7 L678,297.8 C575.0,297.8 575.0,304.8 472,304.8 Z"><title>slalom navigation → slalom navigation: 2 tasks</title></path>
+<path class="f-link" style="--d:0.36s" d="M472,311.8 C575.0,311.8 575.0,176.0 678,176.0 L678,181.1 C575.0,181.1 575.0,316.8 472,316.8 Z"><title>velocity tracking flat → dynamic obstacle avoidance: 5 tasks</title></path>
+<path class="f-link" style="--d:0.36s" d="M472,316.8 C575.0,316.8 575.0,218.3 678,218.3 L678,222.3 C575.0,222.3 575.0,320.9 472,320.9 Z"><title>velocity tracking flat → actuator degradation: 4 tasks</title></path>
+<path class="f-link" style="--d:0.36s" d="M472,320.9 C575.0,320.9 575.0,245.5 678,245.5 L678,250.5 C575.0,250.5 575.0,325.9 472,325.9 Z"><title>velocity tracking flat → velocity tracking flat: 5 tasks</title></path>
+<path class="f-link" style="--d:0.36s" d="M472,325.9 C575.0,325.9 575.0,274.6 678,274.6 L678,275.6 C575.0,275.6 575.0,326.9 472,326.9 Z"><title>velocity tracking flat → rough terrain navigation: 1 tasks</title></path>
+<path class="f-link" style="--d:0.36s" d="M472,326.9 C575.0,326.9 575.0,297.8 678,297.8 L678,299.8 C575.0,299.8 575.0,328.9 472,328.9 Z"><title>velocity tracking flat → slalom navigation: 2 tasks</title></path>
+<path class="f-link" style="--d:0.36s" d="M472,328.9 C575.0,328.9 575.0,320.9 678,320.9 L678,322.9 C575.0,322.9 575.0,331.0 472,331.0 Z"><title>velocity tracking flat → friction adaptation: 2 tasks</title></path>
+<path class="f-link" style="--d:0.36s" d="M472,331.0 C575.0,331.0 575.0,341.0 678,341.0 L678,344.0 C575.0,344.0 575.0,334.0 472,334.0 Z"><title>velocity tracking flat → precision docking: 3 tasks</title></path>
+<path class="f-link" style="--d:0.36s" d="M472,341.0 C575.0,341.0 575.0,181.1 678,181.1 L678,182.1 C575.0,182.1 575.0,342.0 472,342.0 Z"><title>actuator degradation → dynamic obstacle avoidance: 1 tasks</title></path>
+<path class="f-link" style="--d:0.36s" d="M472,342.0 C575.0,342.0 575.0,275.6 678,275.6 L678,276.6 C575.0,276.6 575.0,343.0 472,343.0 Z"><title>actuator degradation → rough terrain navigation: 1 tasks</title></path>
+<path class="f-link" style="--d:0.36s" d="M472,343.0 C575.0,343.0 575.0,299.8 678,299.8 L678,300.8 C575.0,300.8 575.0,344.0 472,344.0 Z"><title>actuator degradation → slalom navigation: 1 tasks</title></path>
+<path class="f-link is-main" style="--d:0.54s" d="M692,44.0 C796.0,44.0 796.0,58.0 900,58.0 L900,150.7 C796.0,150.7 796.0,136.7 692,136.7 Z"><title>dynamic obstacle avoidance → on the frontier: 92 tasks</title></path>
+<path class="f-link" style="--d:0.54s" d="M692,136.7 C796.0,136.7 796.0,213.1 900,213.1 L900,231.3 C796.0,231.3 796.0,154.9 692,154.9 Z"><title>dynamic obstacle avoidance → mastered: 18 tasks</title></path>
+<path class="f-link" style="--d:0.54s" d="M692,154.9 C796.0,154.9 796.0,259.5 900,259.5 L900,286.7 C796.0,286.7 796.0,182.1 692,182.1 Z"><title>dynamic obstacle avoidance → not learned: 27 tasks</title></path>
+<path class="f-link" style="--d:0.54s" d="M692,189.1 C796.0,189.1 796.0,150.7 900,150.7 L900,168.9 C796.0,168.9 796.0,207.2 692,207.2 Z"><title>actuator degradation → on the frontier: 18 tasks</title></path>
+<path class="f-link" style="--d:0.54s" d="M692,207.2 C796.0,207.2 796.0,231.3 900,231.3 L900,239.4 C796.0,239.4 796.0,215.3 692,215.3 Z"><title>actuator degradation → mastered: 8 tasks</title></path>
+<path class="f-link" style="--d:0.54s" d="M692,215.3 C796.0,215.3 796.0,286.7 900,286.7 L900,293.7 C796.0,293.7 796.0,222.3 692,222.3 Z"><title>actuator degradation → not learned: 7 tasks</title></path>
+<path class="f-link" style="--d:0.54s" d="M692,229.3 C796.0,229.3 796.0,168.9 900,168.9 L900,183.0 C796.0,183.0 796.0,243.4 692,243.4 Z"><title>velocity tracking flat → on the frontier: 14 tasks</title></path>
+<path class="f-link" style="--d:0.54s" d="M692,243.4 C796.0,243.4 796.0,239.4 900,239.4 L900,242.4 C796.0,242.4 796.0,246.5 692,246.5 Z"><title>velocity tracking flat → mastered: 3 tasks</title></path>
+<path class="f-link" style="--d:0.54s" d="M692,246.5 C796.0,246.5 796.0,293.7 900,293.7 L900,297.8 C796.0,297.8 796.0,250.5 692,250.5 Z"><title>velocity tracking flat → not learned: 4 tasks</title></path>
+<path class="f-link" style="--d:0.54s" d="M692,257.5 C796.0,257.5 796.0,183.0 900,183.0 L900,192.0 C796.0,192.0 796.0,266.6 692,266.6 Z"><title>rough terrain navigation → on the frontier: 9 tasks</title></path>
+<path class="f-link" style="--d:0.54s" d="M692,266.6 C796.0,266.6 796.0,242.4 900,242.4 L900,245.4 C796.0,245.4 796.0,269.6 692,269.6 Z"><title>rough terrain navigation → mastered: 3 tasks</title></path>
+<path class="f-link" style="--d:0.54s" d="M692,269.6 C796.0,269.6 796.0,297.8 900,297.8 L900,304.8 C796.0,304.8 796.0,276.6 692,276.6 Z"><title>rough terrain navigation → not learned: 7 tasks</title></path>
+<path class="f-link" style="--d:0.54s" d="M692,283.6 C796.0,283.6 796.0,192.0 900,192.0 L900,201.1 C796.0,201.1 796.0,292.7 692,292.7 Z"><title>slalom navigation → on the frontier: 9 tasks</title></path>
+<path class="f-link" style="--d:0.54s" d="M692,292.7 C796.0,292.7 796.0,245.4 900,245.4 L900,247.4 C796.0,247.4 796.0,294.7 692,294.7 Z"><title>slalom navigation → mastered: 2 tasks</title></path>
+<path class="f-link" style="--d:0.54s" d="M692,294.7 C796.0,294.7 796.0,304.8 900,304.8 L900,310.9 C796.0,310.9 796.0,300.8 692,300.8 Z"><title>slalom navigation → not learned: 6 tasks</title></path>
+<path class="f-link" style="--d:0.54s" d="M692,307.8 C796.0,307.8 796.0,201.1 900,201.1 L900,206.1 C796.0,206.1 796.0,312.8 692,312.8 Z"><title>friction adaptation → on the frontier: 5 tasks</title></path>
+<path class="f-link" style="--d:0.54s" d="M692,312.8 C796.0,312.8 796.0,247.4 900,247.4 L900,252.5 C796.0,252.5 796.0,317.9 692,317.9 Z"><title>friction adaptation → mastered: 5 tasks</title></path>
+<path class="f-link" style="--d:0.54s" d="M692,317.9 C796.0,317.9 796.0,310.9 900,310.9 L900,315.9 C796.0,315.9 796.0,322.9 692,322.9 Z"><title>friction adaptation → not learned: 5 tasks</title></path>
+<path class="f-link" style="--d:0.54s" d="M692,329.9 C796.0,329.9 796.0,315.9 900,315.9 L900,330.0 C796.0,330.0 796.0,344.0 692,344.0 Z"><title>precision docking → not learned: 14 tasks</title></path>
+<g class="f-node is-main" style="--d:0.00s"><rect class="r-capability" x="30" y="65.0" width="14" height="258.0" rx="2"/>
+<text class="f-name" x="52" y="198.5" text-anchor="start">velocity <tspan class="f-count">256</tspan></text>
 </g>
-<path class="f-edge is-main" style="--d:2.5s; stroke-width:7.6" pathLength="1" d="M930,286 L930,330"/><text class="f-prob is-main" style="--d:2.5s" x="944" y="314" text-anchor="start">stop .60</text>
-<g class="f-node f-reward is-main" style="--d:2.8s"><rect x="830" y="330" width="200" height="44" rx="10"/><text x="930" y="357" text-anchor="middle">compile · PPO · <tspan font-style="italic">R</tspan>(<tspan font-weight="700">x</tspan>)</text></g>
-<path class="f-edge is-loop" style="--d:3.1s; stroke-width:4.1" pathLength="1" d="M830,352 L56,352 Q30,352 30,326 L30,210"/><text class="f-prob is-loop" style="--d:3.1s" x="430" y="342" text-anchor="middle">trajectory balance updates the GFlowNet</text>
+<g class="f-node is-main" style="--d:0.18s"><rect class="r-goal" x="238" y="44.0" width="14" height="196.5" rx="2"/>
+<text class="f-name" x="260" y="146.8" text-anchor="start">rough terrain navigation <tspan class="f-count">195</tspan></text>
+</g>
+<g class="f-node" style="--d:0.18s"><rect class="r-goal" x="238" y="247.5" width="14" height="13.1" rx="2"/>
+<text class="f-name" x="260" y="258.6" text-anchor="start">slalom navigation <tspan class="f-count">13</tspan></text>
+</g>
+<g class="f-node" style="--d:0.18s"><rect class="r-goal" x="238" y="267.6" width="14" height="13.1" rx="2"/>
+<text class="f-name" x="260" y="278.7" text-anchor="start">friction adaptation <tspan class="f-count">13</tspan></text>
+</g>
+<g class="f-node" style="--d:0.18s"><rect class="r-goal" x="238" y="287.7" width="14" height="13.1" rx="2"/>
+<text class="f-name" x="260" y="298.8" text-anchor="start">velocity tracking flat <tspan class="f-count">13</tspan></text>
+</g>
+<g class="f-node" style="--d:0.18s"><rect class="r-goal" x="238" y="307.8" width="14" height="10.1" rx="2"/>
+<text class="f-name" x="260" y="317.4" text-anchor="start">dynamic obstacle avoidance <tspan class="f-count">10</tspan></text>
+</g>
+<g class="f-node" style="--d:0.18s"><rect class="r-goal" x="238" y="324.9" width="14" height="6.0" rx="2"/>
+</g>
+<g class="f-node" style="--d:0.18s"><rect class="r-goal" x="238" y="338.0" width="14" height="6.0" rx="2"/>
+</g>
+<g class="f-node" style="--d:0.36s"><rect class="r-environment" x="458" y="44.0" width="14" height="70.5" rx="2"/>
+<text class="f-name" x="480" y="83.8" text-anchor="start">friction adaptation <tspan class="f-count">70</tspan></text>
+</g>
+<g class="f-node is-main" style="--d:0.36s"><rect class="r-environment" x="458" y="121.5" width="14" height="70.5" rx="2"/>
+<text class="f-name" x="480" y="161.3" text-anchor="start">rough terrain navigation <tspan class="f-count">70</tspan></text>
+</g>
+<g class="f-node" style="--d:0.36s"><rect class="r-environment" x="458" y="199.1" width="14" height="34.3" rx="2"/>
+<text class="f-name" x="480" y="220.7" text-anchor="start">precision docking <tspan class="f-count">34</tspan></text>
+</g>
+<g class="f-node" style="--d:0.36s"><rect class="r-environment" x="458" y="240.4" width="14" height="34.3" rx="2"/>
+<text class="f-name" x="480" y="262.0" text-anchor="start">dynamic obstacle avoidance <tspan class="f-count">34</tspan></text>
+</g>
+<g class="f-node" style="--d:0.36s"><rect class="r-environment" x="458" y="281.6" width="14" height="23.2" rx="2"/>
+<text class="f-name" x="480" y="297.7" text-anchor="start">slalom navigation <tspan class="f-count">23</tspan></text>
+</g>
+<g class="f-node" style="--d:0.36s"><rect class="r-environment" x="458" y="311.8" width="14" height="22.2" rx="2"/>
+<text class="f-name" x="480" y="327.4" text-anchor="start">velocity tracking flat <tspan class="f-count">22</tspan></text>
+</g>
+<g class="f-node" style="--d:0.36s"><rect class="r-environment" x="458" y="341.0" width="14" height="3.0" rx="2"/>
+</g>
+<g class="f-node is-main" style="--d:0.54s"><rect class="r-constraint" x="678" y="44.0" width="14" height="138.1" rx="2"/>
+<text class="f-name" x="700" y="117.5" text-anchor="start">dynamic obstacle avoidance <tspan class="f-count">137</tspan></text>
+</g>
+<g class="f-node" style="--d:0.54s"><rect class="r-constraint" x="678" y="189.1" width="14" height="33.3" rx="2"/>
+<text class="f-name" x="700" y="210.2" text-anchor="start">actuator degradation <tspan class="f-count">33</tspan></text>
+</g>
+<g class="f-node" style="--d:0.54s"><rect class="r-constraint" x="678" y="229.3" width="14" height="21.2" rx="2"/>
+<text class="f-name" x="700" y="244.4" text-anchor="start">velocity tracking flat <tspan class="f-count">21</tspan></text>
+</g>
+<g class="f-node" style="--d:0.54s"><rect class="r-constraint" x="678" y="257.5" width="14" height="19.1" rx="2"/>
+<text class="f-name" x="700" y="271.6" text-anchor="start">rough terrain navigation <tspan class="f-count">19</tspan></text>
+</g>
+<g class="f-node" style="--d:0.54s"><rect class="r-constraint" x="678" y="283.6" width="14" height="17.1" rx="2"/>
+<text class="f-name" x="700" y="296.7" text-anchor="start">slalom navigation <tspan class="f-count">17</tspan></text>
+</g>
+<g class="f-node" style="--d:0.54s"><rect class="r-constraint" x="678" y="307.8" width="14" height="15.1" rx="2"/>
+<text class="f-name" x="700" y="319.8" text-anchor="start">friction adaptation <tspan class="f-count">15</tspan></text>
+</g>
+<g class="f-node" style="--d:0.54s"><rect class="r-constraint" x="678" y="329.9" width="14" height="14.1" rx="2"/>
+<text class="f-name" x="700" y="341.4" text-anchor="start">precision docking <tspan class="f-count">14</tspan></text>
+</g>
+<g class="f-node is-main" style="--d:0.72s"><rect class="o-frontier" x="900" y="58.0" width="14" height="148.1" rx="2"/>
+<text class="f-name" x="922" y="136.6" text-anchor="start">on the frontier <tspan class="f-count">147</tspan></text>
+</g>
+<g class="f-node" style="--d:0.72s"><rect class="o-mastered" x="900" y="213.1" width="14" height="39.3" rx="2"/>
+<text class="f-name" x="922" y="237.3" text-anchor="start">mastered <tspan class="f-count">39</tspan></text>
+</g>
+<g class="f-node" style="--d:0.72s"><rect class="o-unlearned" x="900" y="259.5" width="14" height="70.5" rx="2"/>
+<text class="f-name" x="922" y="299.2" text-anchor="start">not learned <tspan class="f-count">70</tspan></text>
+</g>
 </svg>
-<ol class="edits flow-list" aria-hidden="true">
+<div class="flow-example"><p class="flow-example-label">Highlighted task</p><ol class="edits flow-edits" aria-label="Edits of the highlighted task">
 <li class="edit-start"><span class="empty-node" aria-hidden="true">∅</span>empty skeleton</li>
-<li style="--p:1.0; --i:1"><span class="edit-body"><code class="edit-op">add_atom</code><span class="edit-role">capability</span>velocity</span><span class="edit-prob">1.00</span></li>
-<li style="--p:0.1993; --i:2"><span class="edit-body"><code class="edit-op">add_atom</code><span class="edit-role">constraint</span>velocity tracking flat</span><span class="edit-prob">.20</span></li>
-<li style="--p:0.3959; --i:3"><span class="edit-body"><code class="edit-op">add_atom</code><span class="edit-role">environment</span>friction adaptation</span><span class="edit-prob">.40</span></li>
-<li style="--p:0.9242; --i:4"><span class="edit-body"><code class="edit-op">add_atom</code><span class="edit-role">goal</span>slalom navigation</span><span class="edit-prob">.92</span></li>
-<li style="--p:0.5975; --i:5"><span class="edit-body"><code class="edit-op">stop</code></span><span class="edit-prob">.60</span></li>
-</ol>
-<figcaption>Vehicle · trained GFlowNet · width ∝ <var>P</var><sub>F</sub>(<b>x</b>′ | <b>x</b>)</figcaption>
+<li style="--p:0.350; --i:1"><span class="edit-body"><code class="edit-op">add_atom</code><span class="edit-role">capability</span>velocity</span><span class="edit-prob"></span></li>
+<li style="--p:0.350; --i:2"><span class="edit-body"><code class="edit-op">add_atom</code><span class="edit-role">constraint</span>dynamic obstacle avoidance</span><span class="edit-prob"></span></li>
+<li style="--p:0.350; --i:3"><span class="edit-body"><code class="edit-op">add_atom</code><span class="edit-role">environment</span>rough terrain navigation</span><span class="edit-prob"></span></li>
+<li style="--p:0.350; --i:4"><span class="edit-body"><code class="edit-op">add_atom</code><span class="edit-role">goal</span>rough terrain navigation</span><span class="edit-prob"></span></li>
+<li style="--p:0.087; --i:5"><span class="edit-body"><code class="edit-op">refine_arg</code><span class="edit-role">goal</span>target velocity ↑</span><span class="edit-prob">.09</span></li>
+<li style="--p:0.015; --i:6"><span class="edit-body"><code class="edit-op">refine_arg</code><span class="edit-role">environment</span>terrain type steps</span><span class="edit-prob">.02</span></li>
+<li style="--p:0.990; --i:7"><span class="edit-body"><code class="edit-op">refine_arg</code><span class="edit-role">environment</span>terrain type mixed</span><span class="edit-prob">.99</span></li>
+<li style="--p:0.375; --i:8"><span class="edit-body"><code class="edit-op">refine_arg</code><span class="edit-role">goal</span>target velocity ↓</span><span class="edit-prob">.38</span></li>
+<li style="--p:0.311; --i:9"><span class="edit-body"><code class="edit-op">refine_arg</code><span class="edit-role">goal</span>target velocity ↑</span><span class="edit-prob">.31</span></li>
+<li style="--p:0.260; --i:10"><span class="edit-body"><code class="edit-op">stop</code></span><span class="edit-prob">.26</span></li>
+</ol><q>Navigate the rough terrain avoiding red and blue obstacles while tracking velocity and yaw rate.</q><p class="flow-example-score"><var>J</var><sup>0</sup> 0.00 → <var>J</var> 0.52 · <strong>𝓕 1.00</strong></p></div>
+</div>
+<figcaption>Vehicle · all 256 tasks FOSA sampled · band width = number of tasks</figcaption>
 </figure>
         <!-- flow:end -->
         <p class="method-equation" aria-label="F of x equals 4 J times 1 minus J, times max of 0 and J minus J zero, divided by J">
@@ -119,7 +269,7 @@
         <div class="landscape" role="tabpanel" hidden>
           <div class="landscape-view" data-landscape-view tabindex="0" aria-label="Capability frontier landscape. Arrow keys step through FOSA's tasks; drag to rotate.">
             <figure class="landscape-card" data-landscape-card hidden>
-              <video muted loop playsinline preload="none" width="640" height="360"></video>
+              <video muted loop playsinline preload="none" width="960" height="540"></video>
               <figcaption></figcaption>
             </figure>
             <p class="landscape-status" data-landscape-status role="status">Loading…</p>
