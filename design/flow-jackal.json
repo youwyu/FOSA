@@ -1,0 +1,1948 @@
+{
+ "robot": "jackal",
+ "leaves": [
+  {
+   "logp": -2.961,
+   "bindings": [
+    {
+     "atom": "velocity_capability",
+     "role": "capability",
+     "arguments": {}
+    },
+    {
+     "atom": "slalom_navigation_goal",
+     "role": "goal",
+     "arguments": {
+      "marker_count": 4,
+      "target_completion_time": 20.0
+     }
+    },
+    {
+     "atom": "precision_docking_constraint",
+     "role": "constraint",
+     "arguments": {}
+    },
+    {
+     "atom": "friction_adaptation_environment",
+     "role": "environment",
+     "arguments": {
+      "surface_friction": 0.5
+     }
+    }
+   ],
+   "evaluated": [],
+   "path": [
+    {
+     "options": [
+      {
+       "op": "add_atom",
+       "role": "capability",
+       "atom": "velocity_capability",
+       "p": 1.0
+      }
+     ],
+     "valid": 1,
+     "chosen": {
+      "op": "add_atom",
+      "role": "capability",
+      "atom": "velocity_capability",
+      "p": 1.0
+     }
+    },
+    {
+     "options": [
+      {
+       "op": "add_atom",
+       "role": "constraint",
+       "atom": "slalom_navigation_constraint",
+       "p": 0.2615
+      },
+      {
+       "op": "add_atom",
+       "role": "goal",
+       "atom": "slalom_navigation_goal",
+       "p": 0.2363
+      },
+      {
+       "op": "add_atom",
+       "role": "constraint",
+       "atom": "velocity_tracking_flat_constraint",
+       "p": 0.1993
+      },
+      {
+       "op": "add_atom",
+       "role": "environment",
+       "atom": "friction_adaptation_environment",
+       "p": 0.1215
+      },
+      {
+       "op": "add_atom",
+       "role": "goal",
+       "atom": "actuator_degradation_goal",
+       "p": 0.0827
+      }
+     ],
+     "valid": 21,
+     "chosen": {
+      "op": "add_atom",
+      "role": "goal",
+      "atom": "slalom_navigation_goal",
+      "p": 0.2363
+     }
+    },
+    {
+     "options": [
+      {
+       "op": "add_atom",
+       "role": "constraint",
+       "atom": "precision_docking_constraint",
+       "p": 0.4826
+      },
+      {
+       "op": "add_atom",
+       "role": "constraint",
+       "atom": "dynamic_obstacle_avoidance_constraint",
+       "p": 0.2628
+      },
+      {
+       "op": "add_atom",
+       "role": "environment",
+       "atom": "friction_adaptation_environment",
+       "p": 0.1533
+      },
+      {
+       "op": "add_atom",
+       "role": "environment",
+       "atom": "precision_docking_environment",
+       "p": 0.0477
+      },
+      {
+       "op": "add_atom",
+       "role": "constraint",
+       "atom": "velocity_tracking_flat_constraint",
+       "p": 0.0333
+      }
+     ],
+     "valid": 14,
+     "chosen": {
+      "op": "add_atom",
+      "role": "constraint",
+      "atom": "precision_docking_constraint",
+      "p": 0.4826
+     }
+    },
+    {
+     "options": [
+      {
+       "op": "add_atom",
+       "role": "environment",
+       "atom": "friction_adaptation_environment",
+       "p": 0.6976
+      },
+      {
+       "op": "add_atom",
+       "role": "environment",
+       "atom": "precision_docking_environment",
+       "p": 0.2086
+      },
+      {
+       "op": "add_atom",
+       "role": "environment",
+       "atom": "actuator_degradation_environment",
+       "p": 0.0628
+      },
+      {
+       "op": "add_atom",
+       "role": "environment",
+       "atom": "slalom_navigation_environment",
+       "p": 0.028
+      },
+      {
+       "op": "add_atom",
+       "role": "environment",
+       "atom": "velocity_tracking_flat_environment",
+       "p": 0.0018
+      }
+     ],
+     "valid": 7,
+     "chosen": {
+      "op": "add_atom",
+      "role": "environment",
+      "atom": "friction_adaptation_environment",
+      "p": 0.6976
+     }
+    },
+    {
+     "options": [
+      {
+       "op": "stop",
+       "p": 0.6508
+      },
+      {
+       "op": "refine_arg",
+       "role": "goal",
+       "atom": "slalom_navigation_goal",
+       "argument": "target_completion_time",
+       "value": null,
+       "direction": "low",
+       "result": 10.0,
+       "p": 0.095
+      },
+      {
+       "op": "refine_arg",
+       "role": "goal",
+       "atom": "slalom_navigation_goal",
+       "argument": "target_completion_time",
+       "value": null,
+       "direction": "high",
+       "result": 22.5,
+       "p": 0.094
+      },
+      {
+       "op": "refine_arg",
+       "role": "goal",
+       "atom": "slalom_navigation_goal",
+       "argument": "marker_count",
+       "value": null,
+       "direction": "high",
+       "result": 6,
+       "p": 0.0725
+      },
+      {
+       "op": "refine_arg",
+       "role": "environment",
+       "atom": "friction_adaptation_environment",
+       "argument": "surface_friction",
+       "value": null,
+       "direction": "high",
+       "result": 0.55,
+       "p": 0.0535
+      }
+     ],
+     "valid": 7,
+     "chosen": {
+      "op": "stop",
+      "p": 0.6508
+     }
+    }
+   ]
+  },
+  {
+   "logp": -3.134,
+   "bindings": [
+    {
+     "atom": "velocity_capability",
+     "role": "capability",
+     "arguments": {}
+    },
+    {
+     "atom": "velocity_tracking_flat_constraint",
+     "role": "constraint",
+     "arguments": {}
+    },
+    {
+     "atom": "friction_adaptation_environment",
+     "role": "environment",
+     "arguments": {
+      "surface_friction": 0.5
+     }
+    },
+    {
+     "atom": "slalom_navigation_goal",
+     "role": "goal",
+     "arguments": {
+      "marker_count": 4,
+      "target_completion_time": 20.0
+     }
+    }
+   ],
+   "evaluated": [],
+   "path": [
+    {
+     "options": [
+      {
+       "op": "add_atom",
+       "role": "capability",
+       "atom": "velocity_capability",
+       "p": 1.0
+      }
+     ],
+     "valid": 1,
+     "chosen": {
+      "op": "add_atom",
+      "role": "capability",
+      "atom": "velocity_capability",
+      "p": 1.0
+     }
+    },
+    {
+     "options": [
+      {
+       "op": "add_atom",
+       "role": "constraint",
+       "atom": "slalom_navigation_constraint",
+       "p": 0.2615
+      },
+      {
+       "op": "add_atom",
+       "role": "goal",
+       "atom": "slalom_navigation_goal",
+       "p": 0.2363
+      },
+      {
+       "op": "add_atom",
+       "role": "constraint",
+       "atom": "velocity_tracking_flat_constraint",
+       "p": 0.1993
+      },
+      {
+       "op": "add_atom",
+       "role": "environment",
+       "atom": "friction_adaptation_environment",
+       "p": 0.1215
+      },
+      {
+       "op": "add_atom",
+       "role": "goal",
+       "atom": "actuator_degradation_goal",
+       "p": 0.0827
+      }
+     ],
+     "valid": 21,
+     "chosen": {
+      "op": "add_atom",
+      "role": "constraint",
+      "atom": "velocity_tracking_flat_constraint",
+      "p": 0.1993
+     }
+    },
+    {
+     "options": [
+      {
+       "op": "add_atom",
+       "role": "environment",
+       "atom": "friction_adaptation_environment",
+       "p": 0.3959
+      },
+      {
+       "op": "add_atom",
+       "role": "goal",
+       "atom": "slalom_navigation_goal",
+       "p": 0.3538
+      },
+      {
+       "op": "add_atom",
+       "role": "goal",
+       "atom": "actuator_degradation_goal",
+       "p": 0.0896
+      },
+      {
+       "op": "add_atom",
+       "role": "environment",
+       "atom": "actuator_degradation_environment",
+       "p": 0.0808
+      },
+      {
+       "op": "add_atom",
+       "role": "goal",
+       "atom": "dynamic_obstacle_avoidance_goal",
+       "p": 0.0306
+      }
+     ],
+     "valid": 14,
+     "chosen": {
+      "op": "add_atom",
+      "role": "environment",
+      "atom": "friction_adaptation_environment",
+      "p": 0.3959
+     }
+    },
+    {
+     "options": [
+      {
+       "op": "add_atom",
+       "role": "goal",
+       "atom": "slalom_navigation_goal",
+       "p": 0.9242
+      },
+      {
+       "op": "add_atom",
+       "role": "goal",
+       "atom": "actuator_degradation_goal",
+       "p": 0.0505
+      },
+      {
+       "op": "add_atom",
+       "role": "goal",
+       "atom": "dynamic_obstacle_avoidance_goal",
+       "p": 0.0158
+      },
+      {
+       "op": "add_atom",
+       "role": "goal",
+       "atom": "precision_docking_goal",
+       "p": 0.0056
+      },
+      {
+       "op": "add_atom",
+       "role": "goal",
+       "atom": "friction_adaptation_goal",
+       "p": 0.0039
+      }
+     ],
+     "valid": 7,
+     "chosen": {
+      "op": "add_atom",
+      "role": "goal",
+      "atom": "slalom_navigation_goal",
+      "p": 0.9242
+     }
+    },
+    {
+     "options": [
+      {
+       "op": "stop",
+       "p": 0.5975
+      },
+      {
+       "op": "refine_arg",
+       "role": "goal",
+       "atom": "slalom_navigation_goal",
+       "argument": "target_completion_time",
+       "value": null,
+       "direction": "high",
+       "result": 22.5,
+       "p": 0.2012
+      },
+      {
+       "op": "refine_arg",
+       "role": "goal",
+       "atom": "slalom_navigation_goal",
+       "argument": "target_completion_time",
+       "value": null,
+       "direction": "low",
+       "result": 10.0,
+       "p": 0.0849
+      },
+      {
+       "op": "refine_arg",
+       "role": "goal",
+       "atom": "slalom_navigation_goal",
+       "argument": "marker_count",
+       "value": null,
+       "direction": "high",
+       "result": 6,
+       "p": 0.0458
+      },
+      {
+       "op": "refine_arg",
+       "role": "goal",
+       "atom": "slalom_navigation_goal",
+       "argument": "marker_count",
+       "value": null,
+       "direction": "low",
+       "result": 2,
+       "p": 0.0355
+      }
+     ],
+     "valid": 7,
+     "chosen": {
+      "op": "stop",
+      "p": 0.5975
+     }
+    }
+   ]
+  },
+  {
+   "logp": -3.402,
+   "bindings": [
+    {
+     "atom": "velocity_capability",
+     "role": "capability",
+     "arguments": {}
+    },
+    {
+     "atom": "velocity_tracking_flat_constraint",
+     "role": "constraint",
+     "arguments": {}
+    },
+    {
+     "atom": "slalom_navigation_goal",
+     "role": "goal",
+     "arguments": {
+      "marker_count": 4,
+      "target_completion_time": 20.0
+     }
+    },
+    {
+     "atom": "friction_adaptation_environment",
+     "role": "environment",
+     "arguments": {
+      "surface_friction": 0.5
+     }
+    }
+   ],
+   "evaluated": [],
+   "path": [
+    {
+     "options": [
+      {
+       "op": "add_atom",
+       "role": "capability",
+       "atom": "velocity_capability",
+       "p": 1.0
+      }
+     ],
+     "valid": 1,
+     "chosen": {
+      "op": "add_atom",
+      "role": "capability",
+      "atom": "velocity_capability",
+      "p": 1.0
+     }
+    },
+    {
+     "options": [
+      {
+       "op": "add_atom",
+       "role": "constraint",
+       "atom": "slalom_navigation_constraint",
+       "p": 0.2615
+      },
+      {
+       "op": "add_atom",
+       "role": "goal",
+       "atom": "slalom_navigation_goal",
+       "p": 0.2363
+      },
+      {
+       "op": "add_atom",
+       "role": "constraint",
+       "atom": "velocity_tracking_flat_constraint",
+       "p": 0.1993
+      },
+      {
+       "op": "add_atom",
+       "role": "environment",
+       "atom": "friction_adaptation_environment",
+       "p": 0.1215
+      },
+      {
+       "op": "add_atom",
+       "role": "goal",
+       "atom": "actuator_degradation_goal",
+       "p": 0.0827
+      }
+     ],
+     "valid": 21,
+     "chosen": {
+      "op": "add_atom",
+      "role": "constraint",
+      "atom": "velocity_tracking_flat_constraint",
+      "p": 0.1993
+     }
+    },
+    {
+     "options": [
+      {
+       "op": "add_atom",
+       "role": "environment",
+       "atom": "friction_adaptation_environment",
+       "p": 0.3959
+      },
+      {
+       "op": "add_atom",
+       "role": "goal",
+       "atom": "slalom_navigation_goal",
+       "p": 0.3538
+      },
+      {
+       "op": "add_atom",
+       "role": "goal",
+       "atom": "actuator_degradation_goal",
+       "p": 0.0896
+      },
+      {
+       "op": "add_atom",
+       "role": "environment",
+       "atom": "actuator_degradation_environment",
+       "p": 0.0808
+      },
+      {
+       "op": "add_atom",
+       "role": "goal",
+       "atom": "dynamic_obstacle_avoidance_goal",
+       "p": 0.0306
+      }
+     ],
+     "valid": 14,
+     "chosen": {
+      "op": "add_atom",
+      "role": "goal",
+      "atom": "slalom_navigation_goal",
+      "p": 0.3538
+     }
+    },
+    {
+     "options": [
+      {
+       "op": "add_atom",
+       "role": "environment",
+       "atom": "friction_adaptation_environment",
+       "p": 0.7484
+      },
+      {
+       "op": "add_atom",
+       "role": "environment",
+       "atom": "precision_docking_environment",
+       "p": 0.1548
+      },
+      {
+       "op": "add_atom",
+       "role": "environment",
+       "atom": "actuator_degradation_environment",
+       "p": 0.0693
+      },
+      {
+       "op": "add_atom",
+       "role": "environment",
+       "atom": "slalom_navigation_environment",
+       "p": 0.0256
+      },
+      {
+       "op": "add_atom",
+       "role": "environment",
+       "atom": "velocity_tracking_flat_environment",
+       "p": 0.001
+      }
+     ],
+     "valid": 7,
+     "chosen": {
+      "op": "add_atom",
+      "role": "environment",
+      "atom": "friction_adaptation_environment",
+      "p": 0.7484
+     }
+    },
+    {
+     "options": [
+      {
+       "op": "stop",
+       "p": 0.6309
+      },
+      {
+       "op": "refine_arg",
+       "role": "goal",
+       "atom": "slalom_navigation_goal",
+       "argument": "target_completion_time",
+       "value": null,
+       "direction": "high",
+       "result": 22.5,
+       "p": 0.1355
+      },
+      {
+       "op": "refine_arg",
+       "role": "goal",
+       "atom": "slalom_navigation_goal",
+       "argument": "target_completion_time",
+       "value": null,
+       "direction": "low",
+       "result": 10.0,
+       "p": 0.0921
+      },
+      {
+       "op": "refine_arg",
+       "role": "goal",
+       "atom": "slalom_navigation_goal",
+       "argument": "marker_count",
+       "value": null,
+       "direction": "high",
+       "result": 6,
+       "p": 0.0654
+      },
+      {
+       "op": "refine_arg",
+       "role": "environment",
+       "atom": "friction_adaptation_environment",
+       "argument": "surface_friction",
+       "value": null,
+       "direction": "high",
+       "result": 0.55,
+       "p": 0.0393
+      }
+     ],
+     "valid": 7,
+     "chosen": {
+      "op": "stop",
+      "p": 0.6309
+     }
+    }
+   ]
+  },
+  {
+   "logp": -3.623,
+   "bindings": [
+    {
+     "atom": "velocity_capability",
+     "role": "capability",
+     "arguments": {}
+    },
+    {
+     "atom": "slalom_navigation_goal",
+     "role": "goal",
+     "arguments": {
+      "marker_count": 4,
+      "target_completion_time": 20.0
+     }
+    },
+    {
+     "atom": "dynamic_obstacle_avoidance_constraint",
+     "role": "constraint",
+     "arguments": {}
+    },
+    {
+     "atom": "friction_adaptation_environment",
+     "role": "environment",
+     "arguments": {
+      "surface_friction": 0.5
+     }
+    }
+   ],
+   "evaluated": [
+    {
+     "j0": 0.0,
+     "j": 0.0,
+     "curve": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.007812,
+      0.0
+     ],
+     "description": "The Jackal robot must navigate a slalom course consisting of 4 cylindrical markers in a zig-zag pattern. The task takes place in an environment with a surface friction coefficient of 0.5. The robot must use velocity control to maneuver through the course, ensuring it does not collide with any moving objects or the markers. The goal is to cross the finish line within a target completion time of 20.0 seconds.",
+     "iteration": 189
+    }
+   ],
+   "path": [
+    {
+     "options": [
+      {
+       "op": "add_atom",
+       "role": "capability",
+       "atom": "velocity_capability",
+       "p": 1.0
+      }
+     ],
+     "valid": 1,
+     "chosen": {
+      "op": "add_atom",
+      "role": "capability",
+      "atom": "velocity_capability",
+      "p": 1.0
+     }
+    },
+    {
+     "options": [
+      {
+       "op": "add_atom",
+       "role": "constraint",
+       "atom": "slalom_navigation_constraint",
+       "p": 0.2615
+      },
+      {
+       "op": "add_atom",
+       "role": "goal",
+       "atom": "slalom_navigation_goal",
+       "p": 0.2363
+      },
+      {
+       "op": "add_atom",
+       "role": "constraint",
+       "atom": "velocity_tracking_flat_constraint",
+       "p": 0.1993
+      },
+      {
+       "op": "add_atom",
+       "role": "environment",
+       "atom": "friction_adaptation_environment",
+       "p": 0.1215
+      },
+      {
+       "op": "add_atom",
+       "role": "goal",
+       "atom": "actuator_degradation_goal",
+       "p": 0.0827
+      }
+     ],
+     "valid": 21,
+     "chosen": {
+      "op": "add_atom",
+      "role": "goal",
+      "atom": "slalom_navigation_goal",
+      "p": 0.2363
+     }
+    },
+    {
+     "options": [
+      {
+       "op": "add_atom",
+       "role": "constraint",
+       "atom": "precision_docking_constraint",
+       "p": 0.4826
+      },
+      {
+       "op": "add_atom",
+       "role": "constraint",
+       "atom": "dynamic_obstacle_avoidance_constraint",
+       "p": 0.2628
+      },
+      {
+       "op": "add_atom",
+       "role": "environment",
+       "atom": "friction_adaptation_environment",
+       "p": 0.1533
+      },
+      {
+       "op": "add_atom",
+       "role": "environment",
+       "atom": "precision_docking_environment",
+       "p": 0.0477
+      },
+      {
+       "op": "add_atom",
+       "role": "constraint",
+       "atom": "velocity_tracking_flat_constraint",
+       "p": 0.0333
+      }
+     ],
+     "valid": 14,
+     "chosen": {
+      "op": "add_atom",
+      "role": "constraint",
+      "atom": "dynamic_obstacle_avoidance_constraint",
+      "p": 0.2628
+     }
+    },
+    {
+     "options": [
+      {
+       "op": "add_atom",
+       "role": "environment",
+       "atom": "friction_adaptation_environment",
+       "p": 0.7457
+      },
+      {
+       "op": "add_atom",
+       "role": "environment",
+       "atom": "precision_docking_environment",
+       "p": 0.1458
+      },
+      {
+       "op": "add_atom",
+       "role": "environment",
+       "atom": "actuator_degradation_environment",
+       "p": 0.0764
+      },
+      {
+       "op": "add_atom",
+       "role": "environment",
+       "atom": "slalom_navigation_environment",
+       "p": 0.0297
+      },
+      {
+       "op": "add_atom",
+       "role": "environment",
+       "atom": "velocity_tracking_flat_environment",
+       "p": 0.0015
+      }
+     ],
+     "valid": 7,
+     "chosen": {
+      "op": "add_atom",
+      "role": "environment",
+      "atom": "friction_adaptation_environment",
+      "p": 0.7457
+     }
+    },
+    {
+     "options": [
+      {
+       "op": "stop",
+       "p": 0.5766
+      },
+      {
+       "op": "refine_arg",
+       "role": "goal",
+       "atom": "slalom_navigation_goal",
+       "argument": "target_completion_time",
+       "value": null,
+       "direction": "high",
+       "result": 22.5,
+       "p": 0.176
+      },
+      {
+       "op": "refine_arg",
+       "role": "goal",
+       "atom": "slalom_navigation_goal",
+       "argument": "target_completion_time",
+       "value": null,
+       "direction": "low",
+       "result": 10.0,
+       "p": 0.0932
+      },
+      {
+       "op": "refine_arg",
+       "role": "goal",
+       "atom": "slalom_navigation_goal",
+       "argument": "marker_count",
+       "value": null,
+       "direction": "high",
+       "result": 6,
+       "p": 0.0682
+      },
+      {
+       "op": "refine_arg",
+       "role": "goal",
+       "atom": "slalom_navigation_goal",
+       "argument": "marker_count",
+       "value": null,
+       "direction": "low",
+       "result": 2,
+       "p": 0.0437
+      }
+     ],
+     "valid": 7,
+     "chosen": {
+      "op": "stop",
+      "p": 0.5766
+     }
+    }
+   ]
+  },
+  {
+   "logp": -3.666,
+   "bindings": [
+    {
+     "atom": "velocity_capability",
+     "role": "capability",
+     "arguments": {}
+    },
+    {
+     "atom": "slalom_navigation_constraint",
+     "role": "constraint",
+     "arguments": {}
+    },
+    {
+     "atom": "friction_adaptation_environment",
+     "role": "environment",
+     "arguments": {
+      "surface_friction": 0.5
+     }
+    },
+    {
+     "atom": "slalom_navigation_goal",
+     "role": "goal",
+     "arguments": {
+      "marker_count": 4,
+      "target_completion_time": 20.0
+     }
+    }
+   ],
+   "evaluated": [],
+   "path": [
+    {
+     "options": [
+      {
+       "op": "add_atom",
+       "role": "capability",
+       "atom": "velocity_capability",
+       "p": 1.0
+      }
+     ],
+     "valid": 1,
+     "chosen": {
+      "op": "add_atom",
+      "role": "capability",
+      "atom": "velocity_capability",
+      "p": 1.0
+     }
+    },
+    {
+     "options": [
+      {
+       "op": "add_atom",
+       "role": "constraint",
+       "atom": "slalom_navigation_constraint",
+       "p": 0.2615
+      },
+      {
+       "op": "add_atom",
+       "role": "goal",
+       "atom": "slalom_navigation_goal",
+       "p": 0.2363
+      },
+      {
+       "op": "add_atom",
+       "role": "constraint",
+       "atom": "velocity_tracking_flat_constraint",
+       "p": 0.1993
+      },
+      {
+       "op": "add_atom",
+       "role": "environment",
+       "atom": "friction_adaptation_environment",
+       "p": 0.1215
+      },
+      {
+       "op": "add_atom",
+       "role": "goal",
+       "atom": "actuator_degradation_goal",
+       "p": 0.0827
+      }
+     ],
+     "valid": 21,
+     "chosen": {
+      "op": "add_atom",
+      "role": "constraint",
+      "atom": "slalom_navigation_constraint",
+      "p": 0.2615
+     }
+    },
+    {
+     "options": [
+      {
+       "op": "add_atom",
+       "role": "environment",
+       "atom": "friction_adaptation_environment",
+       "p": 0.6804
+      },
+      {
+       "op": "add_atom",
+       "role": "environment",
+       "atom": "precision_docking_environment",
+       "p": 0.1493
+      },
+      {
+       "op": "add_atom",
+       "role": "environment",
+       "atom": "actuator_degradation_environment",
+       "p": 0.0568
+      },
+      {
+       "op": "add_atom",
+       "role": "goal",
+       "atom": "actuator_degradation_goal",
+       "p": 0.0396
+      },
+      {
+       "op": "add_atom",
+       "role": "environment",
+       "atom": "slalom_navigation_environment",
+       "p": 0.0225
+      }
+     ],
+     "valid": 14,
+     "chosen": {
+      "op": "add_atom",
+      "role": "environment",
+      "atom": "friction_adaptation_environment",
+      "p": 0.6804
+     }
+    },
+    {
+     "options": [
+      {
+       "op": "add_atom",
+       "role": "goal",
+       "atom": "actuator_degradation_goal",
+       "p": 0.4521
+      },
+      {
+       "op": "add_atom",
+       "role": "goal",
+       "atom": "slalom_navigation_goal",
+       "p": 0.233
+      },
+      {
+       "op": "add_atom",
+       "role": "goal",
+       "atom": "dynamic_obstacle_avoidance_goal",
+       "p": 0.1859
+      },
+      {
+       "op": "add_atom",
+       "role": "goal",
+       "atom": "precision_docking_goal",
+       "p": 0.0682
+      },
+      {
+       "op": "add_atom",
+       "role": "goal",
+       "atom": "friction_adaptation_goal",
+       "p": 0.0531
+      }
+     ],
+     "valid": 7,
+     "chosen": {
+      "op": "add_atom",
+      "role": "goal",
+      "atom": "slalom_navigation_goal",
+      "p": 0.233
+     }
+    },
+    {
+     "options": [
+      {
+       "op": "stop",
+       "p": 0.6174
+      },
+      {
+       "op": "refine_arg",
+       "role": "goal",
+       "atom": "slalom_navigation_goal",
+       "argument": "marker_count",
+       "value": null,
+       "direction": "high",
+       "result": 6,
+       "p": 0.1438
+      },
+      {
+       "op": "refine_arg",
+       "role": "goal",
+       "atom": "slalom_navigation_goal",
+       "argument": "target_completion_time",
+       "value": null,
+       "direction": "low",
+       "result": 10.0,
+       "p": 0.0962
+      },
+      {
+       "op": "refine_arg",
+       "role": "environment",
+       "atom": "friction_adaptation_environment",
+       "argument": "surface_friction",
+       "value": null,
+       "direction": "high",
+       "result": 0.55,
+       "p": 0.0658
+      },
+      {
+       "op": "refine_arg",
+       "role": "goal",
+       "atom": "slalom_navigation_goal",
+       "argument": "target_completion_time",
+       "value": null,
+       "direction": "high",
+       "result": 22.5,
+       "p": 0.0433
+      }
+     ],
+     "valid": 7,
+     "chosen": {
+      "op": "stop",
+      "p": 0.6174
+     }
+    }
+   ]
+  },
+  {
+   "logp": -3.857,
+   "bindings": [
+    {
+     "atom": "velocity_capability",
+     "role": "capability",
+     "arguments": {}
+    },
+    {
+     "atom": "slalom_navigation_constraint",
+     "role": "constraint",
+     "arguments": {}
+    },
+    {
+     "atom": "friction_adaptation_environment",
+     "role": "environment",
+     "arguments": {
+      "surface_friction": 0.5
+     }
+    },
+    {
+     "atom": "actuator_degradation_goal",
+     "role": "goal",
+     "arguments": {
+      "gain_reduction_factor": 0.5,
+      "target_velocity": 0.5
+     }
+    }
+   ],
+   "evaluated": [],
+   "path": [
+    {
+     "options": [
+      {
+       "op": "add_atom",
+       "role": "capability",
+       "atom": "velocity_capability",
+       "p": 1.0
+      }
+     ],
+     "valid": 1,
+     "chosen": {
+      "op": "add_atom",
+      "role": "capability",
+      "atom": "velocity_capability",
+      "p": 1.0
+     }
+    },
+    {
+     "options": [
+      {
+       "op": "add_atom",
+       "role": "constraint",
+       "atom": "slalom_navigation_constraint",
+       "p": 0.2615
+      },
+      {
+       "op": "add_atom",
+       "role": "goal",
+       "atom": "slalom_navigation_goal",
+       "p": 0.2363
+      },
+      {
+       "op": "add_atom",
+       "role": "constraint",
+       "atom": "velocity_tracking_flat_constraint",
+       "p": 0.1993
+      },
+      {
+       "op": "add_atom",
+       "role": "environment",
+       "atom": "friction_adaptation_environment",
+       "p": 0.1215
+      },
+      {
+       "op": "add_atom",
+       "role": "goal",
+       "atom": "actuator_degradation_goal",
+       "p": 0.0827
+      }
+     ],
+     "valid": 21,
+     "chosen": {
+      "op": "add_atom",
+      "role": "constraint",
+      "atom": "slalom_navigation_constraint",
+      "p": 0.2615
+     }
+    },
+    {
+     "options": [
+      {
+       "op": "add_atom",
+       "role": "environment",
+       "atom": "friction_adaptation_environment",
+       "p": 0.6804
+      },
+      {
+       "op": "add_atom",
+       "role": "environment",
+       "atom": "precision_docking_environment",
+       "p": 0.1493
+      },
+      {
+       "op": "add_atom",
+       "role": "environment",
+       "atom": "actuator_degradation_environment",
+       "p": 0.0568
+      },
+      {
+       "op": "add_atom",
+       "role": "goal",
+       "atom": "actuator_degradation_goal",
+       "p": 0.0396
+      },
+      {
+       "op": "add_atom",
+       "role": "environment",
+       "atom": "slalom_navigation_environment",
+       "p": 0.0225
+      }
+     ],
+     "valid": 14,
+     "chosen": {
+      "op": "add_atom",
+      "role": "environment",
+      "atom": "friction_adaptation_environment",
+      "p": 0.6804
+     }
+    },
+    {
+     "options": [
+      {
+       "op": "add_atom",
+       "role": "goal",
+       "atom": "actuator_degradation_goal",
+       "p": 0.4521
+      },
+      {
+       "op": "add_atom",
+       "role": "goal",
+       "atom": "slalom_navigation_goal",
+       "p": 0.233
+      },
+      {
+       "op": "add_atom",
+       "role": "goal",
+       "atom": "dynamic_obstacle_avoidance_goal",
+       "p": 0.1859
+      },
+      {
+       "op": "add_atom",
+       "role": "goal",
+       "atom": "precision_docking_goal",
+       "p": 0.0682
+      },
+      {
+       "op": "add_atom",
+       "role": "goal",
+       "atom": "friction_adaptation_goal",
+       "p": 0.0531
+      }
+     ],
+     "valid": 7,
+     "chosen": {
+      "op": "add_atom",
+      "role": "goal",
+      "atom": "actuator_degradation_goal",
+      "p": 0.4521
+     }
+    },
+    {
+     "options": [
+      {
+       "op": "refine_arg",
+       "role": "goal",
+       "atom": "actuator_degradation_goal",
+       "argument": "gain_reduction_factor",
+       "value": null,
+       "direction": "low",
+       "result": 0.3,
+       "p": 0.5229
+      },
+      {
+       "op": "stop",
+       "p": 0.2627
+      },
+      {
+       "op": "refine_arg",
+       "role": "goal",
+       "atom": "actuator_degradation_goal",
+       "argument": "target_velocity",
+       "value": null,
+       "direction": "low",
+       "result": 0.4,
+       "p": 0.1185
+      },
+      {
+       "op": "refine_arg",
+       "role": "goal",
+       "atom": "actuator_degradation_goal",
+       "argument": "gain_reduction_factor",
+       "value": null,
+       "direction": "high",
+       "result": 0.7,
+       "p": 0.0582
+      },
+      {
+       "op": "refine_arg",
+       "role": "environment",
+       "atom": "friction_adaptation_environment",
+       "argument": "surface_friction",
+       "value": null,
+       "direction": "high",
+       "result": 0.55,
+       "p": 0.0312
+      }
+     ],
+     "valid": 7,
+     "chosen": {
+      "op": "stop",
+      "p": 0.2627
+     }
+    }
+   ]
+  },
+  {
+   "logp": -4.139,
+   "bindings": [
+    {
+     "atom": "velocity_capability",
+     "role": "capability",
+     "arguments": {}
+    },
+    {
+     "atom": "slalom_navigation_goal",
+     "role": "goal",
+     "arguments": {
+      "marker_count": 4,
+      "target_completion_time": 20.0
+     }
+    },
+    {
+     "atom": "precision_docking_constraint",
+     "role": "constraint",
+     "arguments": {}
+    },
+    {
+     "atom": "precision_docking_environment",
+     "role": "environment",
+     "arguments": {}
+    }
+   ],
+   "evaluated": [],
+   "path": [
+    {
+     "options": [
+      {
+       "op": "add_atom",
+       "role": "capability",
+       "atom": "velocity_capability",
+       "p": 1.0
+      }
+     ],
+     "valid": 1,
+     "chosen": {
+      "op": "add_atom",
+      "role": "capability",
+      "atom": "velocity_capability",
+      "p": 1.0
+     }
+    },
+    {
+     "options": [
+      {
+       "op": "add_atom",
+       "role": "constraint",
+       "atom": "slalom_navigation_constraint",
+       "p": 0.2615
+      },
+      {
+       "op": "add_atom",
+       "role": "goal",
+       "atom": "slalom_navigation_goal",
+       "p": 0.2363
+      },
+      {
+       "op": "add_atom",
+       "role": "constraint",
+       "atom": "velocity_tracking_flat_constraint",
+       "p": 0.1993
+      },
+      {
+       "op": "add_atom",
+       "role": "environment",
+       "atom": "friction_adaptation_environment",
+       "p": 0.1215
+      },
+      {
+       "op": "add_atom",
+       "role": "goal",
+       "atom": "actuator_degradation_goal",
+       "p": 0.0827
+      }
+     ],
+     "valid": 21,
+     "chosen": {
+      "op": "add_atom",
+      "role": "goal",
+      "atom": "slalom_navigation_goal",
+      "p": 0.2363
+     }
+    },
+    {
+     "options": [
+      {
+       "op": "add_atom",
+       "role": "constraint",
+       "atom": "precision_docking_constraint",
+       "p": 0.4826
+      },
+      {
+       "op": "add_atom",
+       "role": "constraint",
+       "atom": "dynamic_obstacle_avoidance_constraint",
+       "p": 0.2628
+      },
+      {
+       "op": "add_atom",
+       "role": "environment",
+       "atom": "friction_adaptation_environment",
+       "p": 0.1533
+      },
+      {
+       "op": "add_atom",
+       "role": "environment",
+       "atom": "precision_docking_environment",
+       "p": 0.0477
+      },
+      {
+       "op": "add_atom",
+       "role": "constraint",
+       "atom": "velocity_tracking_flat_constraint",
+       "p": 0.0333
+      }
+     ],
+     "valid": 14,
+     "chosen": {
+      "op": "add_atom",
+      "role": "constraint",
+      "atom": "precision_docking_constraint",
+      "p": 0.4826
+     }
+    },
+    {
+     "options": [
+      {
+       "op": "add_atom",
+       "role": "environment",
+       "atom": "friction_adaptation_environment",
+       "p": 0.6976
+      },
+      {
+       "op": "add_atom",
+       "role": "environment",
+       "atom": "precision_docking_environment",
+       "p": 0.2086
+      },
+      {
+       "op": "add_atom",
+       "role": "environment",
+       "atom": "actuator_degradation_environment",
+       "p": 0.0628
+      },
+      {
+       "op": "add_atom",
+       "role": "environment",
+       "atom": "slalom_navigation_environment",
+       "p": 0.028
+      },
+      {
+       "op": "add_atom",
+       "role": "environment",
+       "atom": "velocity_tracking_flat_environment",
+       "p": 0.0018
+      }
+     ],
+     "valid": 7,
+     "chosen": {
+      "op": "add_atom",
+      "role": "environment",
+      "atom": "precision_docking_environment",
+      "p": 0.2086
+     }
+    },
+    {
+     "options": [
+      {
+       "op": "stop",
+       "p": 0.6698
+      },
+      {
+       "op": "refine_arg",
+       "role": "goal",
+       "atom": "slalom_navigation_goal",
+       "argument": "target_completion_time",
+       "value": null,
+       "direction": "high",
+       "result": 22.5,
+       "p": 0.1257
+      },
+      {
+       "op": "refine_arg",
+       "role": "goal",
+       "atom": "slalom_navigation_goal",
+       "argument": "target_completion_time",
+       "value": null,
+       "direction": "low",
+       "result": 10.0,
+       "p": 0.1022
+      },
+      {
+       "op": "refine_arg",
+       "role": "goal",
+       "atom": "slalom_navigation_goal",
+       "argument": "marker_count",
+       "value": null,
+       "direction": "high",
+       "result": 6,
+       "p": 0.0665
+      },
+      {
+       "op": "refine_arg",
+       "role": "goal",
+       "atom": "slalom_navigation_goal",
+       "argument": "marker_count",
+       "value": null,
+       "direction": "low",
+       "result": 2,
+       "p": 0.0358
+      }
+     ],
+     "valid": 5,
+     "chosen": {
+      "op": "stop",
+      "p": 0.6698
+     }
+    }
+   ]
+  },
+  {
+   "logp": -4.412,
+   "bindings": [
+    {
+     "atom": "velocity_capability",
+     "role": "capability",
+     "arguments": {}
+    },
+    {
+     "atom": "slalom_navigation_constraint",
+     "role": "constraint",
+     "arguments": {}
+    },
+    {
+     "atom": "friction_adaptation_environment",
+     "role": "environment",
+     "arguments": {
+      "surface_friction": 0.5
+     }
+    },
+    {
+     "atom": "actuator_degradation_goal",
+     "role": "goal",
+     "arguments": {
+      "gain_reduction_factor": 0.1,
+      "target_velocity": 0.5
+     }
+    }
+   ],
+   "evaluated": [],
+   "path": [
+    {
+     "options": [
+      {
+       "op": "add_atom",
+       "role": "capability",
+       "atom": "velocity_capability",
+       "p": 1.0
+      }
+     ],
+     "valid": 1,
+     "chosen": {
+      "op": "add_atom",
+      "role": "capability",
+      "atom": "velocity_capability",
+      "p": 1.0
+     }
+    },
+    {
+     "options": [
+      {
+       "op": "add_atom",
+       "role": "constraint",
+       "atom": "slalom_navigation_constraint",
+       "p": 0.2615
+      },
+      {
+       "op": "add_atom",
+       "role": "goal",
+       "atom": "slalom_navigation_goal",
+       "p": 0.2363
+      },
+      {
+       "op": "add_atom",
+       "role": "constraint",
+       "atom": "velocity_tracking_flat_constraint",
+       "p": 0.1993
+      },
+      {
+       "op": "add_atom",
+       "role": "environment",
+       "atom": "friction_adaptation_environment",
+       "p": 0.1215
+      },
+      {
+       "op": "add_atom",
+       "role": "goal",
+       "atom": "actuator_degradation_goal",
+       "p": 0.0827
+      }
+     ],
+     "valid": 21,
+     "chosen": {
+      "op": "add_atom",
+      "role": "constraint",
+      "atom": "slalom_navigation_constraint",
+      "p": 0.2615
+     }
+    },
+    {
+     "options": [
+      {
+       "op": "add_atom",
+       "role": "environment",
+       "atom": "friction_adaptation_environment",
+       "p": 0.6804
+      },
+      {
+       "op": "add_atom",
+       "role": "environment",
+       "atom": "precision_docking_environment",
+       "p": 0.1493
+      },
+      {
+       "op": "add_atom",
+       "role": "environment",
+       "atom": "actuator_degradation_environment",
+       "p": 0.0568
+      },
+      {
+       "op": "add_atom",
+       "role": "goal",
+       "atom": "actuator_degradation_goal",
+       "p": 0.0396
+      },
+      {
+       "op": "add_atom",
+       "role": "environment",
+       "atom": "slalom_navigation_environment",
+       "p": 0.0225
+      }
+     ],
+     "valid": 14,
+     "chosen": {
+      "op": "add_atom",
+      "role": "environment",
+      "atom": "friction_adaptation_environment",
+      "p": 0.6804
+     }
+    },
+    {
+     "options": [
+      {
+       "op": "add_atom",
+       "role": "goal",
+       "atom": "actuator_degradation_goal",
+       "p": 0.4521
+      },
+      {
+       "op": "add_atom",
+       "role": "goal",
+       "atom": "slalom_navigation_goal",
+       "p": 0.233
+      },
+      {
+       "op": "add_atom",
+       "role": "goal",
+       "atom": "dynamic_obstacle_avoidance_goal",
+       "p": 0.1859
+      },
+      {
+       "op": "add_atom",
+       "role": "goal",
+       "atom": "precision_docking_goal",
+       "p": 0.0682
+      },
+      {
+       "op": "add_atom",
+       "role": "goal",
+       "atom": "friction_adaptation_goal",
+       "p": 0.0531
+      }
+     ],
+     "valid": 7,
+     "chosen": {
+      "op": "add_atom",
+      "role": "goal",
+      "atom": "actuator_degradation_goal",
+      "p": 0.4521
+     }
+    },
+    {
+     "options": [
+      {
+       "op": "refine_arg",
+       "role": "goal",
+       "atom": "actuator_degradation_goal",
+       "argument": "gain_reduction_factor",
+       "value": null,
+       "direction": "low",
+       "result": 0.3,
+       "p": 0.5229
+      },
+      {
+       "op": "stop",
+       "p": 0.2627
+      },
+      {
+       "op": "refine_arg",
+       "role": "goal",
+       "atom": "actuator_degradation_goal",
+       "argument": "target_velocity",
+       "value": null,
+       "direction": "low",
+       "result": 0.4,
+       "p": 0.1185
+      },
+      {
+       "op": "refine_arg",
+       "role": "goal",
+       "atom": "actuator_degradation_goal",
+       "argument": "gain_reduction_factor",
+       "value": null,
+       "direction": "high",
+       "result": 0.7,
+       "p": 0.0582
+      },
+      {
+       "op": "refine_arg",
+       "role": "environment",
+       "atom": "friction_adaptation_environment",
+       "argument": "surface_friction",
+       "value": null,
+       "direction": "high",
+       "result": 0.55,
+       "p": 0.0312
+      }
+     ],
+     "valid": 7,
+     "chosen": {
+      "op": "refine_arg",
+      "role": "goal",
+      "atom": "actuator_degradation_goal",
+      "argument": "gain_reduction_factor",
+      "value": null,
+      "direction": "low",
+      "result": 0.3,
+      "p": 0.5229
+     }
+    },
+    {
+     "options": [
+      {
+       "op": "refine_arg",
+       "role": "goal",
+       "atom": "actuator_degradation_goal",
+       "argument": "gain_reduction_factor",
+       "value": null,
+       "direction": "low",
+       "result": 0.1,
+       "p": 0.5226
+      },
+      {
+       "op": "stop",
+       "p": 0.2634
+      },
+      {
+       "op": "refine_arg",
+       "role": "goal",
+       "atom": "actuator_degradation_goal",
+       "argument": "target_velocity",
+       "value": null,
+       "direction": "low",
+       "result": 0.4,
+       "p": 0.1179
+      },
+      {
+       "op": "refine_arg",
+       "role": "goal",
+       "atom": "actuator_degradation_goal",
+       "argument": "gain_reduction_factor",
+       "value": null,
+       "direction": "high",
+       "result": 0.5,
+       "p": 0.0583
+      },
+      {
+       "op": "refine_arg",
+       "role": "environment",
+       "atom": "friction_adaptation_environment",
+       "argument": "surface_friction",
+       "value": null,
+       "direction": "high",
+       "result": 0.55,
+       "p": 0.0313
+      }
+     ],
+     "valid": 7,
+     "chosen": {
+      "op": "refine_arg",
+      "role": "goal",
+      "atom": "actuator_degradation_goal",
+      "argument": "gain_reduction_factor",
+      "value": null,
+      "direction": "low",
+      "result": 0.1,
+      "p": 0.5226
+     }
+    },
+    {
+     "options": [
+      {
+       "op": "stop",
+       "p": 0.552
+      },
+      {
+       "op": "refine_arg",
+       "role": "goal",
+       "atom": "actuator_degradation_goal",
+       "argument": "target_velocity",
+       "value": null,
+       "direction": "low",
+       "result": 0.4,
+       "p": 0.2467
+      },
+      {
+       "op": "refine_arg",
+       "role": "goal",
+       "atom": "actuator_degradation_goal",
+       "argument": "gain_reduction_factor",
+       "value": null,
+       "direction": "high",
+       "result": 0.3,
+       "p": 0.1223
+      },
+      {
+       "op": "refine_arg",
+       "role": "environment",
+       "atom": "friction_adaptation_environment",
+       "argument": "surface_friction",
+       "value": null,
+       "direction": "high",
+       "result": 0.55,
+       "p": 0.0655
+      },
+      {
+       "op": "refine_arg",
+       "role": "goal",
+       "atom": "actuator_degradation_goal",
+       "argument": "target_velocity",
+       "value": null,
+       "direction": "high",
+       "result": 0.6,
+       "p": 0.0106
+      }
+     ],
+     "valid": 6,
+     "chosen": {
+      "op": "stop",
+      "p": 0.552
+     }
+    }
+   ]
+  }
+ ]
+}

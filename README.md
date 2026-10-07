@@ -2,17 +2,23 @@
 
 Website for *Generative Flow on Symbolic Abstractions for Embodiment Capability Discovery* (CoRL 2026), served from the `gh-pages` branch.
 
-## Updating the results
+## Construction figure
 
-The frontier explorer and the result tables are generated from the paper's frozen discovery logs:
+`design/policy_flow.py` replays the trained GFlowNet of FOSA's final vehicle run (read-only, no LLM calls) and beam-searches its forward policy; the output is `design/flow-jackal.json`. `python design/build_flow.py` turns it into the figure inside `index.html`.
 
-```bash
-python design/build_data.py \
-    --histories logs/figures/gemma/source-rendered/vlm \
-    --paper-final logs/figures/paper-final
-```
+## Capability frontier landscape
 
-This writes `static/data/frontier-<robot>.js` and `static/data/summary.js`, and checks the recomputed Frontier-Prox of every method against `SUMMARY.md`.
+1. Render clips of FOSA's trained task policies on Big Red 200 (`design/render_batch.py`, submitted with `design/render_landscape.sh`; 60 tasks per robot sampled uniformly at random, listed in `design/landscape_tasks.jsonl`). The script only reads the discovery runs and calls no LLM.
+2. Copy the clips without re-encoding, moving the index to the front for instant playback:
+   `ffmpeg -i in.mp4 -c copy -movflags +faststart static/videos/landscape/<key>.mp4`
+3. Build the landscape data (needs numpy and scikit-learn):
+   ```bash
+   python design/build_landscape.py \
+       --histories logs/figures/gemma/source-rendered/vlm \
+       --videos static/videos/landscape
+   ```
+4. After editing `static/js/landscape.js`, rebuild the classic-script bundle the page loads (so it also works from `file://`):
+   `npx esbuild static/js/landscape.js --bundle --format=iife --minify --legal-comments=eof --outfile=static/js/landscape.bundle.js`
 
 # Website License
 
