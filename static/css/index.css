@@ -112,7 +112,6 @@ h2 {
 .flow { margin: 0 auto 26px; }
 .flow-grid { display: grid; gap: 14px; }
 .flow-dag { display: block; width: 100%; height: auto; font-family: 'Noto Sans', sans-serif; }
-.flow figcaption { margin-top: 10px; font-size: 13px; text-align: center; }
 .f-head { fill: var(--ink); font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
 .f-link { fill: var(--accent-soft); opacity: .42; transition: opacity .15s; }
 .f-link:hover { opacity: .8; }
@@ -129,9 +128,7 @@ h2 {
 .flow-example { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 4px 30px; align-items: center; width: min(920px, 100%); margin: 0 auto; padding: 16px 20px; border: 1.5px solid var(--accent-soft); border-radius: 10px; background: #fff8f2; font-size: 13px; line-height: 1.5; text-align: left; }
 .flow-example-label { grid-column: 1 / -1; color: var(--accent); font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
 .flow-example .edits { grid-row: span 2; }
-.flow-example q { align-self: end; font-size: 14px; }
-.flow-example-score { align-self: start; margin-top: 6px; font-variant-numeric: tabular-nums; }
-.flow-example-score strong { color: var(--accent); font-weight: 700; }
+.flow-example q { align-self: center; font-size: 14px; }
 .flow.is-running .f-link, .flow.is-running .f-node { animation: rise .6s backwards; animation-delay: var(--d, 0s); }
 .flow.is-running .flow-edits li { animation: rise .35s backwards; animation-delay: calc(.8s + var(--i, 0) * 110ms); }
 @keyframes rise { from { opacity: 0; transform: translateY(6px); } }
@@ -152,12 +149,6 @@ h2 {
 .edit-op { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 11.5px; color: var(--accent); }
 .edit-role { padding: 0 6px; border-radius: 3px; background: var(--tint); color: #7a3800; font-size: 11px; }
 .edit-prob { flex: none; margin-left: auto; color: var(--accent); font-size: 11px; font-variant-numeric: tabular-nums; }
-/* Frontier score. */
-.method-equation { margin: 0 auto; text-align: center; font-family: 'Times New Roman', Times, serif; font-size: 22px; line-height: 1.4; }
-.method-equation .frac { display: inline-flex; flex-direction: column; vertical-align: middle; text-align: center; font-size: 19px; }
-.method-equation .frac > span:first-child { border-bottom: 1px solid currentColor; padding: 0 4px; }
-@media (max-width: 760px) { .method-equation { font-size: 17px; } }
-
 /* Robot selector shared by the landscape and the held-out tasks. */
 .robot-tabs { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-bottom: 22px; }
 .robot-tabs button { display: flex; flex-direction: column; align-items: center; padding: 4px 4px 6px; border: 1px solid var(--line); border-radius: 6px; background: #fff; color: var(--ink); font: inherit; font-size: 14px; line-height: 1.4; cursor: pointer; }
@@ -181,7 +172,6 @@ h2 {
 .landscape-card { position: absolute; z-index: 2; width: min(420px, 70%); padding: 6px; border-radius: 8px; background: #fff; color: var(--ink); box-shadow: 0 10px 30px rgba(0, 0, 0, .5); pointer-events: none; }
 .landscape-card video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; border-radius: 5px; background: var(--night); }
 .landscape-card figcaption { padding: 6px 4px 2px; font-size: 12.5px; line-height: 1.45; }
-.landscape-card figcaption strong { color: var(--accent); font-weight: 600; font-variant-numeric: tabular-nums; }
 .landscape-legend { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 6px 10px; margin: 12px 0 0; font-size: 14px; text-align: center; }
 .legend-scale { width: 90px; height: 10px; border-radius: 5px; background: linear-gradient(to right, #203a43, #4a8793, #c98aa5, #f08a3e, #ffd966); }
 @media (max-width: 640px) {

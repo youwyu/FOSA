@@ -148,10 +148,10 @@
    "dynamic obstacle avoidance",
    "frontier"
   ],
-  "f": 0.9990234375,
+  "f": 0.9755859375,
   "j0": 0.0,
-  "j": 0.515625,
-  "description": "Navigate the rough terrain avoiding red and blue obstacles while tracking velocity and yaw rate.",
+  "j": 0.578125,
+  "description": "Navigate the rough terrain avoiding the moving cylinder while maintaining velocity and stability.",
   "actions": [
    {
     "action_type": "add_atom",
@@ -180,47 +180,11 @@
    {
     "action_type": "refine_arg",
     "arguments": {
-     "argument": "target_velocity",
-     "direction": "high"
-    },
-    "atom": "rough_terrain_navigation_goal",
-    "role": "goal"
-   },
-   {
-    "action_type": "refine_arg",
-    "arguments": {
      "argument": "terrain_type",
-     "value": "steps"
+     "value": "pyramid"
     },
     "atom": "rough_terrain_navigation_environment",
     "role": "environment"
-   },
-   {
-    "action_type": "refine_arg",
-    "arguments": {
-     "argument": "terrain_type",
-     "value": "mixed"
-    },
-    "atom": "rough_terrain_navigation_environment",
-    "role": "environment"
-   },
-   {
-    "action_type": "refine_arg",
-    "arguments": {
-     "argument": "target_velocity",
-     "direction": "low"
-    },
-    "atom": "rough_terrain_navigation_goal",
-    "role": "goal"
-   },
-   {
-    "action_type": "refine_arg",
-    "arguments": {
-     "argument": "target_velocity",
-     "direction": "high"
-    },
-    "atom": "rough_terrain_navigation_goal",
-    "role": "goal"
    },
    {
     "action_type": "stop",
@@ -230,12 +194,7 @@
    }
   ],
   "logprobs": [
-   -2.437469244003296,
-   -4.189634799957275,
-   -0.009570598602294922,
-   -0.979738175868988,
-   -1.1694997549057007,
-   -1.3483953475952148
+   -5.982649803161621
   ]
  }
 }

@@ -176,11 +176,7 @@ function showDot(index) {
   active = index;
   setScale(active, 1.9);
   const dot = dots[index];
-  caption.innerHTML = '';
-  caption.append(dot.description, document.createElement('br'));
-  const scores = document.createElement('strong');
-  scores.textContent = `J⁰ ${dot.j0.toFixed(2)} → J ${dot.j.toFixed(2)} · 𝓕 ${dot.f.toFixed(2)}`;
-  caption.append(scores);
+  caption.textContent = dot.description;
   video.src = `${videoUrl}${dot.key}.mp4`;
   video.play().catch(() => {});
   card.hidden = false;

@@ -11,7 +11,6 @@ import argparse
 import collections
 import html
 import json
-import math
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -53,24 +52,19 @@ def load(history):
 
 
 def edit_list(example):
-    logprobs = example['logprobs']
-    offset = len(example['actions']) - len(logprobs)  # local search logs only the re-sampled tail
     items = ['<li class="edit-start"><span class="empty-node" aria-hidden="true">∅</span>empty skeleton</li>']
     for i, action in enumerate(example['actions']):
-        p = math.exp(logprobs[i - offset]) if i >= offset else None
         if action['action_type'] == 'stop':
             body = '<code class="edit-op">stop</code>'
         elif action['action_type'] == 'refine_arg':
             arg = action['arguments']
-            change = arg.get('value', '↑' if arg.get('direction') == 'high' else '↓')
+            change = f"→ {arg['value']}" if 'value' in arg else ('↑' if arg.get('direction') == 'high' else '↓')
             body = (f'<code class="edit-op">refine_arg</code><span class="edit-role">{action["role"]}</span>'
                     f'{html.escape(arg["argument"].replace("_", " "))} {html.escape(str(change))}')
         else:
             body = (f'<code class="edit-op">{action["action_type"]}</code><span class="edit-role">{action["role"]}</span>'
                     f'{html.escape(short(action["atom"], action["role"]))}')
-        prob = f'{p:.2f}'.lstrip('0') if p is not None else ''
-        items.append(f'<li style="--p:{p if p is not None else 0.35:.3f}; --i:{i + 1}"><span class="edit-body">{body}</span>'
-                     f'<span class="edit-prob">{prob}</span></li>')
+        items.append(f'<li style="--p:.35; --i:{i + 1}"><span class="edit-body">{body}</span></li>')
     return '<ol class="edits flow-edits" aria-label="Edits of the highlighted task">\n' + '\n'.join(items) + '\n</ol>'
 
 
@@ -81,11 +75,13 @@ def main():
     tasks = load(args.history)
     total = len(tasks)
 
-    # The highlighted task: the most common frontier composition, its highest-F member.
+    # The example: from the most common frontier composition, the clearest trajectory (one refinement,
+    # so every edit type appears once), then the highest frontier score, then the fewest edits.
     frontier_paths = collections.Counter(tuple(t['path'][:4]) for t in tasks if t['path'][4] == 'frontier')
     best_path = frontier_paths.most_common(1)[0][0]
+    refinements = lambda t: sum(a['action_type'] == 'refine_arg' for a in t['actions'])
     example = max((t for t in tasks if tuple(t['path'][:4]) == best_path and t['path'][4] == 'frontier'),
-                  key=lambda t: t['f'])
+                  key=lambda t: (refinements(t) == 1, round(t['f'], 2), -len(t['actions'])))
 
     columns = []
     for c in range(5):
@@ -136,12 +132,9 @@ def main():
            f'{len(columns[2][0])} environments and {len(columns[3][0])} constraints, then the outcome of PPO training.">\n'
            + headers + '\n' + '\n'.join(parts) + '\n</svg>')
 
-    example_html = (f'<div class="flow-example"><p class="flow-example-label">Highlighted task</p>{edit_list(example)}'
-                    f'<q>{html.escape(example["description"])}</q>'
-                    f'<p class="flow-example-score"><var>J</var><sup>0</sup> {example["j0"]:.2f} → <var>J</var> {example["j"]:.2f} · '
-                    f'<strong>𝓕 {example["f"]:.2f}</strong></p></div>')
-    figure = ('<figure class="flow">\n<div class="flow-grid">\n' + svg + '\n' + example_html + '\n</div>\n'
-              f'<figcaption>Vehicle · all {total} tasks FOSA sampled · band width = number of tasks</figcaption>\n</figure>')
+    example_html = (f'<div class="flow-example"><p class="flow-example-label">Example task</p>{edit_list(example)}'
+                    f'<q>{html.escape(example["description"])}</q></div>')
+    figure = '<figure class="flow">\n<div class="flow-grid">\n' + svg + '\n' + example_html + '\n</div>\n</figure>'
     page = (ROOT / 'index.html').read_text()
     start, end = page.index('<!-- flow:start -->'), page.index('<!-- flow:end -->')
     (ROOT / 'index.html').write_text(page[:start] + '<!-- flow:start -->\n' + figure + '\n        ' + page[end:])

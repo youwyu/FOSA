@@ -234,26 +234,18 @@
 <text class="f-name" x="922" y="299.2" text-anchor="start">not learned <tspan class="f-count">70</tspan></text>
 </g>
 </svg>
-<div class="flow-example"><p class="flow-example-label">Highlighted task</p><ol class="edits flow-edits" aria-label="Edits of the highlighted task">
+<div class="flow-example"><p class="flow-example-label">Example task</p><ol class="edits flow-edits" aria-label="Edits of the highlighted task">
 <li class="edit-start"><span class="empty-node" aria-hidden="true">∅</span>empty skeleton</li>
-<li style="--p:0.350; --i:1"><span class="edit-body"><code class="edit-op">add_atom</code><span class="edit-role">capability</span>velocity</span><span class="edit-prob"></span></li>
-<li style="--p:0.350; --i:2"><span class="edit-body"><code class="edit-op">add_atom</code><span class="edit-role">constraint</span>dynamic obstacle avoidance</span><span class="edit-prob"></span></li>
-<li style="--p:0.350; --i:3"><span class="edit-body"><code class="edit-op">add_atom</code><span class="edit-role">environment</span>rough terrain navigation</span><span class="edit-prob"></span></li>
-<li style="--p:0.350; --i:4"><span class="edit-body"><code class="edit-op">add_atom</code><span class="edit-role">goal</span>rough terrain navigation</span><span class="edit-prob"></span></li>
-<li style="--p:0.087; --i:5"><span class="edit-body"><code class="edit-op">refine_arg</code><span class="edit-role">goal</span>target velocity ↑</span><span class="edit-prob">.09</span></li>
-<li style="--p:0.015; --i:6"><span class="edit-body"><code class="edit-op">refine_arg</code><span class="edit-role">environment</span>terrain type steps</span><span class="edit-prob">.02</span></li>
-<li style="--p:0.990; --i:7"><span class="edit-body"><code class="edit-op">refine_arg</code><span class="edit-role">environment</span>terrain type mixed</span><span class="edit-prob">.99</span></li>
-<li style="--p:0.375; --i:8"><span class="edit-body"><code class="edit-op">refine_arg</code><span class="edit-role">goal</span>target velocity ↓</span><span class="edit-prob">.38</span></li>
-<li style="--p:0.311; --i:9"><span class="edit-body"><code class="edit-op">refine_arg</code><span class="edit-role">goal</span>target velocity ↑</span><span class="edit-prob">.31</span></li>
-<li style="--p:0.260; --i:10"><span class="edit-body"><code class="edit-op">stop</code></span><span class="edit-prob">.26</span></li>
-</ol><q>Navigate the rough terrain avoiding red and blue obstacles while tracking velocity and yaw rate.</q><p class="flow-example-score"><var>J</var><sup>0</sup> 0.00 → <var>J</var> 0.52 · <strong>𝓕 1.00</strong></p></div>
+<li style="--p:.35; --i:1"><span class="edit-body"><code class="edit-op">add_atom</code><span class="edit-role">capability</span>velocity</span></li>
+<li style="--p:.35; --i:2"><span class="edit-body"><code class="edit-op">add_atom</code><span class="edit-role">constraint</span>dynamic obstacle avoidance</span></li>
+<li style="--p:.35; --i:3"><span class="edit-body"><code class="edit-op">add_atom</code><span class="edit-role">environment</span>rough terrain navigation</span></li>
+<li style="--p:.35; --i:4"><span class="edit-body"><code class="edit-op">add_atom</code><span class="edit-role">goal</span>rough terrain navigation</span></li>
+<li style="--p:.35; --i:5"><span class="edit-body"><code class="edit-op">refine_arg</code><span class="edit-role">environment</span>terrain type → pyramid</span></li>
+<li style="--p:.35; --i:6"><span class="edit-body"><code class="edit-op">stop</code></span></li>
+</ol><q>Navigate the rough terrain avoiding the moving cylinder while maintaining velocity and stability.</q></div>
 </div>
-<figcaption>Vehicle · all 256 tasks FOSA sampled · band width = number of tasks</figcaption>
 </figure>
         <!-- flow:end -->
-        <p class="method-equation" aria-label="F of x equals 4 J times 1 minus J, times max of 0 and J minus J zero, divided by J">
-          𝓕(<b>x</b>) = 4<var>J</var>(1 − <var>J</var>) · <span class="frac"><span>max(0, <var>J</var> − <var>J</var><sup>0</sup>)</span><span><var>J</var></span></span>
-        </p>
       </div>
     </section>
 
@@ -274,7 +266,7 @@
             </figure>
             <p class="landscape-status" data-landscape-status role="status">Loading…</p>
           </div>
-          <p class="landscape-legend"><span class="legend-scale" aria-hidden="true"></span><span>height 𝓕 · dots: FOSA's tasks, hover or tap to play</span></p>
+          <p class="landscape-legend"><span>low</span><span class="legend-scale" aria-hidden="true"></span><span>high frontier score · hover a dot to play</span></p>
         </div>
         <noscript><p class="lead">Enable JavaScript to view the landscape.</p></noscript>
       </div>
