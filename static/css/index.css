@@ -125,18 +125,27 @@ h2 {
 .r-constraint { fill: #8a6300; }
 .o-mastered { fill: #3f7f8c; }
 .o-unlearned { fill: #6b4a33; }
-.flow-example { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 4px 30px; align-items: center; width: min(920px, 100%); margin: 0 auto; padding: 16px 20px; border: 1.5px solid var(--accent-soft); border-radius: 10px; background: #fff8f2; font-size: 13px; line-height: 1.5; text-align: left; }
-.flow-example-label { grid-column: 1 / -1; color: var(--accent); font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
-.flow-example .edits { grid-row: span 2; }
-.flow-example q { align-self: center; font-size: 14px; }
+.flow-example { width: min(1040px, 100%); margin: 0 auto; padding: 14px 18px 16px; border: 1.5px solid var(--accent-soft); border-radius: 10px; background: #fff8f2; font-size: 13px; line-height: 1.4; text-align: center; }
+.flow-example-label { margin-bottom: 10px; color: var(--accent); font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+.flow-example .flow-edits { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 0 20px; margin: 0 0 12px; }
+.flow-example .flow-edits li { flex-direction: column; justify-content: center; align-items: center; gap: 4px; padding: 10px 6px; border: 1px solid var(--accent-soft); border-radius: 8px; background: #fff; }
+.flow-example .flow-edits li::before { content: none; }
+.flow-example .flow-edits li::after { content: "→"; top: 50%; left: auto; right: -16px; transform: translateY(-50%); border: 0; color: var(--accent); font-size: 15px; opacity: 1; }
+.flow-example .flow-edits li:last-child::after { content: none; }
+.flow-example .flow-edits .edit-start { padding-left: 6px; }
+.flow-example .flow-edits .empty-node { margin: 0; }
+.flow-example .edit-body { flex-direction: column; align-items: center; gap: 4px; }
+.flow-example q { display: block; font-size: 14px; }
 .flow.is-running .f-link, .flow.is-running .f-node { animation: rise .6s backwards; animation-delay: var(--d, 0s); }
 .flow.is-running .flow-edits li { animation: rise .35s backwards; animation-delay: calc(.8s + var(--i, 0) * 110ms); }
 @keyframes rise { from { opacity: 0; transform: translateY(6px); } }
 @media (prefers-reduced-motion: reduce) { .flow.is-running * { animation: none !important; } }
 @media (max-width: 860px) {
   .flow-dag { display: none; }
-  .flow-example { grid-template-columns: 1fr; }
-  .flow-example .edits { grid-row: auto; }
+  .flow-example .flow-edits { grid-auto-flow: row; gap: 12px 0; margin: 0 0 12px; }
+  .flow-example .flow-edits li, .flow-example .edit-body { flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 2px 6px; }
+  .flow-example .flow-edits li { padding: 6px 10px; }
+  .flow-example .flow-edits li::after { content: "↓"; top: auto; right: auto; left: 50%; bottom: -14px; transform: translateX(-50%); font-size: 12px; }
 }
 .edits { margin: 0; padding: 0; list-style: none; }
 .edits li { position: relative; display: flex; align-items: baseline; gap: 10px; padding: 5px 0 5px 26px; }
@@ -163,14 +172,14 @@ h2 {
 }
 
 /* Frontier landscape: a 3D surface of F with FOSA's tasks as dots. */
-.landscape-view { position: relative; aspect-ratio: 16 / 10; border-radius: 10px; overflow: hidden; background: radial-gradient(ellipse at 50% 40%, #463b33, var(--night) 75%); touch-action: none; cursor: grab; }
+.landscape-view { position: relative; aspect-ratio: 16 / 10; overflow: hidden; background: transparent; touch-action: none; cursor: grab; }
 .landscape-view:active { cursor: grabbing; }
 .landscape-view:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
 .landscape-view canvas { display: block; width: 100%; height: 100%; }
 .landscape-view.is-pointing { cursor: pointer; }
-.landscape-status { position: absolute; inset: 0; display: grid; place-items: center; margin: 0; color: #fff; font-size: 14px; }
-.landscape-card { position: absolute; z-index: 2; width: min(420px, 70%); padding: 6px; border-radius: 8px; background: #fff; color: var(--ink); box-shadow: 0 10px 30px rgba(0, 0, 0, .5); pointer-events: none; }
-.landscape-card video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; border-radius: 5px; background: var(--night); }
+.landscape-status { position: absolute; inset: 0; display: grid; place-items: center; margin: 0; color: var(--ink); font-size: 14px; }
+.landscape-card { position: absolute; z-index: 2; width: min(420px, 70%); padding: 6px; border-radius: 8px; background: #fff; color: var(--ink); box-shadow: 0 8px 26px rgba(80, 50, 20, .22); pointer-events: none; }
+.landscape-card video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; border-radius: 5px; background: var(--surface); }
 .landscape-card figcaption { padding: 6px 4px 2px; font-size: 12.5px; line-height: 1.45; }
 .landscape-legend { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 6px 10px; margin: 12px 0 0; font-size: 14px; text-align: center; }
 .legend-scale { width: 90px; height: 10px; border-radius: 5px; background: linear-gradient(to right, #203a43, #4a8793, #c98aa5, #f08a3e, #ffd966); }
@@ -179,3 +188,10 @@ h2 {
   .landscape-card { width: 62%; }
   .landscape-legend { font-size: 13px; }
 }
+
+/* Sim-to-real clips. */
+.real-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+.real-clip { position: relative; }
+.speed-badge { position: absolute; top: 8px; right: 8px; z-index: 1; padding: 1px 8px; border-radius: 999px; background: rgba(28, 28, 28, .72); color: #fff; font-size: 12px; font-weight: 600; pointer-events: none; }
+@media (max-width: 860px) { .real-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 520px) { .real-grid { grid-template-columns: 1fr; } }

@@ -60,7 +60,7 @@ def edit_list(example):
             arg = action['arguments']
             change = f"→ {arg['value']}" if 'value' in arg else ('↑' if arg.get('direction') == 'high' else '↓')
             body = (f'<code class="edit-op">refine_arg</code><span class="edit-role">{action["role"]}</span>'
-                    f'{html.escape(arg["argument"].replace("_", " "))} {html.escape(str(change))}')
+                    f'{html.escape(arg["argument"].replace("_", " "))}<span>{html.escape(str(change))}</span>')
         else:
             body = (f'<code class="edit-op">{action["action_type"]}</code><span class="edit-role">{action["role"]}</span>'
                     f'{html.escape(short(action["atom"], action["role"]))}')

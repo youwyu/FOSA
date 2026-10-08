@@ -50,7 +50,7 @@ controls.maxDistance = 3.2;
 controls.maxPolarAngle = Math.PI * 0.47;
 controls.autoRotate = !reduceMotion;
 controls.autoRotateSpeed = 0.6;
-scene.add(new THREE.HemisphereLight(0xffffff, 0x33281f, 1.6));
+scene.add(new THREE.HemisphereLight(0xffffff, 0xd8c8b8, 1.5));
 const sun = new THREE.DirectionalLight(0xffffff, 1.4);
 sun.position.set(0.8, -1, 2);
 scene.add(sun);
@@ -111,7 +111,7 @@ function build(data) {
   });
   const grid = new THREE.LineSegments(
     new THREE.BufferGeometry().setAttribute('position', new THREE.Float32BufferAttribute(lines, 3)),
-    new THREE.LineBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.4 }),
+    new THREE.LineBasicMaterial({ color: 0x5a4636, transparent: true, opacity: 0.28 }),
   );
 
   // Dots, each with a slightly larger white back-face shell as an outline.
