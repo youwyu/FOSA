@@ -1,0 +1,194 @@
+[
+ {
+  "name": "vehicle-01",
+  "robot": "vehicle",
+  "source": "IMG_2088.MOV",
+  "duration_s": 48.4,
+  "speed": 2,
+  "kb": 2481
+ },
+ {
+  "name": "vehicle-02",
+  "robot": "vehicle",
+  "source": "IMG_2090.MOV",
+  "duration_s": 23.4,
+  "speed": 1,
+  "kb": 1239
+ },
+ {
+  "name": "vehicle-03",
+  "robot": "vehicle",
+  "source": "IMG_2091.MOV",
+  "duration_s": 55.6,
+  "speed": 2,
+  "kb": 2835
+ },
+ {
+  "name": "vehicle-04",
+  "robot": "vehicle",
+  "source": "IMG_2092.MOV",
+  "duration_s": 113.9,
+  "speed": 4,
+  "kb": 4301
+ },
+ {
+  "name": "vehicle-05",
+  "robot": "vehicle",
+  "source": "IMG_2104.MOV",
+  "duration_s": 32.9,
+  "speed": 2,
+  "kb": 1136
+ },
+ {
+  "name": "vehicle-06",
+  "robot": "vehicle",
+  "source": "IMG_2105.MOV",
+  "duration_s": 30.9,
+  "speed": 1,
+  "kb": 1758
+ },
+ {
+  "name": "vehicle-07",
+  "robot": "vehicle",
+  "source": "IMG_2106.mp4",
+  "duration_s": 108.5,
+  "speed": 4,
+  "kb": 3480
+ },
+ {
+  "name": "vehicle-08",
+  "robot": "vehicle",
+  "source": "IMG_2108.MOV",
+  "duration_s": 158.6,
+  "speed": 5,
+  "kb": 4690
+ },
+ {
+  "name": "vehicle-09",
+  "robot": "vehicle",
+  "source": "IMG_2109.MOV",
+  "duration_s": 151.5,
+  "speed": 5,
+  "kb": 4123
+ },
+ {
+  "name": "quadruped-01",
+  "robot": "quadruped",
+  "source": "IMG_2113.MOV",
+  "duration_s": 99.0,
+  "speed": 4,
+  "kb": 28920
+ },
+ {
+  "name": "quadruped-02",
+  "robot": "quadruped",
+  "source": "IMG_2114.MOV",
+  "duration_s": 94.1,
+  "speed": 3,
+  "kb": 33942
+ },
+ {
+  "name": "quadruped-03",
+  "robot": "quadruped",
+  "source": "IMG_2115.MOV",
+  "duration_s": 28.4,
+  "speed": 1,
+  "kb": 15233
+ },
+ {
+  "name": "quadruped-04",
+  "robot": "quadruped",
+  "source": "IMG_2116.MOV",
+  "duration_s": 22.3,
+  "speed": 1,
+  "kb": 9764
+ },
+ {
+  "name": "quadruped-05",
+  "robot": "quadruped",
+  "source": "IMG_2117.MOV",
+  "duration_s": 46.1,
+  "speed": 2,
+  "kb": 16281
+ },
+ {
+  "name": "quadruped-06",
+  "robot": "quadruped",
+  "source": "IMG_2118.MOV",
+  "duration_s": 75.3,
+  "speed": 3,
+  "kb": 16931
+ },
+ {
+  "name": "quadruped-07",
+  "robot": "quadruped",
+  "source": "IMG_2120.MOV",
+  "duration_s": 21.9,
+  "speed": 1,
+  "kb": 7494
+ },
+ {
+  "name": "quadruped-08",
+  "robot": "quadruped",
+  "source": "IMG_2121.MOV",
+  "duration_s": 25.6,
+  "speed": 1,
+  "kb": 10359
+ },
+ {
+  "name": "quadruped-09",
+  "robot": "quadruped",
+  "source": "IMG_2123.MOV",
+  "duration_s": 79.1,
+  "speed": 3,
+  "kb": 10675
+ },
+ {
+  "name": "quadruped-10",
+  "robot": "quadruped",
+  "source": "IMG_2124.MOV",
+  "duration_s": 323.3,
+  "speed": 12,
+  "kb": 13996
+ },
+ {
+  "name": "quadruped-11",
+  "robot": "quadruped",
+  "source": "IMG_2125.MOV",
+  "duration_s": 83.1,
+  "speed": 3,
+  "kb": 13319
+ },
+ {
+  "name": "quadruped-12",
+  "robot": "quadruped",
+  "source": "IMG_2126.MOV",
+  "duration_s": 60.6,
+  "speed": 2,
+  "kb": 14550
+ },
+ {
+  "name": "quadruped-13",
+  "robot": "quadruped",
+  "source": "IMG_2127.MOV",
+  "duration_s": 127.8,
+  "speed": 4,
+  "kb": 20499
+ },
+ {
+  "name": "quadruped-14",
+  "robot": "quadruped",
+  "source": "IMG_2132.MOV",
+  "duration_s": 13.9,
+  "speed": 1,
+  "kb": 4587
+ },
+ {
+  "name": "quadruped-15",
+  "robot": "quadruped",
+  "source": "IMG_2133.MOV",
+  "duration_s": 53.4,
+  "speed": 2,
+  "kb": 7893
+ }
+]
