@@ -27,11 +27,11 @@ def latest_checkpoint(log_dir: Path) -> Path:
     return steps[-1]
 
 
-def render_one(row: dict, out: Path, width: int, height: int, duration: float) -> dict:
+def render_one(row: dict, out: Path, width: int, height: int, duration: float, gpu: str = '0') -> dict:
     """Render one clip. Runs in its own process: compiled environments are never freed in-process,
     so a long-lived worker eventually exhausts GPU memory."""
     import ppo  # HandVLA/learning/ppo.py
-    ppo.configure_gpu('0')
+    ppo.configure_gpu(gpu)
     from _src.mjp.compat import patch_numpy_for_mujoco_warp
     patch_numpy_for_mujoco_warp()
     from _src.mjp.registry import make_env
@@ -66,12 +66,13 @@ def main() -> int:
     parser.add_argument('--height', type=int, default=360)
     parser.add_argument('--duration', type=float, default=6.0)
     parser.add_argument('--timeout', type=int, default=1800)
+    parser.add_argument('--gpu', default='0', help='GPU index within the job for this shard')
     parser.add_argument('--one', help=argparse.SUPPRESS)  # internal: render this JSON row in-process
     args = parser.parse_args()
     args.out.mkdir(parents=True, exist_ok=True)
 
     if args.one:
-        print(json.dumps(render_one(json.loads(args.one), args.out, args.width, args.height, args.duration)), flush=True)
+        print(json.dumps(render_one(json.loads(args.one), args.out, args.width, args.height, args.duration, args.gpu)), flush=True)
         return 0
 
     rows = [json.loads(line) for line in args.tasks.read_text().splitlines() if line.strip()]
@@ -85,7 +86,7 @@ def main() -> int:
         start = time.time()
         record = {'key': row['key']}
         command = [sys.executable, __file__, '--out', str(args.out), '--width', str(args.width),
-                   '--height', str(args.height), '--duration', str(args.duration), '--one', json.dumps(row)]
+                   '--height', str(args.height), '--duration', str(args.duration), '--gpu', args.gpu, '--one', json.dumps(row)]
         try:
             done = subprocess.run(command, capture_output=True, text=True, timeout=args.timeout)
             if done.returncode != 0:

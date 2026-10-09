@@ -67,7 +67,7 @@ def street(env, dec, rng):
     for x in np.arange(-18, 44, 11.0):
         env.bush(dec, (x + rng.uniform(-1, 1), 4.6), r=rng.uniform(0.4, 0.6))
     env.building(dec, (-17.0, 2.0), (10.0, 6.0, 7.0), yaw=np.pi / 2, mat='m_brick', win_rows=2, win_cols=3)
-    return 'm_concrete', 'outdoor'
+    return 'm_asphalt', 'outdoor'
 
 
 def park(env, dec, rng):
@@ -140,11 +140,16 @@ def hall(env, dec, rng):
 
 
 LIGHTS = {  # softer than the studio house style, so textured grounds do not blow out
-    'outdoor': {'ambient_rgb': [0.17, 0.17, 0.18], 'headlight_diffuse_rgb': [0.18, 0.18, 0.18], 'lights': [
+    'outdoor': {'ambient_rgb': [0.12, 0.12, 0.13], 'headlight_diffuse_rgb': [0.10, 0.10, 0.10], 'lights': [
         {'name': 'key', 'position_m': [4.0, -4.0, 9.0], 'direction': [-0.35, 0.45, -1.0], 'color': [1.0, 0.95, 0.86, 1.0],
-         'intensity': 0.72, 'castshadow': True},
+         'intensity': 0.54, 'castshadow': True},
         {'name': 'fill', 'position_m': [-4.0, 4.0, 6.0], 'direction': [0.4, -0.5, -1.0], 'color': [0.75, 0.82, 1.0, 1.0],
-         'intensity': 0.22, 'castshadow': False}]},
+         'intensity': 0.17, 'castshadow': False}]},
+    'snow': {'ambient_rgb': [0.10, 0.10, 0.11], 'headlight_diffuse_rgb': [0.06, 0.06, 0.06], 'lights': [  # bright ground
+        {'name': 'key', 'position_m': [4.0, -4.0, 9.0], 'direction': [-0.35, 0.45, -1.0], 'color': [1.0, 0.95, 0.86, 1.0],
+         'intensity': 0.43, 'castshadow': True},
+        {'name': 'fill', 'position_m': [-4.0, 4.0, 6.0], 'direction': [0.4, -0.5, -1.0], 'color': [0.75, 0.82, 1.0, 1.0],
+         'intensity': 0.13, 'castshadow': False}]},
     'indoor': {'ambient_rgb': [0.18, 0.18, 0.18], 'headlight_diffuse_rgb': [0.20, 0.20, 0.20], 'lights': [
         {'name': 'key', 'position_m': [1.5, -2.0, 5.5], 'direction': [-0.2, 0.3, -1.0], 'color': [1.0, 0.94, 0.84, 1.0],
          'intensity': 0.68, 'castshadow': True},
@@ -158,6 +163,8 @@ BUILDERS = {'street': street, 'park': park, 'winter': winter, 'parking': parking
 def scene_xml(lib, env, setting, seed):
     dec = lib.Decor()
     ground, sky = BUILDERS[setting](env, dec, np.random.default_rng(seed))
+    # Base ground under everything: no void where a task's terrain patch ends.
+    env.patch(dec, (10.0, 0.0), (120.0, 120.0), ground, z=-0.03)
     world = '\n'.join(dec.world)
     used = set(re.findall(r'material="([^"]+)"', world)) | {ground}
     keep = []
@@ -202,7 +209,7 @@ def main() -> int:
         scene = document['render_scene']
         scene['website_decor'] = str(decor.resolve())
         scene['atmosphere'] = SKY[sky]
-        scene['lighting'] = LIGHTS[sky]
+        scene['lighting'] = LIGHTS['snow' if setting == 'winter' else sky]
         scene['camera'] = {'preset': 'robot_default', 'distance_scale': 1.0, 'elevation_deg': -12.0}
         render_path.write_text(json.dumps(document, indent=2))
         counts[setting] = counts.get(setting, 0) + 1
