@@ -2,8 +2,9 @@
 
     python design/cut_real.py --footage ~/Downloads
 
-Segments follow the trials used for the paper's real-world figure (panels/*.json). Barrier balance is not listed:
-no method succeeded at it (Table 2). HLG/BT.2020 footage is tone-mapped to SDR BT.709; output is 960x540 at 30 fps.
+Every segment comes from a FOSA (Ours) trial, as identified in the real-world demo slides (the vehicle's four tasks
+from its single course run; the quadruped's grass and mug segments use the slides' trims). Barrier balance is not
+listed: FOSA's trial there was not a success (Table 2). HLG/BT.2020 footage is tone-mapped to SDR BT.709; output is 960x540 at 30 fps.
 Runs one ffmpeg at a time at the lowest CPU priority.
 """
 import argparse
