@@ -36,9 +36,10 @@ It writes the figure between the `<!-- flow:start -->` / `<!-- flow:end -->` mar
 
 ## Sim-to-real held-out tasks
 
-The real-world clips (4K HDR iPhone footage) are tone-mapped to SDR (zscale + hable), downscaled to 960x540 at 30 fps,
-sped up to about 30 s where longer (the badge shows the factor; `design/real_clips.json`), and capped near 1.8 Mbps.
-`python design/build_real.py` writes the section between the `<!-- real:start -->` / `<!-- real:end -->` markers.
+One clip per held-out task with a successful trial, cut from the trial used for the paper's real-world figure
+(`design/real_tasks.json`: source clip, window, playback speed). Barrier balance is omitted: no method succeeded at it.
+`python design/cut_real.py --footage ~/Downloads` tone-maps the HLG iPhone footage to SDR (zscale + hable) at 960x540,
+30 fps; `python design/build_real.py` writes the section between the `<!-- real:start -->` / `<!-- real:end -->` markers.
 
 Render notes, applied to `_src/mjp/rendering.py` in the rendering copy of HandVLA only: `_attach_website_decor` attaches `render_scene.website_decor` (scenery XML) with prefix `decor_` and textures the `floor` plane or heightfield; `_fade_hand_occluders(model, robot)` makes non-hand geoms with `rbound >= 0.12` m whose top rises 5 cm above the hand 22% opaque; and the camera follows a hand's root body:
 

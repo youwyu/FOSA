@@ -1,9 +1,9 @@
-"""Write the Sim-to-Real Held-out Tasks section from design/real_clips.json (made by the transcode step).
+"""Write the Sim-to-Real Held-out Tasks section from design/real_tasks.json (clips made by design/cut_real.py).
 
     python design/build_real.py
 
-Clips are listed per robot in recording order; a badge shows the playback speed of sped-up clips. The section
-goes between the <!-- real:start --> and <!-- real:end --> markers in index.html.
+One captioned clip per successful held-out task, in the paper's order; a badge marks sped-up clips. The section goes
+between the <!-- real:start --> and <!-- real:end --> markers in index.html.
 """
 import json
 from pathlib import Path
@@ -12,25 +12,30 @@ ROOT = Path(__file__).resolve().parents[1]
 ROBOTS = [('vehicle', 'Vehicle'), ('quadruped', 'Quadruped')]
 
 
+def fmt(speed):
+    return f'{speed:g}'
+
+
 def main():
-    clips = json.loads((ROOT / 'design' / 'real_clips.json').read_text())
+    tasks = json.loads((ROOT / 'design' / 'real_tasks.json').read_text())
     tabs, panels = [], []
-    for robot, label in ROBOTS:
-        mine = [c for c in clips if c['robot'] == robot]
+    for index, (robot, label) in enumerate(ROBOTS):
         tabs.append(f'<button type="button" role="tab" aria-controls="real-{robot}"><img src="./static/images/robots/real-{robot}.jpg" '
                     f'width="240" height="150" alt="" aria-hidden="true">{label}</button>')
+        poster_attr = 'poster' if index == 0 else 'data-poster'  # hidden tabs load their posters when opened
         figures = []
-        for n, c in enumerate(mine, 1):
-            speed = c['speed']
-            badge = f'<span class="speed-badge">×{speed}</span>' if speed > 1 else ''
-            spoken = f', played at {speed} times speed' if speed > 1 else ''
+        for item in (t for t in tasks if t['robot'] == robot):
+            name = f"{robot}-{item['task']}"
+            speed = item['speed']
+            badge = f'<span class="speed-badge">×{fmt(speed)}</span>' if speed > 1 else ''
+            spoken = f', played at {fmt(speed)} times speed' if speed > 1 else ''
             figures.append(
                 f'<figure class="experiment real-clip">{badge}'
-                f'<video {"poster" if robot == ROBOTS[0][0] else "data-poster"}="./static/images/posters/real/{c["name"]}.jpg" '
-                f'controls muted playsinline preload="none" '
-                f'width="960" height="540" aria-label="{label} real-world trial {n}{spoken}">'
-                f'<source src="./static/videos/real/{c["name"]}.mp4" type="video/mp4"></video></figure>')
-        panels.append(f'<div class="robot-panel real-grid" id="real-{robot}" aria-label="{label} real-world trials">\n'
+                f'<video {poster_attr}="./static/images/posters/real/{name}.jpg" controls muted playsinline preload="none" '
+                f'width="960" height="540" aria-label="{label} real-world task: {item["label"].lower()}{spoken}">'
+                f'<source src="./static/videos/real/{name}.mp4" type="video/mp4"></video>'
+                f'<figcaption>{item["label"]}</figcaption></figure>')
+        panels.append(f'<div class="robot-panel experiment-grid real-grid" id="real-{robot}" aria-label="{label} real-world tasks">\n'
                       + '\n'.join(figures) + '\n</div>')
     section = ('<section class="paper-section band-sand" id="real" aria-labelledby="real-title">\n<div class="page-container">\n'
                '<h2 id="real-title">Sim-to-Real Held-out Tasks</h2>\n'
@@ -39,7 +44,7 @@ def main():
     page = (ROOT / 'index.html').read_text()
     start, end = page.index('<!-- real:start -->'), page.index('<!-- real:end -->')
     (ROOT / 'index.html').write_text(page[:start] + '<!-- real:start -->\n' + section + '\n    ' + page[end:])
-    print(f'{len(clips)} real clips')
+    print(f'{len(tasks)} real-world tasks')
 
 
 if __name__ == '__main__':

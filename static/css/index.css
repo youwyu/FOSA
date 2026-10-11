@@ -200,9 +200,8 @@ h2 {
   .landscape-legend { font-size: 13px; }
 }
 
-/* Sim-to-real clips. */
-.real-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+/* Sim-to-real clips: same grid as the simulation tasks; a lone last clip is centred. */
 .real-clip { position: relative; }
+.real-grid > .real-clip:last-child:nth-child(odd) { grid-column: 1 / -1; justify-self: center; width: calc(50% - 12px); }
 .speed-badge { position: absolute; top: 8px; right: 8px; z-index: 1; padding: 1px 8px; border-radius: 999px; background: rgba(28, 28, 28, .72); color: #fff; font-size: 12px; font-weight: 600; pointer-events: none; }
-@media (max-width: 860px) { .real-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (max-width: 520px) { .real-grid { grid-template-columns: 1fr; } }
+@media (max-width: 640px) { .real-grid > .real-clip:last-child:nth-child(odd) { width: 100%; } }
