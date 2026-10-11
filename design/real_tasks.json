@@ -1,9 +1,0 @@
-[
-  {"robot": "vehicle", "task": "grass_traversal", "label": "Grass traversal", "source": "vehicle/IMG_2108.MOV", "t0": 74.0, "t1": 92.0, "speed": 1},
-  {"robot": "vehicle", "task": "step_climbing", "label": "Step climbing", "source": "vehicle/IMG_2108.MOV", "t0": 89.0, "t1": 103.0, "speed": 1},
-  {"robot": "vehicle", "task": "obstacle_bypass", "label": "Obstacle bypass", "source": "vehicle/IMG_2108.MOV", "t0": 40.0, "t1": 58.0, "speed": 1},
-  {"robot": "vehicle", "task": "cart_pushing", "label": "Cart pushing", "source": "vehicle/IMG_2108.MOV", "t0": 132.0, "t1": 158.6, "speed": 1.5},
-  {"robot": "quadruped", "task": "grass_traversal", "label": "Grass traversal", "source": "quadruped/IMG_2121.MOV", "t0": 9.3, "t1": 20.8, "speed": 1},
-  {"robot": "quadruped", "task": "mug_delivery", "label": "Mug delivery", "source": "quadruped/IMG_2127.MOV", "t0": 0.0, "t1": 112.8, "speed": 4},
-  {"robot": "quadruped", "task": "tunnel_crawl", "label": "Tunnel crawl", "source": "quadruped/IMG_2124.MOV", "t0": 190.0, "t1": 232.0, "speed": 2}
-]
