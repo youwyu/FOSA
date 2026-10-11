@@ -18,13 +18,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css?family=Google+Sans:400,500,700|Noto+Sans:400,500,600,700&amp;display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./static/css/bulma.min.css">
   <link rel="stylesheet" href="./static/css/index.css">
-  <script defer src="./static/js/fontawesome.all.min.js"></script>
   <script defer src="./static/js/media.js"></script>
   <script defer src="./static/js/flow.js"></script>
   <script defer src="./static/js/robot-tabs.js"></script>
-  <script defer src="./static/js/landscape.bundle.js"></script>
+  <script defer src="./static/js/landscape-loader.js"></script>
 </head>
 <body>
   <a class="skip-link" href="#method">Skip to content</a>
@@ -43,9 +41,9 @@
       <p class="publication-affiliation">Indiana University</p>
       <p class="publication-venue"><a href="https://www.corl.org/" target="_blank" rel="noopener">CoRL 2026</a></p>
       <div class="publication-links" aria-label="Research resources">
-        <span class="resource-link is-pending"><i class="fas fa-file-alt" aria-hidden="true"></i><span>Paper</span><span class="resource-status">(soon)</span></span>
-        <span class="resource-link is-pending"><i class="fab fa-youtube" aria-hidden="true"></i><span>Video</span><span class="resource-status">(soon)</span></span>
-        <a class="resource-link is-primary" href="https://github.com/youwyu/FOSA"><i class="fab fa-github" aria-hidden="true"></i><span>Code</span></a>
+        <span class="resource-link is-pending"><svg class="icon" viewBox="0 0 384 512" aria-hidden="true" focusable="false"><path fill="currentColor" d="M288 248v28c0 6.6-5.4 12-12 12H108c-6.6 0-12-5.4-12-12v-28c0-6.6 5.4-12 12-12h168c6.6 0 12 5.4 12 12zm-12 72H108c-6.6 0-12 5.4-12 12v28c0 6.6 5.4 12 12 12h168c6.6 0 12-5.4 12-12v-28c0-6.6-5.4-12-12-12zm108-188.1V464c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V48C0 21.5 21.5 0 48 0h204.1C264.8 0 277 5.1 286 14.1L369.9 98c9 8.9 14.1 21.2 14.1 33.9zm-128-80V128h76.1L256 51.9zM336 464V176H232c-13.3 0-24-10.7-24-24V48H48v416h288z"/></svg><span>Paper</span><span class="resource-status">(soon)</span></span>
+        <span class="resource-link is-pending"><svg class="icon" viewBox="0 0 576 512" aria-hidden="true" focusable="false"><path fill="currentColor" d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"/></svg><span>Video</span><span class="resource-status">(soon)</span></span>
+        <a class="resource-link is-primary" href="https://github.com/youwyu/FOSA"><svg class="icon" viewBox="0 0 496 512" aria-hidden="true" focusable="false"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg><span>Code</span></a>
       </div>
     </div>
   </header>
@@ -311,25 +309,25 @@
 
         <div class="robot-panel experiment-grid" id="heldout-inspire_hand" aria-label="Hand held-out tasks">
           <figure class="experiment">
-            <video poster="./static/images/posters/heldout/inspire_hand-sphere_lift.jpg" controls muted playsinline preload="none" width="1280" height="720" aria-label="Hand held-out task: sphere lift">
+            <video data-poster="./static/images/posters/heldout/inspire_hand-sphere_lift.jpg" controls muted playsinline preload="none" width="1280" height="720" aria-label="Hand held-out task: sphere lift">
               <source src="./static/videos/heldout/inspire_hand-sphere_lift.mp4" type="video/mp4">
             </video>
             <figcaption>Sphere lift</figcaption>
           </figure>
           <figure class="experiment">
-            <video poster="./static/images/posters/heldout/inspire_hand-cuboid_turn.jpg" controls muted playsinline preload="none" width="1280" height="720" aria-label="Hand held-out task: cuboid turn">
+            <video data-poster="./static/images/posters/heldout/inspire_hand-cuboid_turn.jpg" controls muted playsinline preload="none" width="1280" height="720" aria-label="Hand held-out task: cuboid turn">
               <source src="./static/videos/heldout/inspire_hand-cuboid_turn.mp4" type="video/mp4">
             </video>
             <figcaption>Cuboid turn</figcaption>
           </figure>
           <figure class="experiment">
-            <video poster="./static/images/posters/heldout/inspire_hand-palm_ball_balance.jpg" controls muted playsinline preload="none" width="1280" height="720" aria-label="Hand held-out task: palm ball balance">
+            <video data-poster="./static/images/posters/heldout/inspire_hand-palm_ball_balance.jpg" controls muted playsinline preload="none" width="1280" height="720" aria-label="Hand held-out task: palm ball balance">
               <source src="./static/videos/heldout/inspire_hand-palm_ball_balance.mp4" type="video/mp4">
             </video>
             <figcaption>Palm ball balance</figcaption>
           </figure>
           <figure class="experiment">
-            <video poster="./static/images/posters/heldout/inspire_hand-cylinder_tip.jpg" controls muted playsinline preload="none" width="1280" height="720" aria-label="Hand held-out task: cylinder tip">
+            <video data-poster="./static/images/posters/heldout/inspire_hand-cylinder_tip.jpg" controls muted playsinline preload="none" width="1280" height="720" aria-label="Hand held-out task: cylinder tip">
               <source src="./static/videos/heldout/inspire_hand-cylinder_tip.mp4" type="video/mp4">
             </video>
             <figcaption>Cylinder tip</figcaption>
@@ -338,25 +336,25 @@
 
         <div class="robot-panel experiment-grid" id="heldout-go2" aria-label="Quadruped held-out tasks">
           <figure class="experiment">
-            <video poster="./static/images/posters/heldout/go2-stair_descent.jpg" controls muted playsinline preload="none" width="1280" height="720" aria-label="Quadruped held-out task: stair descent">
+            <video data-poster="./static/images/posters/heldout/go2-stair_descent.jpg" controls muted playsinline preload="none" width="1280" height="720" aria-label="Quadruped held-out task: stair descent">
               <source src="./static/videos/heldout/go2-stair_descent.mp4" type="video/mp4">
             </video>
             <figcaption>Stair descent</figcaption>
           </figure>
           <figure class="experiment">
-            <video poster="./static/images/posters/heldout/go2-ice_stop.jpg" controls muted playsinline preload="none" width="1280" height="720" aria-label="Quadruped held-out task: ice stop">
+            <video data-poster="./static/images/posters/heldout/go2-ice_stop.jpg" controls muted playsinline preload="none" width="1280" height="720" aria-label="Quadruped held-out task: ice stop">
               <source src="./static/videos/heldout/go2-ice_stop.mp4" type="video/mp4">
             </video>
             <figcaption>Ice stop</figcaption>
           </figure>
           <figure class="experiment">
-            <video poster="./static/images/posters/heldout/go2-shove_walk.jpg" controls muted playsinline preload="none" width="1280" height="720" aria-label="Quadruped held-out task: shove walk">
+            <video data-poster="./static/images/posters/heldout/go2-shove_walk.jpg" controls muted playsinline preload="none" width="1280" height="720" aria-label="Quadruped held-out task: shove walk">
               <source src="./static/videos/heldout/go2-shove_walk.mp4" type="video/mp4">
             </video>
             <figcaption>Shove walk</figcaption>
           </figure>
           <figure class="experiment">
-            <video poster="./static/images/posters/heldout/go2-lateral_walk.jpg" controls muted playsinline preload="none" width="1280" height="720" aria-label="Quadruped held-out task: lateral walk">
+            <video data-poster="./static/images/posters/heldout/go2-lateral_walk.jpg" controls muted playsinline preload="none" width="1280" height="720" aria-label="Quadruped held-out task: lateral walk">
               <source src="./static/videos/heldout/go2-lateral_walk.mp4" type="video/mp4">
             </video>
             <figcaption>Lateral walk</figcaption>
@@ -365,25 +363,25 @@
 
         <div class="robot-panel experiment-grid" id="heldout-booster" aria-label="Humanoid held-out tasks">
           <figure class="experiment">
-            <video poster="./static/images/posters/heldout/booster-crouch_hold.jpg" controls muted playsinline preload="none" width="1280" height="720" aria-label="Humanoid held-out task: crouch hold">
+            <video data-poster="./static/images/posters/heldout/booster-crouch_hold.jpg" controls muted playsinline preload="none" width="1280" height="720" aria-label="Humanoid held-out task: crouch hold">
               <source src="./static/videos/heldout/booster-crouch_hold.mp4" type="video/mp4">
             </video>
             <figcaption>Crouch hold</figcaption>
           </figure>
           <figure class="experiment">
-            <video poster="./static/images/posters/heldout/booster-wave_while_standing.jpg" controls muted playsinline preload="none" width="1280" height="720" aria-label="Humanoid held-out task: wave while standing">
+            <video data-poster="./static/images/posters/heldout/booster-wave_while_standing.jpg" controls muted playsinline preload="none" width="1280" height="720" aria-label="Humanoid held-out task: wave while standing">
               <source src="./static/videos/heldout/booster-wave_while_standing.mp4" type="video/mp4">
             </video>
             <figcaption>Wave while standing</figcaption>
           </figure>
           <figure class="experiment">
-            <video poster="./static/images/posters/heldout/booster-gentle_ramp_up.jpg" controls muted playsinline preload="none" width="1280" height="720" aria-label="Humanoid held-out task: gentle ramp up">
+            <video data-poster="./static/images/posters/heldout/booster-gentle_ramp_up.jpg" controls muted playsinline preload="none" width="1280" height="720" aria-label="Humanoid held-out task: gentle ramp up">
               <source src="./static/videos/heldout/booster-gentle_ramp_up.mp4" type="video/mp4">
             </video>
             <figcaption>Gentle ramp up</figcaption>
           </figure>
           <figure class="experiment">
-            <video poster="./static/images/posters/heldout/booster-push_stand.jpg" controls muted playsinline preload="none" width="1280" height="720" aria-label="Humanoid held-out task: push stand">
+            <video data-poster="./static/images/posters/heldout/booster-push_stand.jpg" controls muted playsinline preload="none" width="1280" height="720" aria-label="Humanoid held-out task: push stand">
               <source src="./static/videos/heldout/booster-push_stand.mp4" type="video/mp4">
             </video>
             <figcaption>Push stand</figcaption>
@@ -412,21 +410,21 @@
 <figure class="experiment real-clip"><span class="speed-badge">×5</span><video poster="./static/images/posters/real/vehicle-09.jpg" controls muted playsinline preload="none" width="960" height="540" aria-label="Vehicle real-world trial 9, played at 5 times speed"><source src="./static/videos/real/vehicle-09.mp4" type="video/mp4"></video></figure>
 </div>
 <div class="robot-panel real-grid" id="real-quadruped" aria-label="Quadruped real-world trials">
-<figure class="experiment real-clip"><span class="speed-badge">×4</span><video poster="./static/images/posters/real/quadruped-01.jpg" controls muted playsinline preload="none" width="960" height="540" aria-label="Quadruped real-world trial 1, played at 4 times speed"><source src="./static/videos/real/quadruped-01.mp4" type="video/mp4"></video></figure>
-<figure class="experiment real-clip"><span class="speed-badge">×3</span><video poster="./static/images/posters/real/quadruped-02.jpg" controls muted playsinline preload="none" width="960" height="540" aria-label="Quadruped real-world trial 2, played at 3 times speed"><source src="./static/videos/real/quadruped-02.mp4" type="video/mp4"></video></figure>
-<figure class="experiment real-clip"><video poster="./static/images/posters/real/quadruped-03.jpg" controls muted playsinline preload="none" width="960" height="540" aria-label="Quadruped real-world trial 3"><source src="./static/videos/real/quadruped-03.mp4" type="video/mp4"></video></figure>
-<figure class="experiment real-clip"><video poster="./static/images/posters/real/quadruped-04.jpg" controls muted playsinline preload="none" width="960" height="540" aria-label="Quadruped real-world trial 4"><source src="./static/videos/real/quadruped-04.mp4" type="video/mp4"></video></figure>
-<figure class="experiment real-clip"><span class="speed-badge">×2</span><video poster="./static/images/posters/real/quadruped-05.jpg" controls muted playsinline preload="none" width="960" height="540" aria-label="Quadruped real-world trial 5, played at 2 times speed"><source src="./static/videos/real/quadruped-05.mp4" type="video/mp4"></video></figure>
-<figure class="experiment real-clip"><span class="speed-badge">×3</span><video poster="./static/images/posters/real/quadruped-06.jpg" controls muted playsinline preload="none" width="960" height="540" aria-label="Quadruped real-world trial 6, played at 3 times speed"><source src="./static/videos/real/quadruped-06.mp4" type="video/mp4"></video></figure>
-<figure class="experiment real-clip"><video poster="./static/images/posters/real/quadruped-07.jpg" controls muted playsinline preload="none" width="960" height="540" aria-label="Quadruped real-world trial 7"><source src="./static/videos/real/quadruped-07.mp4" type="video/mp4"></video></figure>
-<figure class="experiment real-clip"><video poster="./static/images/posters/real/quadruped-08.jpg" controls muted playsinline preload="none" width="960" height="540" aria-label="Quadruped real-world trial 8"><source src="./static/videos/real/quadruped-08.mp4" type="video/mp4"></video></figure>
-<figure class="experiment real-clip"><span class="speed-badge">×3</span><video poster="./static/images/posters/real/quadruped-09.jpg" controls muted playsinline preload="none" width="960" height="540" aria-label="Quadruped real-world trial 9, played at 3 times speed"><source src="./static/videos/real/quadruped-09.mp4" type="video/mp4"></video></figure>
-<figure class="experiment real-clip"><span class="speed-badge">×12</span><video poster="./static/images/posters/real/quadruped-10.jpg" controls muted playsinline preload="none" width="960" height="540" aria-label="Quadruped real-world trial 10, played at 12 times speed"><source src="./static/videos/real/quadruped-10.mp4" type="video/mp4"></video></figure>
-<figure class="experiment real-clip"><span class="speed-badge">×3</span><video poster="./static/images/posters/real/quadruped-11.jpg" controls muted playsinline preload="none" width="960" height="540" aria-label="Quadruped real-world trial 11, played at 3 times speed"><source src="./static/videos/real/quadruped-11.mp4" type="video/mp4"></video></figure>
-<figure class="experiment real-clip"><span class="speed-badge">×2</span><video poster="./static/images/posters/real/quadruped-12.jpg" controls muted playsinline preload="none" width="960" height="540" aria-label="Quadruped real-world trial 12, played at 2 times speed"><source src="./static/videos/real/quadruped-12.mp4" type="video/mp4"></video></figure>
-<figure class="experiment real-clip"><span class="speed-badge">×4</span><video poster="./static/images/posters/real/quadruped-13.jpg" controls muted playsinline preload="none" width="960" height="540" aria-label="Quadruped real-world trial 13, played at 4 times speed"><source src="./static/videos/real/quadruped-13.mp4" type="video/mp4"></video></figure>
-<figure class="experiment real-clip"><video poster="./static/images/posters/real/quadruped-14.jpg" controls muted playsinline preload="none" width="960" height="540" aria-label="Quadruped real-world trial 14"><source src="./static/videos/real/quadruped-14.mp4" type="video/mp4"></video></figure>
-<figure class="experiment real-clip"><span class="speed-badge">×2</span><video poster="./static/images/posters/real/quadruped-15.jpg" controls muted playsinline preload="none" width="960" height="540" aria-label="Quadruped real-world trial 15, played at 2 times speed"><source src="./static/videos/real/quadruped-15.mp4" type="video/mp4"></video></figure>
+<figure class="experiment real-clip"><span class="speed-badge">×4</span><video data-poster="./static/images/posters/real/quadruped-01.jpg" controls muted playsinline preload="none" width="960" height="540" aria-label="Quadruped real-world trial 1, played at 4 times speed"><source src="./static/videos/real/quadruped-01.mp4" type="video/mp4"></video></figure>
+<figure class="experiment real-clip"><span class="speed-badge">×3</span><video data-poster="./static/images/posters/real/quadruped-02.jpg" controls muted playsinline preload="none" width="960" height="540" aria-label="Quadruped real-world trial 2, played at 3 times speed"><source src="./static/videos/real/quadruped-02.mp4" type="video/mp4"></video></figure>
+<figure class="experiment real-clip"><video data-poster="./static/images/posters/real/quadruped-03.jpg" controls muted playsinline preload="none" width="960" height="540" aria-label="Quadruped real-world trial 3"><source src="./static/videos/real/quadruped-03.mp4" type="video/mp4"></video></figure>
+<figure class="experiment real-clip"><video data-poster="./static/images/posters/real/quadruped-04.jpg" controls muted playsinline preload="none" width="960" height="540" aria-label="Quadruped real-world trial 4"><source src="./static/videos/real/quadruped-04.mp4" type="video/mp4"></video></figure>
+<figure class="experiment real-clip"><span class="speed-badge">×2</span><video data-poster="./static/images/posters/real/quadruped-05.jpg" controls muted playsinline preload="none" width="960" height="540" aria-label="Quadruped real-world trial 5, played at 2 times speed"><source src="./static/videos/real/quadruped-05.mp4" type="video/mp4"></video></figure>
+<figure class="experiment real-clip"><span class="speed-badge">×3</span><video data-poster="./static/images/posters/real/quadruped-06.jpg" controls muted playsinline preload="none" width="960" height="540" aria-label="Quadruped real-world trial 6, played at 3 times speed"><source src="./static/videos/real/quadruped-06.mp4" type="video/mp4"></video></figure>
+<figure class="experiment real-clip"><video data-poster="./static/images/posters/real/quadruped-07.jpg" controls muted playsinline preload="none" width="960" height="540" aria-label="Quadruped real-world trial 7"><source src="./static/videos/real/quadruped-07.mp4" type="video/mp4"></video></figure>
+<figure class="experiment real-clip"><video data-poster="./static/images/posters/real/quadruped-08.jpg" controls muted playsinline preload="none" width="960" height="540" aria-label="Quadruped real-world trial 8"><source src="./static/videos/real/quadruped-08.mp4" type="video/mp4"></video></figure>
+<figure class="experiment real-clip"><span class="speed-badge">×3</span><video data-poster="./static/images/posters/real/quadruped-09.jpg" controls muted playsinline preload="none" width="960" height="540" aria-label="Quadruped real-world trial 9, played at 3 times speed"><source src="./static/videos/real/quadruped-09.mp4" type="video/mp4"></video></figure>
+<figure class="experiment real-clip"><span class="speed-badge">×12</span><video data-poster="./static/images/posters/real/quadruped-10.jpg" controls muted playsinline preload="none" width="960" height="540" aria-label="Quadruped real-world trial 10, played at 12 times speed"><source src="./static/videos/real/quadruped-10.mp4" type="video/mp4"></video></figure>
+<figure class="experiment real-clip"><span class="speed-badge">×3</span><video data-poster="./static/images/posters/real/quadruped-11.jpg" controls muted playsinline preload="none" width="960" height="540" aria-label="Quadruped real-world trial 11, played at 3 times speed"><source src="./static/videos/real/quadruped-11.mp4" type="video/mp4"></video></figure>
+<figure class="experiment real-clip"><span class="speed-badge">×2</span><video data-poster="./static/images/posters/real/quadruped-12.jpg" controls muted playsinline preload="none" width="960" height="540" aria-label="Quadruped real-world trial 12, played at 2 times speed"><source src="./static/videos/real/quadruped-12.mp4" type="video/mp4"></video></figure>
+<figure class="experiment real-clip"><span class="speed-badge">×4</span><video data-poster="./static/images/posters/real/quadruped-13.jpg" controls muted playsinline preload="none" width="960" height="540" aria-label="Quadruped real-world trial 13, played at 4 times speed"><source src="./static/videos/real/quadruped-13.mp4" type="video/mp4"></video></figure>
+<figure class="experiment real-clip"><video data-poster="./static/images/posters/real/quadruped-14.jpg" controls muted playsinline preload="none" width="960" height="540" aria-label="Quadruped real-world trial 14"><source src="./static/videos/real/quadruped-14.mp4" type="video/mp4"></video></figure>
+<figure class="experiment real-clip"><span class="speed-badge">×2</span><video data-poster="./static/images/posters/real/quadruped-15.jpg" controls muted playsinline preload="none" width="960" height="540" aria-label="Quadruped real-world trial 15, played at 2 times speed"><source src="./static/videos/real/quadruped-15.mp4" type="video/mp4"></video></figure>
 </div>
 </div>
 </section>

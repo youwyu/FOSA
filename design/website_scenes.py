@@ -89,7 +89,9 @@ def park(env, dec, rng):
 
 
 def winter(env, dec, rng):
-    env.patch(dec, (8.0, 0.0), (16.0, 3.0), 'm_ice', z=0.003)
+    # Ice is the ground (terrain floors take it too); snow banks lie beside the robot's corridor.
+    env.patch(dec, (10.0, 32.0), (70.0, 27.5), 'm_snow', z=0.003)
+    env.patch(dec, (10.0, -32.0), (70.0, 27.5), 'm_snow', z=0.003)
     env.fence(dec, (-24, 8.5), (46, 8.5), h=1.0, mat='m_wood_dark')
     x = -26.0
     while x < 44:
@@ -104,7 +106,7 @@ def winter(env, dec, rng):
     for x in np.arange(-6, 30, 6.0):
         env.traffic_cone(dec, (x, 4.3))
     env.bench(dec, (2.0, 6.0), yaw=np.pi)
-    return 'm_snow', 'outdoor'
+    return 'm_ice', 'outdoor'
 
 
 def parking(env, dec, rng):
@@ -169,8 +171,16 @@ def scene_xml(lib, env, setting, seed):
     used = set(re.findall(r'material="([^"]+)"', world)) | {ground}
     keep = []
     lines = [line.strip() for line in lib.real_assets().splitlines() if line.strip()]
+    # Trodden snow and matte ice: keep the textures but stop them blowing out under the sun or mirroring the sky.
+    tint = {'m_snow': ('0.80 0.82 0.86 1', None), 'm_ice': ('0.58 0.66 0.74 1', ('0.35', '0.5'))}
     for line in lines:
         name = re.search(r'name="([^"]+)"', line)
+        if line.startswith('<material') and name and name.group(1) in tint:
+            rgba, gloss = tint[name.group(1)]
+            line = line.replace('<material ', f'<material rgba="{rgba}" ', 1)
+            if gloss:
+                line = re.sub(r'specular="[^"]+"', f'specular="{gloss[0]}"', line)
+                line = re.sub(r'shininess="[^"]+"', f'shininess="{gloss[1]}"', line)
         if line.startswith('<material') and name and name.group(1) in used:
             keep.append(line)
             tex = re.search(r'texture="([^"]+)"', line)

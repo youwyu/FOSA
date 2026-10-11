@@ -1,3 +1,14 @@
+/* Minimal reset (replaces Bulma, of which only the base reset was used). */
+*, *::before, *::after { box-sizing: border-box; }
+html { background: #fff; font-size: 16px; overflow-x: hidden; overflow-y: scroll; text-rendering: optimizeLegibility; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+body, p, ol, ul, li, figure, blockquote, h1, h2, h3, h4, h5, h6, pre, hr { margin: 0; padding: 0; }
+h1, h2, h3, h4, h5, h6 { font-size: 100%; font-weight: normal; }
+ol, ul { list-style: none; }
+button, input, select, textarea { margin: 0; }
+img, video { height: auto; max-width: 100%; }
+a { text-decoration: none; cursor: pointer; }
+strong { font-weight: 700; }
+
 :root {
   --ink: #1c1c1c;
   --accent: #bf5700;
@@ -66,7 +77,7 @@ var { font-family: 'Times New Roman', Times, serif; font-size: 1.12em; font-styl
   font-weight: 500;
   line-height: 1.5;
 }
-.resource-link svg { width: 1em; }
+.resource-link svg { width: 1.05em; height: 1.05em; flex: none; }
 .resource-link.is-primary { background: var(--accent); border-color: var(--accent); color: #fff; }
 .resource-link.is-primary:hover { background: var(--accent-hover); border-color: var(--accent-hover); }
 .resource-link.is-pending { color: var(--accent); background: var(--surface); }

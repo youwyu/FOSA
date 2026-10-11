@@ -9,6 +9,11 @@ document.querySelectorAll('[data-robot-tabs]').forEach(tabList => {
       tab.tabIndex = i === index ? 0 : -1;
       panels[i].hidden = i !== index;
       if (i !== index) panels[i].querySelectorAll('video').forEach(video => video.pause());
+      // Posters of tabs not yet opened wait in data-poster, so hidden tabs cost nothing on page load.
+      else panels[i].querySelectorAll('video[data-poster]').forEach(video => {
+        video.poster = video.dataset.poster;
+        video.removeAttribute('data-poster');
+      });
     });
     if (moveFocus) tabs[index].focus();
   }

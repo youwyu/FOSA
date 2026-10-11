@@ -26,7 +26,8 @@ def main():
             spoken = f', played at {speed} times speed' if speed > 1 else ''
             figures.append(
                 f'<figure class="experiment real-clip">{badge}'
-                f'<video poster="./static/images/posters/real/{c["name"]}.jpg" controls muted playsinline preload="none" '
+                f'<video {"poster" if robot == ROBOTS[0][0] else "data-poster"}="./static/images/posters/real/{c["name"]}.jpg" '
+                f'controls muted playsinline preload="none" '
                 f'width="960" height="540" aria-label="{label} real-world trial {n}{spoken}">'
                 f'<source src="./static/videos/real/{c["name"]}.mp4" type="video/mp4"></video></figure>')
         panels.append(f'<div class="robot-panel real-grid" id="real-{robot}" aria-label="{label} real-world trials">\n'
