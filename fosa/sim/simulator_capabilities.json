@@ -1,0 +1,52 @@
+{
+  "schema": "fosa_simulator_adapter_v1",
+  "simulator": "mujoco",
+  "execution": ["mjx-warp"],
+  "documentation": {
+    "mjx": "https://mujoco.readthedocs.io/en/latest/mjx.html",
+    "model": "https://mujoco.readthedocs.io/en/stable/APIreference/APItypes.html#mjmodel",
+    "scene": "https://mujoco.readthedocs.io/en/stable/XMLreference.html"
+  },
+  "scene": {
+    "geom_type_discovery": "physical members of the installed mujoco.mjtGeom enum",
+    "generated_primitives": ["box", "sphere", "cylinder", "capsule", "ellipsoid"],
+    "terrain_types": ["plane", "hfield"],
+    "asset_geometry": ["mesh"],
+    "mesh_formats": ["obj", "stl"],
+    "object_motions": ["static", "dynamic", "attached", "carried"],
+    "object_physics": {
+      "center_of_mass_offset_m": "compile-time body-frame [x,y,z] offset in meters"
+    }
+  },
+  "validation": {
+    "initial_penetration": "mujoco.mj_geomDistance on compiled collidable generated-geometry pairs; plane and heightfield support surfaces are excluded because static fixtures are intentionally embedded for stable seams",
+    "initial_penetration_tolerance_m": 0.01
+  },
+  "runtime_model_randomization": {
+    "discovery": "floating jax.Array fields in the installed mjx.Model",
+    "entity_axes": {
+      "geom": {"field_prefix": "geom_", "count": "ngeom"},
+      "body": {"field_prefix": "body_", "count": "nbody"},
+      "joint": {"field_prefix": "jnt_", "count": "njnt"},
+      "dof": {"field_prefix": "dof_", "count": "nv"},
+      "actuator": {"field_prefix": "actuator_", "count": "nu"},
+      "site": {"field_prefix": "site_", "count": "nsite"},
+      "tendon": {"field_prefix": "tendon_", "count": "ntendon"},
+      "pair": {"field_prefix": "pair_", "count": "npair"}
+    },
+    "excluded_fields": [
+      "body_ipos", "body_iquat", "body_quat", "body_subtreemass",
+      "body_invweight0", "jnt_axis", "dof_invweight0", "dof_M0", "geom_matid",
+      "geom_aabb", "geom_rbound", "geom_quat", "geom_rgba",
+      "site_quat", "tendon_length0", "tendon_invweight0",
+      "actuator_acc0", "actuator_lengthrange"
+    ],
+    "modes": ["set", "scale", "add"],
+    "selector_matchers": ["name", "prefix", "suffix", "contains_any", "regex", "indices", "all"]
+  },
+  "limitations": [
+    "Structural numpy fields in mjx.Model are compile-time and are not batch-randomized.",
+    "Quaternion arrays and derived mass, bounds, and inverse-weight arrays require coupled updates and are excluded.",
+    "Mesh topology, primitive type, and heightfield topology are compile-time scene choices."
+  ]
+}

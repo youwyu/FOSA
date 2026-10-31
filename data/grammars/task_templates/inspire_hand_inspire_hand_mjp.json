@@ -1,0 +1,466 @@
+{
+  "_generated_by": "FOSA LLM task-template inference",
+  "_source_backend": "inspire_hand_mjp",
+  "_source_robot": "inspire_hand",
+  "families": {
+    "constrained_space_reorientation": {
+      "backend_requirements": [
+        "Requires manipulation",
+        "Requires static environment obstacles"
+      ],
+      "constraints": [
+        "Robot must avoid collisions with static boundaries"
+      ],
+      "default_primitive": "reorient",
+      "description": "Reorienting an object while the hand is constrained by external boundaries.",
+      "entity_dimensions": {
+        "object_shape": {
+          "default": "sphere",
+          "description": "Shape of the object",
+          "difficulty_direction": "unknown",
+          "kind": "categorical",
+          "max_value": null,
+          "min_value": null,
+          "name": "object_shape",
+          "unit": null,
+          "values": [
+            "sphere",
+            "box",
+            "cylinder"
+          ]
+        }
+      },
+      "environment_dimensions": {
+        "boundary_clearance": {
+          "default": 0.1,
+          "description": "Distance between the robot and the nearest static obstacle",
+          "difficulty_direction": "smaller_is_harder",
+          "kind": "continuous",
+          "max_value": 0.3,
+          "min_value": 0.02,
+          "name": "boundary_clearance",
+          "unit": "m",
+          "values": null
+        }
+      },
+      "family": "constrained_space_reorientation",
+      "goal_dimensions": {
+        "target_orientation_error": {
+          "default": 0.1,
+          "description": "Allowed error in final orientation",
+          "difficulty_direction": "smaller_is_harder",
+          "kind": "continuous",
+          "max_value": 1.0,
+          "min_value": 0.05,
+          "name": "target_orientation_error",
+          "unit": "rad",
+          "values": null
+        }
+      },
+      "observation_dimensions": {
+        "object_pose_available": {
+          "default": true,
+          "description": null,
+          "difficulty_direction": "unknown",
+          "kind": "boolean",
+          "max_value": null,
+          "min_value": null,
+          "name": "object_pose_available",
+          "unit": null,
+          "values": [
+            true
+          ]
+        },
+        "robot_state_history_steps": {
+          "default": 50,
+          "description": null,
+          "difficulty_direction": "unknown",
+          "kind": "integer",
+          "max_value": 50,
+          "min_value": 50,
+          "name": "robot_state_history_steps",
+          "unit": null,
+          "values": null
+        }
+      },
+      "optional_affordances": [],
+      "primitives": [
+        "reorient"
+      ],
+      "real_world_utility": 0.75,
+      "required_affordances": [
+        "can_grasp"
+      ],
+      "success_predicates": [
+        "Object reaches target orientation without the robot colliding with boundaries"
+      ]
+    },
+    "dexterous_reorientation": {
+      "backend_requirements": [
+        "Requires a manipulated object with dynamic motion",
+        "Requires target orientation tracking"
+      ],
+      "constraints": [
+        "Object must remain within the hand's workspace",
+        "No fixed fixtures for the object"
+      ],
+      "default_primitive": "reorient",
+      "description": "Explores the ability to rotate an object to a target orientation using multi-fingered coordination.",
+      "entity_dimensions": {
+        "object_shape": {
+          "default": "box",
+          "description": "The geometric primitive of the object being reoriented",
+          "difficulty_direction": "unknown",
+          "kind": "categorical",
+          "max_value": null,
+          "min_value": null,
+          "name": "object_shape",
+          "unit": null,
+          "values": [
+            "box",
+            "sphere",
+            "cylinder",
+            "capsule"
+          ]
+        },
+        "object_size_scale": {
+          "default": 1.0,
+          "description": "Scale factor for the object dimensions",
+          "difficulty_direction": "larger_is_harder",
+          "kind": "continuous",
+          "max_value": 2.0,
+          "min_value": 0.5,
+          "name": "object_size_scale",
+          "unit": "multiplier",
+          "values": null
+        }
+      },
+      "environment_dimensions": {
+        "surface_friction": {
+          "default": 0.6,
+          "description": "Friction coefficient of the palm and fingertips",
+          "difficulty_direction": "smaller_is_harder",
+          "kind": "continuous",
+          "max_value": 1.0,
+          "min_value": 0.1,
+          "name": "surface_friction",
+          "unit": "dimensionless",
+          "values": null
+        }
+      },
+      "family": "dexterous_reorientation",
+      "goal_dimensions": {
+        "target_rotation_angle": {
+          "default": 1.57,
+          "description": "The angle the object must be rotated to reach the goal",
+          "difficulty_direction": "larger_is_harder",
+          "kind": "continuous",
+          "max_value": 3.14,
+          "min_value": 0.1,
+          "name": "target_rotation_angle",
+          "unit": "rad",
+          "values": null
+        }
+      },
+      "observation_dimensions": {
+        "object_pose_available": {
+          "default": true,
+          "description": null,
+          "difficulty_direction": "unknown",
+          "kind": "boolean",
+          "max_value": null,
+          "min_value": null,
+          "name": "object_pose_available",
+          "unit": null,
+          "values": [
+            true
+          ]
+        },
+        "robot_state_history_steps": {
+          "default": 50,
+          "description": null,
+          "difficulty_direction": "unknown",
+          "kind": "integer",
+          "max_value": 50,
+          "min_value": 50,
+          "name": "robot_state_history_steps",
+          "unit": null,
+          "values": null
+        }
+      },
+      "optional_affordances": [
+        "can_in_hand_manipulate"
+      ],
+      "primitives": [
+        "reorient"
+      ],
+      "real_world_utility": 0.9,
+      "required_affordances": [
+        "can_grasp",
+        "can_lift_objects"
+      ],
+      "success_predicates": [
+        "Object orientation matches target orientation within a small threshold"
+      ]
+    },
+    "fingertip_precision_rotation": {
+      "backend_requirements": [
+        "Requires high-precision joint control",
+        "Requires small object manipulation"
+      ],
+      "constraints": [
+        "Object must be manipulated using only fingertips, not the palm"
+      ],
+      "default_primitive": "rotate_z",
+      "description": "Focuses on fine-motor skills by rotating a small object using only the fingertips.",
+      "entity_dimensions": {
+        "object_radius": {
+          "default": 0.02,
+          "description": "Radius of the small object (sphere/cylinder)",
+          "difficulty_direction": "smaller_is_harder",
+          "kind": "continuous",
+          "max_value": 0.05,
+          "min_value": 0.01,
+          "name": "object_radius",
+          "unit": "m",
+          "values": null
+        }
+      },
+      "environment_dimensions": {},
+      "family": "fingertip_precision_rotation",
+      "goal_dimensions": {
+        "target_angle": {
+          "default": 3.14,
+          "description": "Target rotation angle",
+          "difficulty_direction": "larger_is_harder",
+          "kind": "continuous",
+          "max_value": 6.28,
+          "min_value": 0.5,
+          "name": "target_angle",
+          "unit": "rad",
+          "values": null
+        }
+      },
+      "observation_dimensions": {
+        "object_pose_available": {
+          "default": true,
+          "description": null,
+          "difficulty_direction": "unknown",
+          "kind": "boolean",
+          "max_value": null,
+          "min_value": null,
+          "name": "object_pose_available",
+          "unit": null,
+          "values": [
+            true
+          ]
+        },
+        "robot_state_history_steps": {
+          "default": 50,
+          "description": null,
+          "difficulty_direction": "unknown",
+          "kind": "integer",
+          "max_value": 50,
+          "min_value": 50,
+          "name": "robot_state_history_steps",
+          "unit": null,
+          "values": null
+        }
+      },
+      "optional_affordances": [
+        "can_in_hand_manipulate"
+      ],
+      "primitives": [
+        "rotate_z"
+      ],
+      "real_world_utility": 0.85,
+      "required_affordances": [
+        "can_grasp"
+      ],
+      "success_predicates": [
+        "Object reaches target angle without contacting the palm"
+      ]
+    },
+    "palm_support_balancing": {
+      "backend_requirements": [
+        "Requires object support on the palm",
+        "Requires dynamic object physics"
+      ],
+      "constraints": [
+        "Object must not slide off the palm"
+      ],
+      "default_primitive": "reorient",
+      "description": "Explores the ability to balance an object on the palm while moving the hand.",
+      "entity_dimensions": {
+        "object_center_of_mass_offset": {
+          "default": 0.0,
+          "description": "Offset of the object's COM from its geometric center",
+          "difficulty_direction": "larger_is_harder",
+          "kind": "continuous",
+          "max_value": 0.05,
+          "min_value": 0.0,
+          "name": "object_center_of_mass_offset",
+          "unit": "m",
+          "values": null
+        }
+      },
+      "environment_dimensions": {
+        "palm_friction": {
+          "default": 0.6,
+          "description": "Friction of the palm surface",
+          "difficulty_direction": "smaller_is_harder",
+          "kind": "continuous",
+          "max_value": 1.0,
+          "min_value": 0.1,
+          "name": "palm_friction",
+          "unit": "dimensionless",
+          "values": null
+        }
+      },
+      "family": "palm_support_balancing",
+      "goal_dimensions": {
+        "balance_duration": {
+          "default": 5.0,
+          "description": "Time the object must remain on the palm",
+          "difficulty_direction": "larger_is_harder",
+          "kind": "continuous",
+          "max_value": 20.0,
+          "min_value": 1.0,
+          "name": "balance_duration",
+          "unit": "s",
+          "values": null
+        }
+      },
+      "observation_dimensions": {
+        "object_pose_available": {
+          "default": true,
+          "description": null,
+          "difficulty_direction": "unknown",
+          "kind": "boolean",
+          "max_value": null,
+          "min_value": null,
+          "name": "object_pose_available",
+          "unit": null,
+          "values": [
+            true
+          ]
+        },
+        "robot_state_history_steps": {
+          "default": 50,
+          "description": null,
+          "difficulty_direction": "unknown",
+          "kind": "integer",
+          "max_value": 50,
+          "min_value": 50,
+          "name": "robot_state_history_steps",
+          "unit": null,
+          "values": null
+        }
+      },
+      "optional_affordances": [],
+      "primitives": [
+        "reorient"
+      ],
+      "real_world_utility": 0.6,
+      "required_affordances": [
+        "can_support_task_objects"
+      ],
+      "success_predicates": [
+        "Object remains in contact with the palm for the specified duration"
+      ]
+    },
+    "z_axis_spinning": {
+      "backend_requirements": [
+        "Requires a manipulated object",
+        "Requires target orientation tracking"
+      ],
+      "constraints": [
+        "Rotation is constrained primarily to the Z axis"
+      ],
+      "default_primitive": "rotate_z",
+      "description": "Rotating an object about its vertical axis to a target yaw angle.",
+      "entity_dimensions": {
+        "object_mass": {
+          "default": 0.1,
+          "description": "Mass of the manipulated object",
+          "difficulty_direction": "larger_is_harder",
+          "kind": "continuous",
+          "max_value": 0.5,
+          "min_value": 0.01,
+          "name": "object_mass",
+          "unit": "kg",
+          "values": null
+        },
+        "object_shape": {
+          "default": "sphere",
+          "description": "The geometric primitive of the object being turned",
+          "difficulty_direction": "unknown",
+          "kind": "categorical",
+          "max_value": null,
+          "min_value": null,
+          "name": "object_shape",
+          "unit": null,
+          "values": [
+            "sphere",
+            "cylinder"
+          ]
+        }
+      },
+      "environment_dimensions": {},
+      "family": "z_axis_spinning",
+      "goal_dimensions": {
+        "target_yaw_angle": {
+          "default": 1.57,
+          "description": "Yaw angle the object must be turned about the vertical axis",
+          "difficulty_direction": "larger_is_harder",
+          "kind": "continuous",
+          "max_value": 3.14,
+          "min_value": 0.1,
+          "name": "target_yaw_angle",
+          "unit": "rad",
+          "values": null
+        }
+      },
+      "observation_dimensions": {
+        "object_pose_available": {
+          "default": true,
+          "description": null,
+          "difficulty_direction": "unknown",
+          "kind": "boolean",
+          "max_value": null,
+          "min_value": null,
+          "name": "object_pose_available",
+          "unit": null,
+          "values": [
+            true
+          ]
+        },
+        "robot_state_history_steps": {
+          "default": 50,
+          "description": null,
+          "difficulty_direction": "unknown",
+          "kind": "integer",
+          "max_value": 50,
+          "min_value": 50,
+          "name": "robot_state_history_steps",
+          "unit": null,
+          "values": null
+        }
+      },
+      "optional_affordances": [
+        "can_in_hand_manipulate"
+      ],
+      "primitives": [
+        "rotate_z"
+      ],
+      "real_world_utility": 0.7,
+      "required_affordances": [
+        "can_grasp"
+      ],
+      "success_predicates": [
+        "Object reaches the target yaw angle about the vertical axis and holds it"
+      ]
+    }
+  },
+  "_v11_note": "v11-hand (prereg-v11-hand.md): dropped dynamic_payload_locomotion, freebase_navigation, mobile_manipulation_reach"
+}

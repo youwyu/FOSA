@@ -1,0 +1,659 @@
+{
+  "_generated_by": "FOSA LLM task-template inference",
+  "_source_backend": "jackal_mjp",
+  "_source_robot": "jackal",
+  "families": {
+    "actuator_degradation": {
+      "backend_requirements": [
+        "model_randomization:actuator_gainprm",
+        "velocity primitive"
+      ],
+      "constraints": [
+        "Robot must compensate for reduced torque in one or more wheels."
+      ],
+      "default_primitive": "velocity",
+      "description": "Maintaining locomotion performance when one wheel's actuator efficiency is reduced.",
+      "entity_dimensions": {
+        "gain_reduction_factor": {
+          "default": 0.5,
+          "description": "Multiplier applied to the gain of a random wheel actuator.",
+          "difficulty_direction": "smaller_is_harder",
+          "kind": "continuous",
+          "max_value": 0.9,
+          "min_value": 0.1,
+          "name": "gain_reduction_factor",
+          "unit": "dimensionless",
+          "values": null
+        }
+      },
+      "environment_dimensions": {},
+      "family": "actuator_degradation",
+      "goal_dimensions": {
+        "target_velocity": {
+          "default": 0.5,
+          "description": "Target speed to maintain despite degradation.",
+          "difficulty_direction": "larger_is_harder",
+          "kind": "continuous",
+          "max_value": 1.0,
+          "min_value": 0.2,
+          "name": "target_velocity",
+          "unit": "m/s",
+          "values": null
+        }
+      },
+      "observation_dimensions": {
+        "object_pose_available": {
+          "default": true,
+          "description": null,
+          "difficulty_direction": "unknown",
+          "kind": "boolean",
+          "max_value": null,
+          "min_value": null,
+          "name": "object_pose_available",
+          "unit": null,
+          "values": [
+            true
+          ]
+        },
+        "robot_state_history_steps": {
+          "default": 50,
+          "description": null,
+          "difficulty_direction": "unknown",
+          "kind": "integer",
+          "max_value": 50,
+          "min_value": 50,
+          "name": "robot_state_history_steps",
+          "unit": null,
+          "values": null
+        }
+      },
+      "optional_affordances": [],
+      "primitives": [
+        "velocity"
+      ],
+      "real_world_utility": 0.6,
+      "required_affordances": [
+        "differential_drive"
+      ],
+      "success_predicates": [
+        "Robot maintains a straight trajectory within a small error margin."
+      ]
+    },
+    "dynamic_obstacle_avoidance": {
+      "backend_requirements": [
+        "primitive_shape:cylinder",
+        "velocity primitive"
+      ],
+      "constraints": [
+        "Robot must not collide with the moving object."
+      ],
+      "default_primitive": "velocity",
+      "description": "Navigating toward a goal while avoiding a dynamic obstacle moving across the path.",
+      "entity_dimensions": {
+        "obstacle_size": {
+          "default": 0.3,
+          "description": "The radius of the cylindrical obstacle.",
+          "difficulty_direction": "larger_is_harder",
+          "kind": "continuous",
+          "max_value": 0.6,
+          "min_value": 0.1,
+          "name": "obstacle_size",
+          "unit": "m",
+          "values": null
+        }
+      },
+      "environment_dimensions": {
+        "obstacle_speed": {
+          "default": 0.5,
+          "description": "The speed of the moving obstacle.",
+          "difficulty_direction": "larger_is_harder",
+          "kind": "continuous",
+          "max_value": 1.5,
+          "min_value": 0.1,
+          "name": "obstacle_speed",
+          "unit": "m/s",
+          "values": null
+        }
+      },
+      "family": "dynamic_obstacle_avoidance",
+      "goal_dimensions": {
+        "target_position": {
+          "default": 5.0,
+          "description": "Distance to the target goal point.",
+          "difficulty_direction": "larger_is_harder",
+          "kind": "continuous",
+          "max_value": 10.0,
+          "min_value": 2.0,
+          "name": "target_position",
+          "unit": "m",
+          "values": null
+        }
+      },
+      "observation_dimensions": {
+        "object_pose_available": {
+          "default": true,
+          "description": null,
+          "difficulty_direction": "unknown",
+          "kind": "boolean",
+          "max_value": null,
+          "min_value": null,
+          "name": "object_pose_available",
+          "unit": null,
+          "values": [
+            true
+          ]
+        },
+        "robot_state_history_steps": {
+          "default": 50,
+          "description": null,
+          "difficulty_direction": "unknown",
+          "kind": "integer",
+          "max_value": 50,
+          "min_value": 50,
+          "name": "robot_state_history_steps",
+          "unit": null,
+          "values": null
+        }
+      },
+      "optional_affordances": [],
+      "primitives": [
+        "velocity"
+      ],
+      "real_world_utility": 0.9,
+      "required_affordances": [
+        "differential_drive"
+      ],
+      "success_predicates": [
+        "Robot reaches target position without any contact with the obstacle."
+      ]
+    },
+    "friction_adaptation": {
+      "backend_requirements": [
+        "model_randomization:geom_friction",
+        "velocity primitive"
+      ],
+      "constraints": [
+        "Robot must adapt to varying surface friction coefficients."
+      ],
+      "default_primitive": "velocity",
+      "description": "Testing the robot's ability to maintain velocity tracking across surfaces with different slip characteristics.",
+      "entity_dimensions": {},
+      "environment_dimensions": {
+        "surface_friction": {
+          "default": 0.5,
+          "description": "The friction coefficient of the floor.",
+          "difficulty_direction": "smaller_is_harder",
+          "kind": "continuous",
+          "max_value": 1.0,
+          "min_value": 0.1,
+          "name": "surface_friction",
+          "unit": "dimensionless",
+          "values": null
+        }
+      },
+      "family": "friction_adaptation",
+      "goal_dimensions": {
+        "target_velocity": {
+          "default": 0.8,
+          "description": "Target speed to maintain despite slip.",
+          "difficulty_direction": "larger_is_harder",
+          "kind": "continuous",
+          "max_value": 1.5,
+          "min_value": 0.2,
+          "name": "target_velocity",
+          "unit": "m/s",
+          "values": null
+        }
+      },
+      "observation_dimensions": {
+        "object_pose_available": {
+          "default": true,
+          "description": null,
+          "difficulty_direction": "unknown",
+          "kind": "boolean",
+          "max_value": null,
+          "min_value": null,
+          "name": "object_pose_available",
+          "unit": null,
+          "values": [
+            true
+          ]
+        },
+        "robot_state_history_steps": {
+          "default": 50,
+          "description": null,
+          "difficulty_direction": "unknown",
+          "kind": "integer",
+          "max_value": 50,
+          "min_value": 50,
+          "name": "robot_state_history_steps",
+          "unit": null,
+          "values": null
+        }
+      },
+      "optional_affordances": [],
+      "primitives": [
+        "velocity"
+      ],
+      "real_world_utility": 0.7,
+      "required_affordances": [
+        "differential_drive"
+      ],
+      "success_predicates": [
+        "Velocity tracking error remains below threshold on low-friction surfaces."
+      ]
+    },
+    "payload_transport": {
+      "backend_requirements": [
+        "supports_carried_payload",
+        "primitive_shape:box",
+        "velocity primitive"
+      ],
+      "constraints": [
+        "The payload must remain on the payload_support_position throughout the task."
+      ],
+      "default_primitive": "velocity",
+      "description": "Transporting a mass on the robot's top surface, affecting center of mass and inertia.",
+      "entity_dimensions": {
+        "payload_mass": {
+          "default": 1.0,
+          "description": "Mass of the object placed on the robot's support surface.",
+          "difficulty_direction": "larger_is_harder",
+          "kind": "continuous",
+          "max_value": 5.0,
+          "min_value": 0.1,
+          "name": "payload_mass",
+          "unit": "kg",
+          "values": null
+        }
+      },
+      "environment_dimensions": {},
+      "family": "payload_transport",
+      "goal_dimensions": {
+        "target_velocity": {
+          "default": 0.5,
+          "description": "Desired speed while carrying the payload.",
+          "difficulty_direction": "larger_is_harder",
+          "kind": "continuous",
+          "max_value": 1.5,
+          "min_value": 0.1,
+          "name": "target_velocity",
+          "unit": "m/s",
+          "values": null
+        }
+      },
+      "observation_dimensions": {
+        "object_pose_available": {
+          "default": true,
+          "description": null,
+          "difficulty_direction": "unknown",
+          "kind": "boolean",
+          "max_value": null,
+          "min_value": null,
+          "name": "object_pose_available",
+          "unit": null,
+          "values": [
+            true
+          ]
+        },
+        "robot_state_history_steps": {
+          "default": 50,
+          "description": null,
+          "difficulty_direction": "unknown",
+          "kind": "integer",
+          "max_value": 50,
+          "min_value": 50,
+          "name": "robot_state_history_steps",
+          "unit": null,
+          "values": null
+        }
+      },
+      "optional_affordances": [
+        "can_support_task_objects"
+      ],
+      "primitives": [
+        "velocity"
+      ],
+      "real_world_utility": 0.8,
+      "required_affordances": [
+        "differential_drive",
+        "payload_support_position"
+      ],
+      "success_predicates": [
+        "Target velocity achieved while payload remains in contact with the support surface."
+      ]
+    },
+    "precision_docking": {
+      "backend_requirements": [
+        "primitive_shape:box",
+        "velocity primitive"
+      ],
+      "constraints": [
+        "Robot must stop within a very small distance of the target object."
+      ],
+      "default_primitive": "velocity",
+      "description": "Approaching a target box and stopping precisely in front of it.",
+      "entity_dimensions": {
+        "target_box_size": {
+          "default": 0.5,
+          "description": "The size of the docking target box.",
+          "difficulty_direction": "smaller_is_harder",
+          "kind": "continuous",
+          "max_value": 1.0,
+          "min_value": 0.2,
+          "name": "target_box_size",
+          "unit": "m",
+          "values": null
+        }
+      },
+      "environment_dimensions": {},
+      "family": "precision_docking",
+      "goal_dimensions": {
+        "docking_tolerance": {
+          "default": 0.1,
+          "description": "The maximum allowed distance from the target to be considered successful.",
+          "difficulty_direction": "smaller_is_harder",
+          "kind": "continuous",
+          "max_value": 0.3,
+          "min_value": 0.02,
+          "name": "docking_tolerance",
+          "unit": "m",
+          "values": null
+        }
+      },
+      "observation_dimensions": {
+        "object_pose_available": {
+          "default": true,
+          "description": null,
+          "difficulty_direction": "unknown",
+          "kind": "boolean",
+          "max_value": null,
+          "min_value": null,
+          "name": "object_pose_available",
+          "unit": null,
+          "values": [
+            true
+          ]
+        },
+        "robot_state_history_steps": {
+          "default": 50,
+          "description": null,
+          "difficulty_direction": "unknown",
+          "kind": "integer",
+          "max_value": 50,
+          "min_value": 50,
+          "name": "robot_state_history_steps",
+          "unit": null,
+          "values": null
+        }
+      },
+      "optional_affordances": [],
+      "primitives": [
+        "velocity"
+      ],
+      "real_world_utility": 0.8,
+      "required_affordances": [
+        "differential_drive"
+      ],
+      "success_predicates": [
+        "Robot velocity is zero and distance to target is less than docking_tolerance."
+      ]
+    },
+    "rough_terrain_navigation": {
+      "backend_requirements": [
+        "heightfield terrain",
+        "terrain_algorithm:mixed",
+        "velocity primitive"
+      ],
+      "constraints": [
+        "Robot must not flip over while traversing uneven ground."
+      ],
+      "default_primitive": "velocity",
+      "description": "Locomotion over varied terrains including steps and waves to test robustness.",
+      "entity_dimensions": {},
+      "environment_dimensions": {
+        "terrain_roughness": {
+          "default": 0.1,
+          "description": "The amplitude of the terrain height variations.",
+          "difficulty_direction": "larger_is_harder",
+          "kind": "continuous",
+          "max_value": 0.3,
+          "min_value": 0.01,
+          "name": "terrain_roughness",
+          "unit": "m",
+          "values": null
+        },
+        "terrain_type": {
+          "default": "mixed",
+          "description": "The algorithm used to generate the heightfield.",
+          "difficulty_direction": "unknown",
+          "kind": "categorical",
+          "max_value": null,
+          "min_value": null,
+          "name": "terrain_type",
+          "unit": null,
+          "values": [
+            "steps",
+            "waves",
+            "pyramid",
+            "mixed"
+          ]
+        }
+      },
+      "family": "rough_terrain_navigation",
+      "goal_dimensions": {
+        "target_velocity": {
+          "default": 0.3,
+          "description": "Desired forward speed across the terrain.",
+          "difficulty_direction": "larger_is_harder",
+          "kind": "continuous",
+          "max_value": 1.0,
+          "min_value": 0.1,
+          "name": "target_velocity",
+          "unit": "m/s",
+          "values": null
+        }
+      },
+      "observation_dimensions": {
+        "object_pose_available": {
+          "default": true,
+          "description": null,
+          "difficulty_direction": "unknown",
+          "kind": "boolean",
+          "max_value": null,
+          "min_value": null,
+          "name": "object_pose_available",
+          "unit": null,
+          "values": [
+            true
+          ]
+        },
+        "robot_state_history_steps": {
+          "default": 50,
+          "description": null,
+          "difficulty_direction": "unknown",
+          "kind": "integer",
+          "max_value": 50,
+          "min_value": 50,
+          "name": "robot_state_history_steps",
+          "unit": null,
+          "values": null
+        }
+      },
+      "optional_affordances": [],
+      "primitives": [
+        "velocity"
+      ],
+      "real_world_utility": 0.9,
+      "required_affordances": [
+        "differential_drive"
+      ],
+      "success_predicates": [
+        "Robot reaches the end of the terrain without tipping."
+      ]
+    },
+    "slalom_navigation": {
+      "backend_requirements": [
+        "primitive_shape:cylinder",
+        "velocity primitive"
+      ],
+      "constraints": [
+        "Robot must pass between markers without colliding."
+      ],
+      "default_primitive": "velocity",
+      "description": "Navigating a series of markers in a zig-zag pattern to test agility.",
+      "entity_dimensions": {
+        "marker_count": {
+          "default": 4,
+          "description": "Number of cylindrical markers in the slalom course.",
+          "difficulty_direction": "larger_is_harder",
+          "kind": "integer",
+          "max_value": 10,
+          "min_value": 2,
+          "name": "marker_count",
+          "unit": null,
+          "values": null
+        }
+      },
+      "environment_dimensions": {
+        "marker_spacing": {
+          "default": 2.0,
+          "description": "Distance between consecutive markers.",
+          "difficulty_direction": "smaller_is_harder",
+          "kind": "continuous",
+          "max_value": 4.0,
+          "min_value": 1.0,
+          "name": "marker_spacing",
+          "unit": "m",
+          "values": null
+        }
+      },
+      "family": "slalom_navigation",
+      "goal_dimensions": {
+        "target_completion_time": {
+          "default": 20.0,
+          "description": "Time limit to complete the course.",
+          "difficulty_direction": "smaller_is_harder",
+          "kind": "continuous",
+          "max_value": 60.0,
+          "min_value": 10.0,
+          "name": "target_completion_time",
+          "unit": "s",
+          "values": null
+        }
+      },
+      "observation_dimensions": {
+        "object_pose_available": {
+          "default": true,
+          "description": null,
+          "difficulty_direction": "unknown",
+          "kind": "boolean",
+          "max_value": null,
+          "min_value": null,
+          "name": "object_pose_available",
+          "unit": null,
+          "values": [
+            true
+          ]
+        },
+        "robot_state_history_steps": {
+          "default": 50,
+          "description": null,
+          "difficulty_direction": "unknown",
+          "kind": "integer",
+          "max_value": 50,
+          "min_value": 50,
+          "name": "robot_state_history_steps",
+          "unit": null,
+          "values": null
+        }
+      },
+      "optional_affordances": [],
+      "primitives": [
+        "velocity"
+      ],
+      "real_world_utility": 0.7,
+      "required_affordances": [
+        "differential_drive"
+      ],
+      "success_predicates": [
+        "Robot crosses the finish line without colliding with any markers."
+      ]
+    },
+    "velocity_tracking_flat": {
+      "backend_requirements": [
+        "plane terrain",
+        "velocity primitive"
+      ],
+      "constraints": [
+        "Robot must maintain stability while tracking target linear and angular velocities."
+      ],
+      "default_primitive": "velocity",
+      "description": "Basic velocity tracking on a flat surface to establish baseline locomotion capabilities.",
+      "entity_dimensions": {},
+      "environment_dimensions": {},
+      "family": "velocity_tracking_flat",
+      "goal_dimensions": {
+        "target_angular_velocity": {
+          "default": 0.0,
+          "description": "The desired yaw rate of the robot.",
+          "difficulty_direction": "larger_is_harder",
+          "kind": "continuous",
+          "max_value": 1.0,
+          "min_value": -1.0,
+          "name": "target_angular_velocity",
+          "unit": "rad/s",
+          "values": null
+        },
+        "target_linear_velocity": {
+          "default": 0.5,
+          "description": "The desired forward speed of the robot.",
+          "difficulty_direction": "larger_is_harder",
+          "kind": "continuous",
+          "max_value": 2.0,
+          "min_value": 0.1,
+          "name": "target_linear_velocity",
+          "unit": "m/s",
+          "values": null
+        }
+      },
+      "observation_dimensions": {
+        "object_pose_available": {
+          "default": true,
+          "description": null,
+          "difficulty_direction": "unknown",
+          "kind": "boolean",
+          "max_value": null,
+          "min_value": null,
+          "name": "object_pose_available",
+          "unit": null,
+          "values": [
+            true
+          ]
+        },
+        "robot_state_history_steps": {
+          "default": 50,
+          "description": null,
+          "difficulty_direction": "unknown",
+          "kind": "integer",
+          "max_value": 50,
+          "min_value": 50,
+          "name": "robot_state_history_steps",
+          "unit": null,
+          "values": null
+        }
+      },
+      "optional_affordances": [],
+      "primitives": [
+        "velocity"
+      ],
+      "real_world_utility": 1.0,
+      "required_affordances": [
+        "differential_drive"
+      ],
+      "success_predicates": [
+        "Root linear velocity error is below threshold for a sustained period."
+      ]
+    }
+  }
+}

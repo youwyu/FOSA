@@ -1,0 +1,33 @@
+{
+  "_generated_by": "FOSA LLM robot profile inference",
+  "_source_robot": "jackal",
+  "body_support_surfaces": [
+    "wheels"
+  ],
+  "can_grasp": false,
+  "can_in_hand_manipulate": false,
+  "can_lift_objects": false,
+  "can_support_task_objects": true,
+  "can_use_tools": false,
+  "description": "A four-wheeled mobile robot platform designed for velocity tracking and navigation, featuring a base chassis and a lidar sensor tower.",
+  "embodiment_type": "wheeled_mobile_robot",
+  "end_effectors": [],
+  "locomotion_modes": [
+    "differential_drive"
+  ],
+  "manipulators": [],
+  "notes": "The robot is primarily a locomotion platform. Evidence of 'payload_support_position_m' and 'payload_max_footprint_m' indicates it can carry objects on its top surface, though it lacks active manipulation arms. Sensors include a lidar tower and an IMU.",
+  "robot": "jackal",
+  "robot_display_name": "Jackal",
+  "sensors": [
+    "lidar",
+    "imu",
+    "linear_velocity",
+    "angular_velocity"
+  ],
+  "task_object_capacity_kg": null,
+  "task_object_requires_fixture": false,
+  "task_object_support_surfaces": [
+    "payload_support_position"
+  ]
+}

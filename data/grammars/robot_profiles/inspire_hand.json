@@ -1,0 +1,37 @@
+{
+  "_generated_by": "FOSA LLM robot profile inference",
+  "_source_robot": "inspire_hand",
+  "body_support_surfaces": [
+    "palm"
+  ],
+  "can_grasp": true,
+  "can_in_hand_manipulate": true,
+  "can_lift_objects": true,
+  "can_support_task_objects": true,
+  "can_use_tools": true,
+  "description": "A multi-fingered robotic hand capable of complex manipulation and free-base movement, featuring a thumb and four fingers with multiple degrees of freedom.",
+  "embodiment_type": "hand",
+  "end_effectors": [
+    "right_hand"
+  ],
+  "locomotion_modes": [
+    "freebase"
+  ],
+  "manipulators": [
+    "right_hand"
+  ],
+  "notes": "The robot is configured as a 'hand' but the task registry includes 'inspire_hand_locomotion' with 'freebase' execution, indicating it can move its root body. Manipulation capabilities are evidenced by 'reorient' and 'rotate_z' tasks. End-effector tips are explicitly defined as sites (th_tip, if_tip, mf_tip, rf_tip). Payload capacity is not specified in the manifest.",
+  "robot": "inspire_hand",
+  "robot_display_name": "Inspire Hand",
+  "sensors": [
+    "joint_position",
+    "joint_velocity",
+    "joint_torque"
+  ],
+  "task_object_capacity_kg": null,
+  "task_object_requires_fixture": false,
+  "task_object_support_surfaces": [
+    "palm",
+    "fingertips"
+  ]
+}

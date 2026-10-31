@@ -1,0 +1,38 @@
+{
+  "_generated_by": "FOSA LLM robot profile inference",
+  "_source_robot": "go2",
+  "body_support_surfaces": [
+    "FL_foot",
+    "FR_foot",
+    "RL_foot",
+    "RR_foot"
+  ],
+  "can_grasp": false,
+  "can_in_hand_manipulate": false,
+  "can_lift_objects": false,
+  "can_support_task_objects": true,
+  "can_use_tools": false,
+  "description": "A quadruped robot designed for agile locomotion and velocity tracking, featuring four legs with 3-DOF each (hip, thigh, calf).",
+  "embodiment_type": "legged",
+  "end_effectors": [],
+  "locomotion_modes": [
+    "walking",
+    "trotting",
+    "velocity_tracking"
+  ],
+  "manipulators": [],
+  "notes": "The robot is a quadruped (legged). While it lacks manipulators for grasping, the robot_spec mentions a 'payload_support_position_m' on the base, indicating it can support/carry objects on its back. Support surfaces are inferred from the foot collision geoms.",
+  "robot": "go2",
+  "robot_display_name": "Go2",
+  "sensors": [
+    "imu_ang_vel",
+    "imu_lin_vel",
+    "imu_lin_acc",
+    "root_angmom"
+  ],
+  "task_object_capacity_kg": null,
+  "task_object_requires_fixture": false,
+  "task_object_support_surfaces": [
+    "base_link"
+  ]
+}

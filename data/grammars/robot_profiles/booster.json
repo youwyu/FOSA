@@ -1,0 +1,47 @@
+{
+  "_generated_by": "FOSA LLM robot profile inference",
+  "_source_robot": "booster",
+  "body_support_surfaces": [
+    "left_foot",
+    "right_foot"
+  ],
+  "can_grasp": false,
+  "can_in_hand_manipulate": false,
+  "can_lift_objects": true,
+  "can_support_task_objects": true,
+  "can_use_tools": true,
+  "description": "A high-DOF humanoid robot featuring a head, arms with multi-axis joints, a waist, and bipedal legs for locomotion and interaction.",
+  "embodiment_type": "humanoid",
+  "end_effectors": [
+    "left_hand",
+    "right_hand"
+  ],
+  "locomotion_modes": [
+    "bipedal_walking",
+    "velocity_tracking"
+  ],
+  "manipulators": [
+    "left_arm",
+    "right_arm"
+  ],
+  "notes": "The robot has full humanoid kinematics including arms and legs. While it has 'hand' links, there are no finger actuators listed in the actuator_names, suggesting the hands are fixed end-effectors (likely palms); therefore, can_grasp is set to false, but it can still support or push objects using the hand links. Evidence for lifting/tool use is inferred from the presence of multi-DOF arms (Shoulder Pitch/Roll, Elbow Pitch/Yaw).",
+  "robot": "booster",
+  "robot_display_name": "Booster",
+  "sensors": [
+    "gyro",
+    "accelerometer",
+    "local_linvel",
+    "global_linvel",
+    "global_angvel",
+    "position",
+    "orientation",
+    "upvector",
+    "forwardvector"
+  ],
+  "task_object_capacity_kg": null,
+  "task_object_requires_fixture": false,
+  "task_object_support_surfaces": [
+    "left_hand",
+    "right_hand"
+  ]
+}

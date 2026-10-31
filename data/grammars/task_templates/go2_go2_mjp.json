@@ -1,0 +1,623 @@
+{
+ "_generated_by": "FOSA LLM task-template inference",
+ "_source_backend": "go2_mjp",
+ "_source_robot": "go2",
+ "families": {
+  "actuator_degradation_robustness": {
+   "backend_requirements": [
+    "model_randomization:actuator_gainprm",
+    "model_randomization:actuator_forcerange"
+   ],
+   "constraints": [
+    "Robot must adapt to reduced joint torque capabilities"
+   ],
+   "default_primitive": "velocity",
+   "description": "Locomotion under simulated hardware failure or degradation (e.g., loss of motor power).",
+   "entity_dimensions": {
+    "torque_scale": {
+     "default": 0.7,
+     "description": "Multiplier applied to the maximum available joint torque",
+     "difficulty_direction": "smaller_is_harder",
+     "kind": "continuous",
+     "max_value": 1.0,
+     "min_value": 0.3,
+     "name": "torque_scale",
+     "unit": "ratio",
+     "values": null
+    }
+   },
+   "environment_dimensions": {},
+   "family": "actuator_degradation_robustness",
+   "goal_dimensions": {
+    "max_command_speed": {
+     "default": 0.4,
+     "description": "Maximum commanded forward speed v in m/s: during training and evaluation the velocity command is resampled uniformly from [-v, v]",
+     "difficulty_direction": "larger_is_harder",
+     "kind": "continuous",
+     "max_value": 1.0,
+     "min_value": 0.25,
+     "name": "max_command_speed",
+     "unit": "m/s",
+     "values": null
+    }
+   },
+   "observation_dimensions": {
+    "object_pose_available": {
+     "default": false,
+     "description": null,
+     "difficulty_direction": "unknown",
+     "kind": "boolean",
+     "max_value": null,
+     "min_value": null,
+     "name": "object_pose_available",
+     "unit": null,
+     "values": [
+      false
+     ]
+    },
+    "robot_state_history_steps": {
+     "default": 50,
+     "description": null,
+     "difficulty_direction": "unknown",
+     "kind": "integer",
+     "max_value": 50,
+     "min_value": 50,
+     "name": "robot_state_history_steps",
+     "unit": null,
+     "values": null
+    }
+   },
+   "optional_affordances": [],
+   "primitives": [
+    "velocity"
+   ],
+   "real_world_utility": 0.6,
+   "required_affordances": [
+    "walking"
+   ],
+   "success_predicates": [
+    "Maintain tracking despite reduced actuator strength"
+   ]
+  },
+  "agile_maneuvering": {
+   "backend_requirements": [
+    "velocity command input"
+   ],
+   "constraints": [
+    "Robot must execute sharp turns"
+   ],
+   "default_primitive": "velocity",
+   "description": "High-frequency changes in yaw and linear velocity to test agility.",
+   "entity_dimensions": {},
+   "environment_dimensions": {},
+   "family": "agile_maneuvering",
+   "goal_dimensions": {
+    "yaw_rate": {
+     "default": 0.5,
+     "description": "The commanded angular velocity around Z axis",
+     "difficulty_direction": "larger_is_harder",
+     "kind": "continuous",
+     "max_value": 1.0,
+     "min_value": 0.0,
+     "name": "yaw_rate",
+     "unit": "rad/s",
+     "values": null
+    },
+    "max_command_speed": {
+     "default": 0.8,
+     "description": "Maximum commanded forward speed v in m/s: during training and evaluation the velocity command is resampled uniformly from [-v, v]",
+     "difficulty_direction": "larger_is_harder",
+     "kind": "continuous",
+     "max_value": 2.0,
+     "min_value": 0.25,
+     "name": "max_command_speed",
+     "unit": "m/s",
+     "values": null
+    }
+   },
+   "observation_dimensions": {
+    "object_pose_available": {
+     "default": false,
+     "description": null,
+     "difficulty_direction": "unknown",
+     "kind": "boolean",
+     "max_value": null,
+     "min_value": null,
+     "name": "object_pose_available",
+     "unit": null,
+     "values": [
+      false
+     ]
+    },
+    "robot_state_history_steps": {
+     "default": 50,
+     "description": null,
+     "difficulty_direction": "unknown",
+     "kind": "integer",
+     "max_value": 50,
+     "min_value": 50,
+     "name": "robot_state_history_steps",
+     "unit": null,
+     "values": null
+    }
+   },
+   "optional_affordances": [],
+   "primitives": [
+    "velocity"
+   ],
+   "real_world_utility": 0.9,
+   "required_affordances": [
+    "trotting",
+    "velocity_tracking"
+   ],
+   "success_predicates": [
+    "Root angular velocity matches yaw command within 15% error"
+   ]
+  },
+  "dynamic_stability_recovery": {
+   "backend_requirements": [
+    "reset:base_velocity_noise",
+    "reset:base_yaw"
+   ],
+   "constraints": [
+    "Robot must recover from an unstable initial state"
+   ],
+   "default_primitive": "velocity",
+   "description": "Testing the robot's ability to recover balance after being pushed or spawned in a tilted state.",
+   "entity_dimensions": {},
+   "environment_dimensions": {},
+   "family": "dynamic_stability_recovery",
+   "goal_dimensions": {
+    "recovery_target_velocity": {
+     "default": 0.0,
+     "description": "Target velocity after recovery (0 for standing still)",
+     "difficulty_direction": "unknown",
+     "kind": "continuous",
+     "max_value": 0.5,
+     "min_value": 0.0,
+     "name": "recovery_target_velocity",
+     "unit": "m/s",
+     "values": null
+    }
+   },
+   "observation_dimensions": {
+    "object_pose_available": {
+     "default": false,
+     "description": null,
+     "difficulty_direction": "unknown",
+     "kind": "boolean",
+     "max_value": null,
+     "min_value": null,
+     "name": "object_pose_available",
+     "unit": null,
+     "values": [
+      false
+     ]
+    },
+    "robot_state_history_steps": {
+     "default": 50,
+     "description": null,
+     "difficulty_direction": "unknown",
+     "kind": "integer",
+     "max_value": 50,
+     "min_value": 50,
+     "name": "robot_state_history_steps",
+     "unit": null,
+     "values": null
+    }
+   },
+   "optional_affordances": [],
+   "primitives": [
+    "velocity"
+   ],
+   "real_world_utility": 0.7,
+   "required_affordances": [
+    "walking"
+   ],
+   "success_predicates": [
+    "Robot returns to base_height and stabilizes within 2 seconds"
+   ]
+  },
+  "friction_adaptation": {
+   "backend_requirements": [
+    "model_randomization:geom_friction"
+   ],
+   "constraints": [
+    "Robot must not slip excessively"
+   ],
+   "default_primitive": "velocity",
+   "description": "Locomotion on surfaces with varying friction coefficients (e.g., ice vs. carpet).",
+   "entity_dimensions": {},
+   "environment_dimensions": {
+    "floor_friction": {
+     "default": 0.5,
+     "description": "The friction coefficient of the floor geom",
+     "difficulty_direction": "smaller_is_harder",
+     "kind": "continuous",
+     "max_value": 1.0,
+     "min_value": 0.05,
+     "name": "floor_friction",
+     "unit": "coefficient",
+     "values": null
+    }
+   },
+   "family": "friction_adaptation",
+   "goal_dimensions": {
+    "max_command_speed": {
+     "default": 0.5,
+     "description": "Maximum commanded forward speed v in m/s: during training and evaluation the velocity command is resampled uniformly from [-v, v]",
+     "difficulty_direction": "larger_is_harder",
+     "kind": "continuous",
+     "max_value": 1.5,
+     "min_value": 0.25,
+     "name": "max_command_speed",
+     "unit": "m/s",
+     "values": null
+    }
+   },
+   "observation_dimensions": {
+    "object_pose_available": {
+     "default": false,
+     "description": null,
+     "difficulty_direction": "unknown",
+     "kind": "boolean",
+     "max_value": null,
+     "min_value": null,
+     "name": "object_pose_available",
+     "unit": null,
+     "values": [
+      false
+     ]
+    },
+    "robot_state_history_steps": {
+     "default": 50,
+     "description": null,
+     "difficulty_direction": "unknown",
+     "kind": "integer",
+     "max_value": 50,
+     "min_value": 50,
+     "name": "robot_state_history_steps",
+     "unit": null,
+     "values": null
+    }
+   },
+   "optional_affordances": [],
+   "primitives": [
+    "velocity"
+   ],
+   "real_world_utility": 0.7,
+   "required_affordances": [
+    "walking"
+   ],
+   "success_predicates": [
+    "Maintain velocity tracking without slipping (foot velocity relative to ground < threshold)"
+   ]
+  },
+  "obstacle_slalom": {
+   "backend_requirements": [
+    "primitive_shape:cylinder",
+    "reset:task_object_pose"
+   ],
+   "constraints": [
+    "Robot must not collide with obstacle cylinders"
+   ],
+   "default_primitive": "velocity",
+   "description": "Navigating through a series of static obstacles using velocity commands.",
+   "entity_dimensions": {},
+   "environment_dimensions": {
+    "obstacle_density": {
+     "default": 3,
+     "description": "Number of cylinders placed in the path",
+     "difficulty_direction": "larger_is_harder",
+     "kind": "integer",
+     "max_value": 10,
+     "min_value": 1,
+     "name": "obstacle_density",
+     "unit": "count",
+     "values": null
+    },
+    "obstacle_radius": {
+     "default": 0.2,
+     "description": "Radius of the obstacle cylinders",
+     "difficulty_direction": "larger_is_harder",
+     "kind": "continuous",
+     "max_value": 0.5,
+     "min_value": 0.1,
+     "name": "obstacle_radius",
+     "unit": "m",
+     "values": null
+    }
+   },
+   "family": "obstacle_slalom",
+   "goal_dimensions": {
+    "max_command_speed": {
+     "default": 0.5,
+     "description": "Maximum commanded forward speed v in m/s: during training and evaluation the velocity command is resampled uniformly from [-v, v]",
+     "difficulty_direction": "larger_is_harder",
+     "kind": "continuous",
+     "max_value": 1.2,
+     "min_value": 0.25,
+     "name": "max_command_speed",
+     "unit": "m/s",
+     "values": null
+    }
+   },
+   "observation_dimensions": {
+    "object_pose_available": {
+     "default": true,
+     "description": null,
+     "difficulty_direction": "unknown",
+     "kind": "boolean",
+     "max_value": null,
+     "min_value": null,
+     "name": "object_pose_available",
+     "unit": null,
+     "values": [
+      true
+     ]
+    },
+    "robot_state_history_steps": {
+     "default": 50,
+     "description": null,
+     "difficulty_direction": "unknown",
+     "kind": "integer",
+     "max_value": 50,
+     "min_value": 50,
+     "name": "robot_state_history_steps",
+     "unit": null,
+     "values": null
+    }
+   },
+   "optional_affordances": [],
+   "primitives": [
+    "velocity"
+   ],
+   "real_world_utility": 0.8,
+   "required_affordances": [
+    "walking",
+    "velocity_tracking"
+   ],
+   "success_predicates": [
+    "Reach target position without colliding with any obstacle"
+   ]
+  },
+  "payload_transport": {
+   "backend_requirements": [
+    "supports_carried_payload",
+    "fixed_robot_body_attachment"
+   ],
+   "constraints": [
+    "Payload must remain attached to base_link"
+   ],
+   "default_primitive": "velocity",
+   "description": "Locomotion while carrying a mass on the robot's back, altering the center of mass and inertia.",
+   "entity_dimensions": {
+    "payload_mass": {
+     "default": 1.0,
+     "description": "Mass of the object attached to the base",
+     "difficulty_direction": "larger_is_harder",
+     "kind": "continuous",
+     "max_value": 5.0,
+     "min_value": 0.1,
+     "name": "payload_mass",
+     "unit": "kg",
+     "values": null
+    }
+   },
+   "environment_dimensions": {},
+   "family": "payload_transport",
+   "goal_dimensions": {
+    "max_command_speed": {
+     "default": 0.5,
+     "description": "Maximum commanded forward speed v in m/s: during training and evaluation the velocity command is resampled uniformly from [-v, v]",
+     "difficulty_direction": "larger_is_harder",
+     "kind": "continuous",
+     "max_value": 1.5,
+     "min_value": 0.25,
+     "name": "max_command_speed",
+     "unit": "m/s",
+     "values": null
+    }
+   },
+   "observation_dimensions": {
+    "object_pose_available": {
+     "default": true,
+     "description": null,
+     "difficulty_direction": "unknown",
+     "kind": "boolean",
+     "max_value": null,
+     "min_value": null,
+     "name": "object_pose_available",
+     "unit": null,
+     "values": [
+      true
+     ]
+    },
+    "robot_state_history_steps": {
+     "default": 50,
+     "description": null,
+     "difficulty_direction": "unknown",
+     "kind": "integer",
+     "max_value": 50,
+     "min_value": 50,
+     "name": "robot_state_history_steps",
+     "unit": null,
+     "values": null
+    }
+   },
+   "optional_affordances": [
+    "can_support_task_objects"
+   ],
+   "primitives": [
+    "velocity"
+   ],
+   "real_world_utility": 0.8,
+   "required_affordances": [
+    "walking",
+    "velocity_tracking"
+   ],
+   "success_predicates": [
+    "Maintain velocity tracking with payload attached"
+   ]
+  },
+  "rough_terrain_navigation": {
+   "backend_requirements": [
+    "heightfield terrain",
+    "randomized terrain algorithms"
+   ],
+   "constraints": [
+    "Robot must not fall (base_link contact with floor)"
+   ],
+   "default_primitive": "velocity",
+   "description": "Locomotion over diverse uneven terrains to test stability and adaptation.",
+   "entity_dimensions": {},
+   "environment_dimensions": {
+    "terrain_roughness": {
+     "default": 0.1,
+     "description": "The amplitude of height variations in the terrain",
+     "difficulty_direction": "larger_is_harder",
+     "kind": "continuous",
+     "max_value": 0.3,
+     "min_value": 0.01,
+     "name": "terrain_roughness",
+     "unit": "m",
+     "values": null
+    },
+    "terrain_type": {
+     "default": "random_uniform",
+     "description": "The algorithm used to generate the heightfield",
+     "difficulty_direction": "unknown",
+     "kind": "categorical",
+     "max_value": null,
+     "min_value": null,
+     "name": "terrain_type",
+     "unit": null,
+     "values": [
+      "random_uniform",
+      "waves",
+      "steps",
+      "pyramid"
+     ]
+    }
+   },
+   "family": "rough_terrain_navigation",
+   "goal_dimensions": {
+    "max_command_speed": {
+     "default": 0.3,
+     "description": "Maximum commanded forward speed v in m/s: during training and evaluation the velocity command is resampled uniformly from [-v, v]",
+     "difficulty_direction": "larger_is_harder",
+     "kind": "continuous",
+     "max_value": 1.0,
+     "min_value": 0.25,
+     "name": "max_command_speed",
+     "unit": "m/s",
+     "values": null
+    }
+   },
+   "observation_dimensions": {
+    "object_pose_available": {
+     "default": false,
+     "description": null,
+     "difficulty_direction": "unknown",
+     "kind": "boolean",
+     "max_value": null,
+     "min_value": null,
+     "name": "object_pose_available",
+     "unit": null,
+     "values": [
+      false
+     ]
+    },
+    "robot_state_history_steps": {
+     "default": 50,
+     "description": null,
+     "difficulty_direction": "unknown",
+     "kind": "integer",
+     "max_value": 50,
+     "min_value": 50,
+     "name": "robot_state_history_steps",
+     "unit": null,
+     "values": null
+    }
+   },
+   "optional_affordances": [],
+   "primitives": [
+    "velocity"
+   ],
+   "real_world_utility": 0.9,
+   "required_affordances": [
+    "walking",
+    "trotting"
+   ],
+   "success_predicates": [
+    "Robot travels 5 meters without falling"
+   ]
+  },
+  "velocity_tracking_flat": {
+   "backend_requirements": [
+    "flat plane terrain",
+    "velocity command input"
+   ],
+   "constraints": [
+    "Robot must maintain base height"
+   ],
+   "default_primitive": "velocity",
+   "description": "Basic locomotion tracking linear and angular velocity commands on a flat surface.",
+   "entity_dimensions": {},
+   "environment_dimensions": {},
+   "family": "velocity_tracking_flat",
+   "goal_dimensions": {
+    "max_command_speed": {
+     "default": 0.5,
+     "description": "Maximum commanded forward speed v in m/s: during training and evaluation the velocity command is resampled uniformly from [-v, v]",
+     "difficulty_direction": "larger_is_harder",
+     "kind": "continuous",
+     "max_value": 2.0,
+     "min_value": 0.25,
+     "name": "max_command_speed",
+     "unit": "m/s",
+     "values": null
+    }
+   },
+   "observation_dimensions": {
+    "object_pose_available": {
+     "default": false,
+     "description": null,
+     "difficulty_direction": "unknown",
+     "kind": "boolean",
+     "max_value": null,
+     "min_value": null,
+     "name": "object_pose_available",
+     "unit": null,
+     "values": [
+      false
+     ]
+    },
+    "robot_state_history_steps": {
+     "default": 50,
+     "description": null,
+     "difficulty_direction": "unknown",
+     "kind": "integer",
+     "max_value": 50,
+     "min_value": 50,
+     "name": "robot_state_history_steps",
+     "unit": null,
+     "values": null
+    }
+   },
+   "optional_affordances": [],
+   "primitives": [
+    "velocity"
+   ],
+   "real_world_utility": 1.0,
+   "required_affordances": [
+    "walking",
+    "velocity_tracking"
+   ],
+   "success_predicates": [
+    "Root linear velocity matches command within 10% error"
+   ]
+  }
+ },
+ "_v7_change": "go2 velocity goals: point speed -> command range (max_command_speed); 2026-10-05"
+}

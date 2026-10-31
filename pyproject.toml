@@ -1,0 +1,36 @@
+[project]
+name = "fosa"
+version = "0.1.0"
+description = "FOSA: Generative Flow on Symbolic Abstractions for Embodiment Capability Discovery"
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.11,<3.13"
+dependencies = [
+  "brax==0.14.2",
+  "huggingface_hub",
+  "jax[cuda12]==0.6.2",
+  "mujoco==3.11.0",
+  "mujoco-mjx==3.11.0",
+  "playground==0.2.0",
+  "warp-lang==1.15.0",
+  "torch==2.11.0",
+  "transformers==5.14.1",
+]
+
+[tool.uv.sources]
+torch = { index = "pytorch-cu128" }
+
+[[tool.uv.index]]
+name = "pytorch-cu128"
+url = "https://download.pytorch.org/whl/cu128"
+explicit = true
+
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["fosa*"]
+
+[tool.setuptools.package-data]
+"fosa.sim" = ["simulator_capabilities.json"]

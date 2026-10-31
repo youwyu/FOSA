@@ -1,0 +1,674 @@
+{
+  "_generated_by": "FOSA LLM task-template inference",
+  "_source_backend": "booster_mjp",
+  "_source_robot": "booster",
+  "families": {
+    "arm_reach_and_support": {
+      "backend_requirements": [
+        "Requires a target object placed at various heights and distances."
+      ],
+      "constraints": [
+        "Robot must maintain balance while extending arms to touch or support an object."
+      ],
+      "default_primitive": "velocity",
+      "description": "Explores the coordination between bipedal balance and upper-body reaching.",
+      "entity_dimensions": {
+        "object_shape": {
+          "default": "box",
+          "description": "The shape of the target object.",
+          "difficulty_direction": "unknown",
+          "kind": "categorical",
+          "max_value": null,
+          "min_value": null,
+          "name": "object_shape",
+          "unit": null,
+          "values": [
+            "box",
+            "sphere",
+            "cylinder"
+          ]
+        }
+      },
+      "environment_dimensions": {},
+      "family": "arm_reach_and_support",
+      "goal_dimensions": {
+        "target_distance": {
+          "default": 0.4,
+          "description": "The horizontal distance to the target object.",
+          "difficulty_direction": "larger_is_harder",
+          "kind": "continuous",
+          "max_value": 0.7,
+          "min_value": 0.2,
+          "name": "target_distance",
+          "unit": "m",
+          "values": null
+        },
+        "target_height": {
+          "default": 0.8,
+          "description": "The Z-height of the target object.",
+          "difficulty_direction": "unknown",
+          "kind": "continuous",
+          "max_value": 1.2,
+          "min_value": 0.2,
+          "name": "target_height",
+          "unit": "m",
+          "values": null
+        }
+      },
+      "observation_dimensions": {
+        "object_pose_available": {
+          "default": true,
+          "description": null,
+          "difficulty_direction": "unknown",
+          "kind": "boolean",
+          "max_value": null,
+          "min_value": null,
+          "name": "object_pose_available",
+          "unit": null,
+          "values": [
+            true
+          ]
+        },
+        "robot_state_history_steps": {
+          "default": 50,
+          "description": null,
+          "difficulty_direction": "unknown",
+          "kind": "integer",
+          "max_value": 50,
+          "min_value": 50,
+          "name": "robot_state_history_steps",
+          "unit": null,
+          "values": null
+        }
+      },
+      "optional_affordances": [],
+      "primitives": [
+        "velocity"
+      ],
+      "real_world_utility": 0.7,
+      "required_affordances": [
+        "manipulators",
+        "can_support_task_objects"
+      ],
+      "success_predicates": [
+        "The distance between the hand link and the object is below a threshold while the robot remains upright."
+      ]
+    },
+    "bipedal_velocity_tracking": {
+      "backend_requirements": [
+        "Requires a humanoid robot with bipedal locomotion capabilities.",
+        "Requires velocity tracking primitives."
+      ],
+      "constraints": [
+        "Robot must maintain balance while tracking linear and angular velocity commands."
+      ],
+      "default_primitive": "velocity",
+      "description": "Explores the robot's ability to track target linear and angular velocities across various terrains.",
+      "entity_dimensions": {},
+      "environment_dimensions": {
+        "friction_coefficient": {
+          "default": 1.0,
+          "description": "The friction of the ground surface.",
+          "difficulty_direction": "smaller_is_harder",
+          "kind": "continuous",
+          "max_value": 1.5,
+          "min_value": 0.1,
+          "name": "friction_coefficient",
+          "unit": "dimensionless",
+          "values": null
+        },
+        "terrain_type": {
+          "default": "plane",
+          "description": "The type of ground surface the robot navigates.",
+          "difficulty_direction": "unknown",
+          "kind": "categorical",
+          "max_value": null,
+          "min_value": null,
+          "name": "terrain_type",
+          "unit": null,
+          "values": [
+            "plane",
+            "steps",
+            "waves",
+            "pyramid",
+            "random_uniform"
+          ]
+        }
+      },
+      "family": "bipedal_velocity_tracking",
+      "goal_dimensions": {
+        "target_angular_velocity": {
+          "default": 0.0,
+          "description": "The commanded yaw rate.",
+          "difficulty_direction": "larger_is_harder",
+          "kind": "continuous",
+          "max_value": 0.8,
+          "min_value": -0.8,
+          "name": "target_angular_velocity",
+          "unit": "rad/s",
+          "values": null
+        },
+        "target_linear_velocity": {
+          "default": 0.5,
+          "description": "The commanded forward speed.",
+          "difficulty_direction": "larger_is_harder",
+          "kind": "continuous",
+          "max_value": 1.0,
+          "min_value": 0.0,
+          "name": "target_linear_velocity",
+          "unit": "m/s",
+          "values": null
+        }
+      },
+      "observation_dimensions": {
+        "object_pose_available": {
+          "default": true,
+          "description": null,
+          "difficulty_direction": "unknown",
+          "kind": "boolean",
+          "max_value": null,
+          "min_value": null,
+          "name": "object_pose_available",
+          "unit": null,
+          "values": [
+            true
+          ]
+        },
+        "robot_state_history_steps": {
+          "default": 50,
+          "description": null,
+          "difficulty_direction": "unknown",
+          "kind": "integer",
+          "max_value": 50,
+          "min_value": 50,
+          "name": "robot_state_history_steps",
+          "unit": null,
+          "values": null
+        }
+      },
+      "optional_affordances": [],
+      "primitives": [
+        "velocity"
+      ],
+      "real_world_utility": 1.0,
+      "required_affordances": [
+        "bipedal_walking",
+        "velocity_tracking"
+      ],
+      "success_predicates": [
+        "Robot maintains base height within tolerance while tracking the commanded velocity vector for the episode duration."
+      ]
+    },
+    "coordinated_arm_leg_movement": {
+      "backend_requirements": [
+        "Requires tracking of both base velocity and specific arm poses."
+      ],
+      "constraints": [
+        "Robot must maintain a specific arm configuration while walking."
+      ],
+      "default_primitive": "velocity",
+      "description": "Tests the ability to decouple upper-body task execution from lower-body locomotion.",
+      "entity_dimensions": {},
+      "environment_dimensions": {},
+      "family": "coordinated_arm_leg_movement",
+      "goal_dimensions": {
+        "arm_pose_deviation_limit": {
+          "default": 0.2,
+          "description": "Maximum allowed deviation from the target arm pose.",
+          "difficulty_direction": "smaller_is_harder",
+          "kind": "continuous",
+          "max_value": 0.5,
+          "min_value": 0.05,
+          "name": "arm_pose_deviation_limit",
+          "unit": "rad",
+          "values": null
+        },
+        "walking_speed": {
+          "default": 0.3,
+          "description": "The speed at which the robot must walk.",
+          "difficulty_direction": "larger_is_harder",
+          "kind": "continuous",
+          "max_value": 0.7,
+          "min_value": 0.1,
+          "name": "walking_speed",
+          "unit": "m/s",
+          "values": null
+        }
+      },
+      "observation_dimensions": {
+        "object_pose_available": {
+          "default": true,
+          "description": null,
+          "difficulty_direction": "unknown",
+          "kind": "boolean",
+          "max_value": null,
+          "min_value": null,
+          "name": "object_pose_available",
+          "unit": null,
+          "values": [
+            true
+          ]
+        },
+        "robot_state_history_steps": {
+          "default": 50,
+          "description": null,
+          "difficulty_direction": "unknown",
+          "kind": "integer",
+          "max_value": 50,
+          "min_value": 50,
+          "name": "robot_state_history_steps",
+          "unit": null,
+          "values": null
+        }
+      },
+      "optional_affordances": [],
+      "primitives": [
+        "velocity"
+      ],
+      "real_world_utility": 0.6,
+      "required_affordances": [
+        "bipedal_walking",
+        "manipulators"
+      ],
+      "success_predicates": [
+        "Robot maintains the target arm pose within the deviation limit while tracking the walking speed."
+      ]
+    },
+    "dynamic_balance_recovery": {
+      "backend_requirements": [
+        "Requires the ability to apply initial velocity noise or external impulses."
+      ],
+      "constraints": [
+        "Robot must return to a stable standing pose after a perturbation."
+      ],
+      "default_primitive": "velocity",
+      "description": "Tests the robot's robustness to external disturbances and its ability to recover balance.",
+      "entity_dimensions": {},
+      "environment_dimensions": {},
+      "family": "dynamic_balance_recovery",
+      "goal_dimensions": {
+        "perturbation_magnitude": {
+          "default": 0.5,
+          "description": "The strength of the initial velocity impulse applied to the trunk.",
+          "difficulty_direction": "larger_is_harder",
+          "kind": "continuous",
+          "max_value": 2.0,
+          "min_value": 0.1,
+          "name": "perturbation_magnitude",
+          "unit": "m/s",
+          "values": null
+        }
+      },
+      "observation_dimensions": {
+        "object_pose_available": {
+          "default": true,
+          "description": null,
+          "difficulty_direction": "unknown",
+          "kind": "boolean",
+          "max_value": null,
+          "min_value": null,
+          "name": "object_pose_available",
+          "unit": null,
+          "values": [
+            true
+          ]
+        },
+        "robot_state_history_steps": {
+          "default": 50,
+          "description": null,
+          "difficulty_direction": "unknown",
+          "kind": "integer",
+          "max_value": 50,
+          "min_value": 50,
+          "name": "robot_state_history_steps",
+          "unit": null,
+          "values": null
+        }
+      },
+      "optional_affordances": [],
+      "primitives": [
+        "velocity"
+      ],
+      "real_world_utility": 0.9,
+      "required_affordances": [
+        "bipedal_walking"
+      ],
+      "success_predicates": [
+        "Robot remains upright (base_up_z > threshold) and comes to a stop within a small velocity tolerance."
+      ]
+    },
+    "object_pushing_locomotion": {
+      "backend_requirements": [
+        "Requires a dynamic object in the scene.",
+        "Requires the robot to interact with the object using its hands or body."
+      ],
+      "constraints": [
+        "The object must be moved from a start position to a target region."
+      ],
+      "default_primitive": "velocity",
+      "description": "Combines locomotion with object interaction by pushing a primitive shape to a target.",
+      "entity_dimensions": {
+        "object_mass": {
+          "default": 1.0,
+          "description": "The mass of the object.",
+          "difficulty_direction": "larger_is_harder",
+          "kind": "continuous",
+          "max_value": 5.0,
+          "min_value": 0.1,
+          "name": "object_mass",
+          "unit": "kg",
+          "values": null
+        },
+        "object_shape": {
+          "default": "box",
+          "description": "The geometry of the object being pushed.",
+          "difficulty_direction": "unknown",
+          "kind": "categorical",
+          "max_value": null,
+          "min_value": null,
+          "name": "object_shape",
+          "unit": null,
+          "values": [
+            "box",
+            "sphere",
+            "cylinder"
+          ]
+        }
+      },
+      "environment_dimensions": {},
+      "family": "object_pushing_locomotion",
+      "goal_dimensions": {
+        "push_distance": {
+          "default": 2.0,
+          "description": "The distance the object must be moved.",
+          "difficulty_direction": "larger_is_harder",
+          "kind": "continuous",
+          "max_value": 5.0,
+          "min_value": 0.5,
+          "name": "push_distance",
+          "unit": "m",
+          "values": null
+        }
+      },
+      "observation_dimensions": {
+        "object_pose_available": {
+          "default": true,
+          "description": null,
+          "difficulty_direction": "unknown",
+          "kind": "boolean",
+          "max_value": null,
+          "min_value": null,
+          "name": "object_pose_available",
+          "unit": null,
+          "values": [
+            true
+          ]
+        },
+        "robot_state_history_steps": {
+          "default": 50,
+          "description": null,
+          "difficulty_direction": "unknown",
+          "kind": "integer",
+          "max_value": 50,
+          "min_value": 50,
+          "name": "robot_state_history_steps",
+          "unit": null,
+          "values": null
+        }
+      },
+      "optional_affordances": [],
+      "primitives": [
+        "velocity"
+      ],
+      "real_world_utility": 0.8,
+      "required_affordances": [
+        "bipedal_walking",
+        "can_support_task_objects"
+      ],
+      "success_predicates": [
+        "The object's final position is within a specified radius of the target goal."
+      ]
+    },
+    "obstacle_avoidance_navigation": {
+      "backend_requirements": [
+        "Requires static primitive objects acting as obstacles."
+      ],
+      "constraints": [
+        "Robot must not collide with obstacles while moving toward a goal."
+      ],
+      "default_primitive": "velocity",
+      "description": "Navigating through a field of obstacles to reach a target position.",
+      "entity_dimensions": {
+        "obstacle_count": {
+          "default": 3,
+          "description": "Number of obstacles in the path.",
+          "difficulty_direction": "larger_is_harder",
+          "kind": "integer",
+          "max_value": 10,
+          "min_value": 1,
+          "name": "obstacle_count",
+          "unit": "count",
+          "values": null
+        }
+      },
+      "environment_dimensions": {},
+      "family": "obstacle_avoidance_navigation",
+      "goal_dimensions": {
+        "goal_distance": {
+          "default": 4.0,
+          "description": "Distance to the target destination.",
+          "difficulty_direction": "larger_is_harder",
+          "kind": "continuous",
+          "max_value": 8.0,
+          "min_value": 2.0,
+          "name": "goal_distance",
+          "unit": "m",
+          "values": null
+        }
+      },
+      "observation_dimensions": {
+        "object_pose_available": {
+          "default": true,
+          "description": null,
+          "difficulty_direction": "unknown",
+          "kind": "boolean",
+          "max_value": null,
+          "min_value": null,
+          "name": "object_pose_available",
+          "unit": null,
+          "values": [
+            true
+          ]
+        },
+        "robot_state_history_steps": {
+          "default": 50,
+          "description": null,
+          "difficulty_direction": "unknown",
+          "kind": "integer",
+          "max_value": 50,
+          "min_value": 50,
+          "name": "robot_state_history_steps",
+          "unit": null,
+          "values": null
+        }
+      },
+      "optional_affordances": [],
+      "primitives": [
+        "velocity"
+      ],
+      "real_world_utility": 0.9,
+      "required_affordances": [
+        "bipedal_walking"
+      ],
+      "success_predicates": [
+        "Robot reaches the target position without any collision with obstacle objects."
+      ]
+    },
+    "payload_transport": {
+      "backend_requirements": [
+        "Requires an object that can be supported on the robot's hands or head."
+      ],
+      "constraints": [
+        "The object must remain in contact with the robot's support surface during locomotion."
+      ],
+      "default_primitive": "velocity",
+      "description": "Transporting a payload while walking, testing the effect of shifted center of mass.",
+      "entity_dimensions": {
+        "payload_mass": {
+          "default": 1.0,
+          "description": "The mass of the carried object.",
+          "difficulty_direction": "larger_is_harder",
+          "kind": "continuous",
+          "max_value": 5.0,
+          "min_value": 0.1,
+          "name": "payload_mass",
+          "unit": "kg",
+          "values": null
+        }
+      },
+      "environment_dimensions": {},
+      "family": "payload_transport",
+      "goal_dimensions": {
+        "transport_distance": {
+          "default": 3.0,
+          "description": "Distance to travel while carrying the payload.",
+          "difficulty_direction": "larger_is_harder",
+          "kind": "continuous",
+          "max_value": 10.0,
+          "min_value": 1.0,
+          "name": "transport_distance",
+          "unit": "m",
+          "values": null
+        }
+      },
+      "observation_dimensions": {
+        "object_pose_available": {
+          "default": true,
+          "description": null,
+          "difficulty_direction": "unknown",
+          "kind": "boolean",
+          "max_value": null,
+          "min_value": null,
+          "name": "object_pose_available",
+          "unit": null,
+          "values": [
+            true
+          ]
+        },
+        "robot_state_history_steps": {
+          "default": 50,
+          "description": null,
+          "difficulty_direction": "unknown",
+          "kind": "integer",
+          "max_value": 50,
+          "min_value": 50,
+          "name": "robot_state_history_steps",
+          "unit": null,
+          "values": null
+        }
+      },
+      "optional_affordances": [],
+      "primitives": [
+        "velocity"
+      ],
+      "real_world_utility": 0.8,
+      "required_affordances": [
+        "bipedal_walking",
+        "can_lift_objects"
+      ],
+      "success_predicates": [
+        "Robot reaches the goal distance without the payload falling or the robot collapsing."
+      ]
+    },
+    "unstable_surface_locomotion": {
+      "backend_requirements": [
+        "Requires heightfield terrain with high-frequency variations."
+      ],
+      "constraints": [
+        "Robot must not fall while traversing irregular terrain."
+      ],
+      "default_primitive": "velocity",
+      "description": "Locomotion over challenging, non-flat surfaces to test balance and adaptation.",
+      "entity_dimensions": {},
+      "environment_dimensions": {
+        "terrain_algorithm": {
+          "default": "random_uniform",
+          "description": "The algorithm used to generate the terrain.",
+          "difficulty_direction": "unknown",
+          "kind": "categorical",
+          "max_value": null,
+          "min_value": null,
+          "name": "terrain_algorithm",
+          "unit": null,
+          "values": [
+            "random_uniform",
+            "waves",
+            "mixed"
+          ]
+        },
+        "terrain_roughness": {
+          "default": 0.1,
+          "description": "The amplitude of the terrain height variations.",
+          "difficulty_direction": "larger_is_harder",
+          "kind": "continuous",
+          "max_value": 0.3,
+          "min_value": 0.01,
+          "name": "terrain_roughness",
+          "unit": "m",
+          "values": null
+        }
+      },
+      "family": "unstable_surface_locomotion",
+      "goal_dimensions": {
+        "traversal_distance": {
+          "default": 5.0,
+          "description": "Distance to travel across the rough terrain.",
+          "difficulty_direction": "larger_is_harder",
+          "kind": "continuous",
+          "max_value": 12.0,
+          "min_value": 2.0,
+          "name": "traversal_distance",
+          "unit": "m",
+          "values": null
+        }
+      },
+      "observation_dimensions": {
+        "object_pose_available": {
+          "default": true,
+          "description": null,
+          "difficulty_direction": "unknown",
+          "kind": "boolean",
+          "max_value": null,
+          "min_value": null,
+          "name": "object_pose_available",
+          "unit": null,
+          "values": [
+            true
+          ]
+        },
+        "robot_state_history_steps": {
+          "default": 50,
+          "description": null,
+          "difficulty_direction": "unknown",
+          "kind": "integer",
+          "max_value": 50,
+          "min_value": 50,
+          "name": "robot_state_history_steps",
+          "unit": null,
+          "values": null
+        }
+      },
+      "optional_affordances": [],
+      "primitives": [
+        "velocity"
+      ],
+      "real_world_utility": 0.9,
+      "required_affordances": [
+        "bipedal_walking"
+      ],
+      "success_predicates": [
+        "Robot reaches the traversal distance without the trunk falling below a minimum height."
+      ]
+    }
+  }
+}
