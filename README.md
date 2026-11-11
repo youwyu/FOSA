@@ -50,10 +50,6 @@ export FOSA_LLM_API_KEY=...                                           # if the s
 
 </details>
 
-### Column Name
-- [ ] Bump mujoco version to 4
-- [ ] Full VLA ckpts for all robots
-
 <details>
 <summary>Task grammars of the paper</summary>
 
@@ -64,6 +60,10 @@ mkdir -p logs/gemma-4-31B-it && cp -r data/grammars/* logs/gemma-4-31B-it/
 ```
 
 </details>
+
+### TODO
+- [ ] Bump mujoco version to 4
+- [ ] Full VLA ckpts for all robots
 
 ## 🔥 Discover tasks
 
